@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>英会話ブログ | Starlight English</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: #1a1a2e; background: #f8faff; }
+    nav { background: #fff; border-bottom: 1px solid #e0eaf5; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-size: 20px; font-weight: 700; color: #185FA5; text-decoration: none; }
+    .nav-logo span { font-size: 11px; color: #888; display: block; font-weight: 400; }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { font-size: 14px; color: #555; text-decoration: none; }
+    .nav-links a:hover { color: #185FA5; }
+    .nav-btn { background: #185FA5; color: #fff; border: none; border-radius: 8px; padding: 8px 18px; font-size: 13px; cursor: pointer; text-decoration: none; }
+    .page-header { background: linear-gradient(135deg, #e8f2fd 0%, #c5ddf8 100%); padding: 3rem 2rem; text-align: center; }
+    .page-header h1 { font-size: 28px; font-weight: 700; color: #042C53; margin-bottom: 0.5rem; }
+    .page-header p { font-size: 14px; color: #0C447C; }
+    .blog-container { max-width: 960px; margin: 0 auto; padding: 2.5rem 2rem; }
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .blog-card { background: #fff; border: 1px solid #d0e4f7; border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s; }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(24,95,165,0.12); }
+    .blog-img { height: 140px; background: #c5ddf8; display: flex; align-items: center; justify-content: center; font-size: 48px; }
+    .blog-body { padding: 1.2rem; }
+    .blog-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 0.6rem; }
+    .blog-tag { font-size: 11px; background: #e8f2fd; color: #185FA5; padding: 3px 10px; border-radius: 99px; }
+    .blog-date { font-size: 11px; color: #999; }
+    .blog-card h2 { font-size: 15px; font-weight: 700; line-height: 1.5; margin-bottom: 0.6rem; color: #042C53; }
+    .blog-card p { font-size: 13px; color: #666; line-height: 1.6; }
+    footer { background: #042C53; padding: 2rem; text-align: center; margin-top: 3rem; }
+    footer p { font-size: 13px; color: #7ab0d4; }
+    @media (max-width: 600px) { .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">⭐ Starlight English<span>福山市の小学生英会話スクール</span></a>
+  <div class="nav-links">
+    <a href="index.html#features">塾について</a>
+    <a href="index.html#courses">コース・料金</a>
+    <a href="blog.html">ブログ</a>
+    <a href="index.html#contact">お問い合わせ</a>
+  </div>
+  <a href="members.html" class="nav-btn">生徒・保護者ログイン</a>
+</nav>
+
+<div class="page-header">
+  <h1>📝 英会話ブログ</h1>
+  <p>毎週自動更新！小学生のための役立つ英語フレーズをお届けします</p>
+</div>
+
+<div class="blog-container">
+  <div class="blog-grid" id="blog-list">
+    <!-- ブログ記事はここに自動で追加されます -->
+    <div style="text-align:center; padding: 3rem; color: #999; grid-column: 1/-1;">
+      <p style="font-size:16px;">記事を準備中です。もうしばらくお待ちください。</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Starlight English — 福山市の小学生英会話スクール</p>
+</footer>
+
+</body>
+</html>

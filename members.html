@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生徒・保護者専用ページ | Starlight English</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: #1a1a2e; background: #f8faff; }
+    nav { background: #fff; border-bottom: 1px solid #e0eaf5; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .nav-logo { font-size: 20px; font-weight: 700; color: #185FA5; text-decoration: none; }
+    .nav-logo span { font-size: 11px; color: #888; display: block; font-weight: 400; }
+    .nav-btn { background: #185FA5; color: #fff; border: none; border-radius: 8px; padding: 8px 18px; font-size: 13px; cursor: pointer; text-decoration: none; }
+    .page-header { background: linear-gradient(135deg, #e8f2fd 0%, #c5ddf8 100%); padding: 3rem 2rem; text-align: center; }
+    .page-header h1 { font-size: 28px; font-weight: 700; color: #042C53; margin-bottom: 0.5rem; }
+    .page-header p { font-size: 14px; color: #0C447C; }
+    .container { max-width: 800px; margin: 0 auto; padding: 2.5rem 2rem; }
+    .notice-card { background: #fff; border: 1px solid #d0e4f7; border-radius: 12px; padding: 1.5rem; margin-bottom: 16px; }
+    .notice-card.important { border-left: 4px solid #185FA5; }
+    .notice-card.holiday { border-left: 4px solid #e8a020; }
+    .notice-header { display: flex; align-items: center; gap: 10px; margin-bottom: 0.8rem; }
+    .notice-badge { font-size: 11px; padding: 3px 10px; border-radius: 99px; }
+    .badge-important { background: #e8f2fd; color: #185FA5; }
+    .badge-holiday { background: #fff3e0; color: #e8a020; }
+    .badge-info { background: #e8f5e9; color: #2e7d32; }
+    .notice-date { font-size: 12px; color: #999; }
+    .notice-card h3 { font-size: 15px; font-weight: 700; color: #042C53; margin-bottom: 0.5rem; }
+    .notice-card p { font-size: 14px; color: #555; line-height: 1.7; }
+    .schedule-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #d0e4f7; }
+    .schedule-table th { background: #185FA5; color: #fff; padding: 12px 16px; font-size: 14px; text-align: left; }
+    .schedule-table td { padding: 12px 16px; font-size: 14px; color: #333; border-bottom: 1px solid #e8f2fd; }
+    .schedule-table tr:last-child td { border-bottom: none; }
+    .schedule-table tr:hover td { background: #f0f7ff; }
+    .section-title { font-size: 18px; font-weight: 700; color: #042C53; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e8f2fd; }
+    .section-block { margin-bottom: 2.5rem; }
+    footer { background: #042C53; padding: 2rem; text-align: center; margin-top: 2rem; }
+    footer p { font-size: 13px; color: #7ab0d4; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">⭐ Starlight English<span>福山市の小学生英会話スクール</span></a>
+  <a href="index.html" class="nav-btn">トップページへ</a>
+</nav>
+
+<div class="page-header">
+  <h1>🔒 生徒・保護者専用ページ</h1>
+  <p>授業スケジュール・お知らせ・休講情報をご確認いただけます</p>
+</div>
+
+<div class="container">
+
+  <div class="section-block">
+    <p class="section-title">📢 お知らせ</p>
+
+    <div class="notice-card important">
+      <div class="notice-header">
+        <span class="notice-badge badge-important">重要</span>
+        <span class="notice-date">2025年3月28日</span>
+      </div>
+      <h3>4月の授業開始日について</h3>
+      <p>4月の授業は4月7日（月）より開始いたします。新学期もどうぞよろしくお願いいたします。</p>
+    </div>
+
+    <div class="notice-card holiday">
+      <div class="notice-header">
+        <span class="notice-badge badge-holiday">休講</span>
+        <span class="notice-date">2025年3月20日</span>
+      </div>
+      <h3>春休み期間中の休講について</h3>
+      <p>3月25日（火）〜4月6日（日）は春休みのため休講となります。ご了承ください。</p>
+    </div>
+
+    <div class="notice-card">
+      <div class="notice-header">
+        <span class="notice-badge badge-info">お知らせ</span>
+        <span class="notice-date">2025年3月10日</span>
+      </div>
+      <h3>保護者懇談会のご案内</h3>
+      <p>4月19日（土）14:00〜16:00に保護者懇談会を開催予定です。詳細は後日メールにてご連絡いたします。</p>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <p class="section-title">📅 4月の授業スケジュール</p>
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th>曜日</th>
+          <th>クラス</th>
+          <th>時間</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>4月7日</td><td>月</td><td>スターターA</td><td>16:00〜16:50</td></tr>
+        <tr><td>4月7日</td><td>月</td><td>スタンダードA</td><td>17:00〜17:50</td></tr>
+        <tr><td>4月9日</td><td>水</td><td>スターターB</td><td>16:00〜16:50</td></tr>
+        <tr><td>4月9日</td><td>水</td><td>アドバンスA</td><td>17:00〜18:10</td></tr>
+        <tr><td>4月12日</td><td>土</td><td>スタンダードB</td><td>10:00〜10:50</td></tr>
+        <tr><td>4月12日</td><td>土</td><td>アドバンスB</td><td>11:00〜12:10</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 Starlight English — 福山市の小学生英会話スクール</p>
+</footer>
+
+</body>
+</html>
