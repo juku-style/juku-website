@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学習塾スタイル | 人生を豊かにする学習塾。</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #185FA5;
+      --blue-dark: #042C53;
+      --blue-mid: #0C447C;
+      --blue-light: #e8f2fd;
+      --blue-pale: #f0f7ff;
+      --accent: #c8a96e;
+      --text: #1a1a2e;
+      --muted: #666;
+      --border: #d0e4f7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: #f8faff; padding-bottom: 80px; }
+
+    header { background: var(--blue-dark); padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 200; }
+    .logo-main { font-family: 'Noto Serif JP', serif; font-size: 18px; color: #fff; letter-spacing: 0.05em; }
+    .logo-sub { font-size: 10px; color: var(--accent); letter-spacing: 0.08em; margin-top: 2px; }
+    .header-btn { background: var(--accent); color: var(--blue-dark); border: none; border-radius: 6px; padding: 8px 16px; font-size: 12px; font-weight: 700; cursor: pointer; text-decoration: none; white-space: nowrap; }
+
+    .tab-nav { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 64px; z-index: 100; overflow-x: auto; display: flex; scrollbar-width: none; }
+    .tab-nav::-webkit-scrollbar { display: none; }
+    .tab-btn { flex-shrink: 0; padding: 14px 20px; font-size: 13px; font-weight: 500; color: var(--muted); background: none; border: none; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s; }
+    .tab-btn.active { color: var(--blue); border-bottom-color: var(--blue); }
+    .tab-btn:hover { color: var(--blue); }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .hero { background: var(--blue-dark); padding: 4rem 2rem 3.5rem; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse at 60% 40%, rgba(24,95,165,0.4) 0%, transparent 60%); pointer-events: none; }
+    .hero-eyebrow { font-size: 11px; color: var(--accent); letter-spacing: 0.15em; margin-bottom: 1.2rem; }
+    .hero h1 { font-family: 'Noto Serif JP', serif; font-size: 32px; color: #fff; line-height: 1.6; margin-bottom: 1rem; }
+    .hero-sub { font-size: 14px; color: #a0b8d0; line-height: 1.8; margin-bottom: 2rem; }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-gold { background: var(--accent); color: var(--blue-dark); border: none; border-radius: 6px; padding: 12px 28px; font-size: 14px; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-block; }
+    .btn-outline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; padding: 12px 28px; font-size: 14px; cursor: pointer; text-decoration: none; display: inline-block; }
+    .hero-badges { display: flex; gap: 16px; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
+    .hero-badge { font-size: 12px; color: #a0b8d0; display: flex; align-items: center; gap: 6px; }
+    .hero-badge::before { content: '✓'; color: var(--accent); }
+
+    .section { padding: 3rem 2rem; }
+    .section-alt { padding: 3rem 2rem; background: var(--blue-pale); }
+    .section-title { font-family: 'Noto Serif JP', serif; font-size: 22px; color: var(--blue-dark); margin-bottom: 0.4rem; }
+    .section-sub { font-size: 13px; color: var(--muted); margin-bottom: 2rem; line-height: 1.7; }
+    .inner { max-width: 880px; margin: 0 auto; }
+
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .feature-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+    .feature-num { font-size: 11px; color: var(--accent); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
+    .feature-card h3 { font-size: 15px; font-weight: 700; color: var(--blue-dark); margin-bottom: 0.6rem; }
+    .feature-card p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    .courses { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .course-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+    .course-card.featured { border: 2px solid var(--blue); }
+    .course-label { font-size: 11px; background: var(--blue-light); color: var(--blue); padding: 3px 10px; border-radius: 99px; display: inline-block; margin-bottom: 0.8rem; }
+    .course-label.gold { background: #fdf6e8; color: #a07830; }
+    .course-card h3 { font-size: 16px; font-weight: 700; color: var(--blue-dark); margin-bottom: 0.5rem; }
+    .course-card .price { font-size: 22px; font-weight: 700; color: var(--blue); margin: 0.8rem 0 0.4rem; }
+    .course-card .price span { font-size: 12px; color: var(--muted); font-weight: 400; }
+    .course-card p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .course-divider { height: 1px; background: var(--border); margin: 1rem 0; }
+    .course-feature { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+    .course-feature::before { content: '✓'; color: var(--blue); flex-shrink: 0; }
+
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .blog-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.2s; display: block; }
+    .blog-card:hover { transform: translateY(-3px); }
+    .blog-thumb { height: 120px; background: linear-gradient(135deg, var(--blue-light), #c5ddf8); display: flex; align-items: center; justify-content: center; font-size: 44px; }
+    .blog-body { padding: 1rem; }
+    .blog-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 0.5rem; }
+    .blog-tag { font-size: 11px; background: var(--blue-light); color: var(--blue); padding: 2px 10px; border-radius: 99px; }
+    .blog-date { font-size: 11px; color: #999; }
+    .blog-card h3 { font-size: 14px; font-weight: 700; line-height: 1.5; color: var(--blue-dark); margin-bottom: 0.4rem; }
+    .blog-card p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+    .blog-more { text-align: center; margin-top: 1.5rem; }
+
+    .notice-list { display: flex; flex-direction: column; gap: 12px; }
+    .notice-item { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; display: flex; gap: 1rem; align-items: flex-start; }
+    .notice-item.important { border-left: 3px solid var(--blue); }
+    .notice-item.holiday { border-left: 3px solid #e8a020; }
+    .notice-badge { font-size: 11px; padding: 3px 10px; border-radius: 99px; white-space: nowrap; flex-shrink: 0; }
+    .badge-imp { background: var(--blue-light); color: var(--blue); }
+    .badge-hol { background: #fff3e0; color: #e8a020; }
+    .badge-inf { background: #e8f5e9; color: #2e7d32; }
+    .notice-content h4 { font-size: 14px; font-weight: 700; color: var(--blue-dark); margin-bottom: 4px; }
+    .notice-content p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .notice-date { font-size: 11px; color: #999; margin-bottom: 4px; }
+
+    .flow-steps { display: flex; flex-direction: column; gap: 0; max-width: 600px; margin: 0 auto; }
+    .flow-step { display: flex; gap: 1.5rem; align-items: flex-start; position: relative; padding-bottom: 2rem; }
+    .flow-step:last-child { padding-bottom: 0; }
+    .flow-step:not(:last-child)::after { content: ''; position: absolute; left: 19px; top: 44px; bottom: 0; width: 2px; background: var(--border); }
+    .flow-num { width: 40px; height: 40px; background: var(--blue); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; z-index: 1; }
+    .flow-body { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; flex: 1; }
+    .flow-body h3 { font-size: 15px; font-weight: 700; color: var(--blue-dark); margin-bottom: 0.4rem; }
+    .flow-body p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .flow-time { font-size: 11px; color: var(--accent); font-weight: 700; margin-bottom: 0.3rem; }
+    .flow-cta { text-align: center; margin-top: 2.5rem; }
+
+    .schedule-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); margin-top: 1rem; }
+    .schedule-table th { background: var(--blue); color: #fff; padding: 12px 16px; font-size: 13px; text-align: left; }
+    .schedule-table td { padding: 12px 16px; font-size: 13px; color: #333; border-bottom: 1px solid var(--blue-light); }
+    .schedule-table tr:last-child td { border-bottom: none; }
+    .schedule-table tr:hover td { background: var(--blue-pale); }
+
+    .fixed-banner { position: fixed; bottom: 0; left: 0; right: 0; background: var(--blue-dark); border-top: 1px solid rgba(255,255,255,0.1); padding: 12px 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; z-index: 300; }
+    .banner-text strong { font-size: 14px; color: #fff; display: block; }
+    .banner-text span { font-size: 11px; color: #a0b8d0; }
+    .banner-btn { background: var(--accent); color: var(--blue-dark); border: none; border-radius: 6px; padding: 10px 20px; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 24px; }
+      .fixed-banner { padding: 10px 1rem; }
+      .banner-text strong { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo-main">学習塾スタイル</div>
+    <div class="logo-sub">JUKU STYLE</div>
+  </div>
+  <a href="members.html" class="header-btn">生徒・保護者ログイン</a>
+</header>
+
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('home')">ホーム</button>
+  <button class="tab-btn" onclick="showTab('courses')">コース・料金</button>
+  <button class="tab-btn" onclick="showTab('blog')">ブログ</button>
+  <button class="tab-btn" onclick="showTab('notice')">お知らせ</button>
+  <button class="tab-btn" onclick="showTab('flow')">入塾の流れ</button>
+</nav>
+
+<div class="tab-content active" id="tab-home">
+  <div class="hero">
+    <p class="hero-eyebrow">JUKU STYLE / 学習塾スタイル</p>
+    <h1>人生を豊かにする学習塾。</h1>
+    <p class="hero-sub">どこで学ぶか。ライフスタイルの選択と同じ。<br>個別指導と自立型学習で、あなただけの学びを。</p>
+    <div class="hero-btns">
+      <button class="btn-gold" onclick="showTab('flow')">無料体験を申し込む</button>
+      <button class="btn-outline" onclick="showTab('courses')">コースを見る</button>
+    </div>
+    <div class="hero-badges">
+      <span class="hero-badge">小学生〜高校生対応</span>
+      <span class="hero-badge">個別指導</span>
+      <span class="hero-badge">自立型学習</span>
+    </div>
+  </div>
+  <div class="section">
+    <div class="inner">
+      <p class="section-title">学習塾スタイルの特徴</p>
+      <p class="section-sub">一人ひとりに寄り添い、自分から学べる力を育てます。</p>
+      <div class="features">
+        <div class="feature-card">
+          <p class="feature-num">FEATURE 01</p>
+          <h3>完全個別指導</h3>
+          <p>生徒一人ひとりの学力・目標に合わせたオーダーメイドのカリキュラム。弱点を集中的に克服します。</p>
+        </div>
+        <div class="feature-card">
+          <p class="feature-num">FEATURE 02</p>
+          <h3>自立型学習システム</h3>
+          <p>「教わる」だけでなく「自分で考える力」を養います。自習室を活用した主体的な学習習慣を身につけます。</p>
+        </div>
+        <div class="feature-card">
+          <p class="feature-num">FEATURE 03</p>
+          <h3>定期的な面談・報告</h3>
+          <p>保護者の方へ定期的に学習状況をご報告。ご家庭と連携して、お子様の成長をサポートします。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tab-content" id="tab-courses">
+  <div class="section">
+    <div class="inner">
+      <p class="section-title">コース・料金</p>
+      <p class="section-sub">学年や目標に合わせて選べるコースをご用意しています。</p>
+      <div class="courses">
+        <div class="course-card">
+          <span class="course-label">小学生向け</span>
+          <h3>ベーシックコース</h3>
+          <div class="price">¥8,000<span>/月</span></div>
+          <p>週1回・60分<br>基礎学力の定着と学習習慣の形成</p>
+          <div class="course-divider"></div>
+          <p class="course-feature">個別指導60分×月4回</p>
+          <p class="course-feature">学習進捗レポート</p>
+          <p class="course-feature">自習室利用可</p>
+        </div>
+        <div class="course-card featured">
+          <span class="course-label gold">人気No.1</span>
+          <h3>スタンダードコース</h3>
+          <div class="price">¥14,000<span>/月</span></div>
+          <p>週2回・60分<br>学力向上と受験準備に対応</p>
+          <div class="course-divider"></div>
+          <p class="course-feature">個別指導60分×月8回</p>
+          <p class="course-feature">月次面談・保護者報告</p>
+          <p class="course-feature">自習室利用し放題</p>
+        </div>
+        <div class="course-card">
+          <span class="course-label">中学・高校生向け</span>
+          <h3>アドバンスコース</h3>
+          <div class="price">¥20,000<span>/月</span></div>
+          <p>週2〜3回・90分<br>受験・定期テスト対策に特化</p>
+          <div class="course-divider"></div>
+          <p class="course-feature">個別指導90分×月8〜12回</p>
+          <p class="course-feature">入試・テスト対策プラン</p>
+          <p class="course-feature">自習室利用し放題</p>
+        </div>
+      </div>
+      <p style="font-size:12px; color:#999; text-align:center; margin-top:1.5rem;">※料金はすべて税込です。教材費は別途かかる場合があります。</p>
+    </div>
+  </div>
+</div>
+
+<div class="tab-content" id="tab-blog">
+  <div class="section">
+    <div class="inner">
+      <p class="section-title">学習ブログ</p>
+      <p class="section-sub">勉強法・受験対策・お子様の学びをサポートする情報を毎週お届けします。</p>
+      <div class="blog-grid" id="blog-list">
+        <a href="blog.html" class="blog-card">
+          <div class="blog-thumb">📖</div>
+          <div class="blog-body">
+            <div class="blog-meta"><span class="blog-tag">勉強法</span><span class="blog-date">最新記事</span></div>
+            <h3>子どもの集中力を高める5つの環境づくり</h3>
+            <p>学習効果を最大化する勉強環境の整え方を解説します。</p>
+          </div>
+        </a>
+        <a href="blog.html" class="blog-card">
+          <div class="blog-thumb">🎯</div>
+          <div class="blog-body">
+            <div class="blog-meta"><span class="blog-tag">受験対策</span><span class="blog-date">先週</span></div>
+            <h3>中学受験を考え始める前に知っておきたいこと</h3>
+            <p>受験を検討する保護者の方へ、準備のポイントをお伝えします。</p>
+          </div>
+        </a>
+        <a href="blog.html" class="blog-card">
+          <div class="blog-thumb">💡</div>
+          <div class="blog-body">
+            <div class="blog-meta"><span class="blog-tag">保護者向け</span><span class="blog-date">2週間前</span></div>
+            <h3>「勉強しなさい」が逆効果な理由と声かけのコツ</h3>
+            <p>子どもの自主性を引き出す保護者の関わり方を考えます。</p>
+          </div>
+        </a>
+      </div>
+      <div class="blog-more">
+        <a href="blog.html" class="btn-gold">ブログをもっと見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tab-content" id="tab-notice">
+  <div class="section">
+    <div class="inner">
+      <p class="section-title">お知らせ</p>
+      <p class="section-sub">塾からの最新情報をお届けします。</p>
+      <div class="notice-list">
+        <div class="notice-item important">
+          <div><p class="notice-date">2025年3月28日</p><span class="notice-badge badge-imp">重要</span></div>
+          <div class="notice-content">
+            <h4>4月の授業開始日について</h4>
+            <p>4月の授業は4月7日（月）より開始いたします。新学期もどうぞよろしくお願いいたします。</p>
+          </div>
+        </div>
+        <div class="notice-item holiday">
+          <div><p class="notice-date">2025年3月20日</p><span class="notice-badge badge-hol">休講</span></div>
+          <div class="notice-content">
+            <h4>春休み期間中の休講について</h4>
+            <p>3月25日（火）〜4月6日（日）は春休みのため休講となります。</p>
+          </div>
+        </div>
+        <div class="notice-item">
+          <div><p class="notice-date">2025年3月10日</p><span class="notice-badge badge-inf">情報</span></div>
+          <div class="notice-content">
+            <h4>保護者懇談会のご案内</h4>
+            <p>4月19日（土）14:00〜16:00に保護者懇談会を開催予定です。</p>
+          </div>
+        </div>
+      </div>
+      <p class="section-title" style="margin-top:2.5rem;">4月の授業スケジュール</p>
+      <table class="schedule-table">
+        <thead><tr><th>日付</th><th>曜日</th><th>クラス</th><th>時間</th></tr></thead>
+        <tbody>
+          <tr><td>4月7日</td><td>月</td><td>小学生クラスA</td><td>16:00〜17:00</td></tr>
+          <tr><td>4月8日</td><td>火</td><td>中学生クラスA</td><td>17:00〜18:30</td></tr>
+          <tr><td>4月9日</td><td>水</td><td>小学生クラスB</td><td>16:00〜17:00</td></tr>
+          <tr><td>4月10日</td><td>木</td><td>高校生クラスA</td><td>18:00〜19:30</td></tr>
+          <tr><td>4月12日</td><td>土</td><td>全学年・自習</td><td>10:00〜17:00</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="tab-content" id="tab-flow">
+  <div class="section">
+    <div class="inner">
+      <p class="section-title">入塾までの流れ</p>
+      <p class="section-sub">まずはお気軽にお問い合わせください。無料体験授業を受けてからご入塾をお決めいただけます。</p>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <div class="flow-body">
+            <p class="flow-time">まずはここから</p>
+            <h3>お問い合わせ</h3>
+            <p>電話またはメールにてお気軽にご連絡ください。<br><br>📞 000-0000-0000<br>📧 info@juku-style.jp</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <div class="flow-body">
+            <p class="flow-time">ご連絡後1週間以内</p>
+            <h3>無料カウンセリング</h3>
+            <p>現在の学習状況・目標・お悩みをお聞きします。お子様に合った最適なコースをご提案いたします。</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <div class="flow-body">
+            <p class="flow-time">費用は一切かかりません</p>
+            <h3>無料体験授業</h3>
+            <p>実際の授業を無料で体験していただけます。雰囲気や指導スタイルをご確認ください。</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <div class="flow-body">
+            <p class="flow-time">ゆっくりご検討ください</p>
+            <h3>ご入塾のご検討</h3>
+            <p>体験授業の後、ご家庭でゆっくりご検討いただけます。無理な勧誘は一切行いません。</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">5</div>
+          <div class="flow-body">
+            <p class="flow-time">ご入塾決定後</p>
+            <h3>入塾手続き・授業スタート</h3>
+            <p>必要書類のご記入と初月のお支払いで手続き完了。いよいよ授業のスタートです！</p>
+          </div>
+        </div>
+      </div>
+      <div class="flow-cta">
+        <p style="font-size:13px; color:var(--muted); margin-bottom:1rem;">まずはお気軽にご連絡ください</p>
+        <a href="tel:000-0000-0000" class="btn-gold">📞 今すぐ電話する</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="fixed-banner">
+  <div class="banner-text">
+    <strong>🎓 無料体験授業 受付中！</strong>
+    <span>まずはお気軽にお問い合わせください</span>
+  </div>
+  <button class="banner-btn" onclick="showTab('flow')">入塾の流れを見る</button>
+</div>
+
+<script>
+  function showTab(name) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    const tabs = ['home','courses','blog','notice','flow'];
+    const idx = tabs.indexOf(name);
+    if (idx >= 0) document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
