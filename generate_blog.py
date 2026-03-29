@@ -13,24 +13,67 @@ def generate_blog_post():
     
     message = client.messages.create(
         model="claude-sonnet-4-20250514",
-        max_tokens=1000,
+        max_tokens=3000,
         messages=[
             {
                 "role": "user",
-                "content": f"""小学生向けの英会話ブログ記事を1つ作成してください。
+                "content": f"""あなたは学習塾のプロ講師兼SEOライターです。
+以下の条件でブログ記事を1つ作成してください。
 
-以下のJSON形式のみで返答してください（他の文章は不要）：
+【目的】
+・保護者や生徒の悩みを解決する
+・検索からの流入を増やす（SEOを意識）
+・最終的に塾への信頼感を高める
+
+【対象読者】
+・小学生〜中学生の保護者
+・勉強に悩む生徒本人
+
+【記事構成】
+① 導入文（共感ベースで150〜200文字）
+② 見出し（H2相当）を4〜6個
+③ 各見出しの中に具体的な解説
+④ まとめ（行動を促す）
+
+【必須条件】
+・抽象論ではなく「現場ベースの具体例」を入れる
+・「なぜそうなるのか」を必ず説明する
+・難しい言葉は使わず、わかりやすく書く
+・1文は長くしすぎない
+・PREP法（結論→理由→具体例→まとめ）を意識する
+・箇条書きを適度に使う
+
+【差別化要素】
+・「実際に多いケース」や「よくある失敗」を入れる
+・他の記事にないリアルな視点を入れる
+
+【SEO強化】
+・検索されやすいキーワードを自然に含める
+・見出しにもキーワードを入れる
+・「〜とは？」「原因」「対策」など検索意図を意識する
+
+【塾集客要素】
+・最後に軽く塾の価値を伝える一文を入れる（押し売りにならない自然な形）
+
+【読みやすさ】
+・各見出しごとに結論を最初に書く
+
+【禁止事項】
+・根拠のない断定
+・精神論だけの内容
+・薄い一般論
+
+【文字数】2000文字程度
+
+今日の日付：{today}
+
+以下のJSON形式のみで返答してください（前後の説明文・```は不要）：
 {{
-  "title": "記事タイトル（20文字以内）",
-  "tag": "カテゴリ（例：今週のフレーズ／会話シナリオ／文法解説／英語豆知識）",
-  "summary": "記事の要約（60文字以内）",
-  "content": "記事本文（400〜600文字、小学生にわかりやすく、英語フレーズを含む）"
-}}
-
-テーマ：小学生が日常で使える英会話フレーズ
-対象：小学生とその保護者
-口調：親しみやすく楽しい
-今日の日付：{today}"""
+  "title": "SEOを意識した記事タイトル（30文字以内）",
+  "tag": "カテゴリ（勉強法／受験対策／保護者向け／学習習慣／モチベーション のいずれか）",
+  "summary": "記事の要約（80文字以内）",
+  "content": "記事本文（2000文字程度、HTML可、見出しは<h2>タグを使用）"
+}}"""
             }
         ]
     )
@@ -90,30 +133,39 @@ def create_post_page(post):
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{post['title']} | Starlight English</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <title>{post['title']} | 学習塾スタイル</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-    body {{ font-family: 'Noto Sans JP', sans-serif; color: #1a1a2e; background: #f8faff; }}
-    nav {{ background: #fff; border-bottom: 1px solid #e0eaf5; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; }}
-    .nav-logo {{ font-size: 20px; font-weight: 700; color: #185FA5; text-decoration: none; }}
-    .nav-logo span {{ font-size: 11px; color: #888; display: block; font-weight: 400; }}
-    .nav-btn {{ background: #185FA5; color: #fff; border: none; border-radius: 8px; padding: 8px 18px; font-size: 13px; cursor: pointer; text-decoration: none; }}
+    body {{ font-family: 'Noto Sans JP', sans-serif; color: #1a1a2e; background: #f8faff; padding-bottom: 80px; }}
+    nav {{ background: #042C53; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }}
+    .nav-logo {{ font-family: 'Noto Serif JP', serif; font-size: 18px; color: #fff; text-decoration: none; }}
+    .nav-logo span {{ font-size: 10px; color: #c8a96e; display: block; }}
+    .nav-btn {{ background: #c8a96e; color: #042C53; border: none; border-radius: 6px; padding: 8px 16px; font-size: 12px; font-weight: 700; cursor: pointer; text-decoration: none; }}
     .post-container {{ max-width: 720px; margin: 0 auto; padding: 3rem 2rem; }}
     .post-hero {{ background: linear-gradient(135deg, #e8f2fd 0%, #c5ddf8 100%); border-radius: 16px; padding: 3rem 2rem; text-align: center; margin-bottom: 2rem; }}
     .post-emoji {{ font-size: 60px; margin-bottom: 1rem; }}
     .post-tag {{ font-size: 12px; background: #185FA5; color: #fff; padding: 4px 14px; border-radius: 99px; display: inline-block; margin-bottom: 1rem; }}
-    .post-hero h1 {{ font-size: 24px; font-weight: 700; color: #042C53; line-height: 1.5; margin-bottom: 0.5rem; }}
+    .post-hero h1 {{ font-family: 'Noto Serif JP', serif; font-size: 24px; color: #042C53; line-height: 1.5; margin-bottom: 0.5rem; }}
     .post-date {{ font-size: 13px; color: #0C447C; }}
-    .post-content {{ background: #fff; border: 1px solid #d0e4f7; border-radius: 12px; padding: 2rem; line-height: 1.8; font-size: 15px; color: #333; }}
+    .post-content {{ background: #fff; border: 1px solid #d0e4f7; border-radius: 12px; padding: 2rem; line-height: 1.9; font-size: 15px; color: #333; }}
+    .post-content h2 {{ font-size: 18px; font-weight: 700; color: #042C53; margin: 2rem 0 1rem; padding-left: 0.8rem; border-left: 3px solid #185FA5; }}
+    .post-content h3 {{ font-size: 16px; font-weight: 700; color: #185FA5; margin: 1.5rem 0 0.8rem; }}
+    .post-content p {{ margin-bottom: 1rem; }}
+    .post-content ul {{ padding-left: 1.5rem; margin-bottom: 1rem; }}
+    .post-content li {{ margin-bottom: 0.4rem; }}
     .back-link {{ display: inline-block; margin-top: 2rem; color: #185FA5; text-decoration: none; font-size: 14px; }}
+    .fixed-banner {{ position: fixed; bottom: 0; left: 0; right: 0; background: #042C53; border-top: 1px solid rgba(255,255,255,0.1); padding: 12px 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; z-index: 300; }}
+    .banner-text strong {{ font-size: 14px; color: #fff; display: block; }}
+    .banner-text span {{ font-size: 11px; color: #a0b8d0; }}
+    .banner-btn {{ background: #c8a96e; color: #042C53; border: none; border-radius: 6px; padding: 10px 20px; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; text-decoration: none; }}
     footer {{ background: #042C53; padding: 2rem; text-align: center; margin-top: 3rem; }}
     footer p {{ font-size: 13px; color: #7ab0d4; }}
   </style>
 </head>
 <body>
 <nav>
-  <a href="index.html" class="nav-logo">⭐ Starlight English<span>福山市の小学生英会話スクール</span></a>
+  <a href="index.html" class="nav-logo">学習塾スタイル<span>JUKU STYLE</span></a>
   <a href="members.html" class="nav-btn">生徒・保護者ログイン</a>
 </nav>
 <div class="post-container">
@@ -126,8 +178,15 @@ def create_post_page(post):
   <div class="post-content">{content_html}</div>
   <a href="blog.html" class="back-link">← ブログ一覧に戻る</a>
 </div>
+<div class="fixed-banner">
+  <div class="banner-text">
+    <strong>🎓 無料体験授業 受付中！</strong>
+    <span>まずはお気軽にお問い合わせください</span>
+  </div>
+  <a href="index.html" class="banner-btn">入塾の流れを見る</a>
+</div>
 <footer>
-  <p>© 2025 Starlight English — 福山市の小学生英会話スクール</p>
+  <p>© 2025 学習塾スタイル</p>
 </footer>
 </body>
 </html>"""
