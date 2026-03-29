@@ -196,23 +196,23 @@ def update_blog_html(posts):
 
         cards_html += f"""
 
-    <a href="post_{{post['id']}}.html" class="blog-card">
+    <a href="post_{post['id']}.html" class="blog-card">
 
-      <div class="blog-img">{{emoji}}</div>
+      <div class="blog-img">{emoji}</div>
 
       <div class="blog-body">
 
         <div class="blog-meta">
 
-          <span class="blog-tag">{{post['tag']}}</span>
+          <span class="blog-tag">{post['tag']}</span>
 
-          <span class="blog-date">{{post['date']}}</span>
+          <span class="blog-date">{post['date']}</span>
 
         </div>
 
-        <h2>{{post['title']}}</h2>
+        <h2>{post['title']}</h2>
 
-        <p>{{post['summary']}}</p>
+        <p>{post['summary']}</p>
 
       </div>
 
@@ -226,24 +226,23 @@ def update_blog_html(posts):
 
     
 
-    html = re.sub(
+    new_grid = f'<div class="blog-grid" id="blog-list">{cards_html}\n  </div>'
 
-        r'<div class="blog-grid" id="blog-list">.*?</div>',
+    
 
-        f'<div class="blog-grid" id="blog-list">{{cards_html}}\n  </div>',
+    if '<div class="blog-grid" id="blog-list">' in html:
 
-        html,
+        start = html.find('<div class="blog-grid" id="blog-list">')
 
-        flags=re.DOTALL
+        end = html.find('</div>', start) + len('</div>')
 
-    )
+        html = html[:start] + new_grid + html[end:]
 
     
 
     with open("blog.html", "w", encoding="utf-8") as f:
 
         f.write(html)
-
 def create_post_page(post):
 
     emoji = EMOJIS[post.get('index', 0) % len(EMOJIS)]
