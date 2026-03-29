@@ -194,9 +194,11 @@ def update_blog_html(posts):
 
         emoji = EMOJIS[i % len(EMOJIS)]
 
+        pid = post['id']
+
         cards_html += f"""
 
-    <a href="post_{post['id']}.html" class="blog-card">
+    <a href="post_{pid}.html" class="blog-card">
 
       <div class="blog-img">{emoji}</div>
 
@@ -247,7 +249,11 @@ def create_post_page(post):
 
     emoji = EMOJIS[post.get('index', 0) % len(EMOJIS)]
 
-    content_html = post['content'].replace('\n', '<br>')
+    post_id = post['id']
+    post_title = post['title']
+    post_tag = post['tag']
+    post_date = post['date']
+    post_content = post['content'].replace('\n', '<br>')
 
     
 
@@ -261,7 +267,7 @@ def create_post_page(post):
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>{{post['title']}} | 学習塩スタイル</title>
+  <title>{{post_title}} | 学習塩スタイル</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
@@ -337,15 +343,15 @@ def create_post_page(post):
 
     <div class="post-emoji">{{emoji}}</div>
 
-    <span class="post-tag">{{post['tag']}}</span>
+    <span class="post-tag">{{post_tag}}</span>
 
-    <h1>{{post['title']}}</h1>
+    <h1>{{post_title}}</h1>
 
-    <p class="post-date">{{post['date']}}</p>
+    <p class="post-date">{{post_date}}</p>
 
   </div>
 
-  <div class="post-content">{{content_html}}</div>
+  <div class="post-content">{{post_content}}</div>
 
   <a href="blog.html" class="back-link">← ブログ一覧に戻る</a>
 
@@ -377,7 +383,7 @@ def create_post_page(post):
 
     
 
-    with open(f"post_{{post['id']}}.html", "w", encoding="utf-8") as f:
+    with open("post_" + post_id + ".html", "w", encoding="utf-8") as f:
 
         f.write(html)
 
