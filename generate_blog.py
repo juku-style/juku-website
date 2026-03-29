@@ -438,6 +438,6 @@ def main():
 
     print(f"✅ 記事を生成しました：{{new_post['title']}}")
 
-if name == "__main__":
+if __name__ == "__main__":
 
     main()
