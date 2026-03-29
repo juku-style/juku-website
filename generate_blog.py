@@ -13,7 +13,7 @@ def generate_blog_post():
     
     message = client.messages.create(
         model="claude-sonnet-4-20250514",
-        max_tokens=3000,
+        max_tokens=4096,
         messages=[
             {
                 "role": "user",
@@ -79,10 +79,18 @@ def generate_blog_post():
     )
     
     text = message.content[0].text.strip()
-    text = re.sub(r'^```json\s*', '', text)
-    text = re.sub(r'\s*```$', '', text)
-    
-    return json.loads(text)
+    text = re.sub(r"^```json\s*", "", text)
+    text = re.sub(r"```json\s*", "", text)
+    text = re.sub(r"\s*```$", "", text)
+    text = re.sub(r"```\s*", "", text)
+    text = text.strip()
+
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError as e:
+        print(f"JSONパースエラー: {e}")
+        print(f"受け取ったテキスト（先頭300文字）: {text[:300]}")
+        raise
 
 def load_blog_posts():
     if os.path.exists("blog_posts.json"):
