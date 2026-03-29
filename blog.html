@@ -9,83 +9,55 @@
   <meta property="og:title" content="学習塾スタイルのブログ｜福山市の受験・勉強法情報">
   <meta property="og:description" content="受験対策・勉強法・保護者向けアドバイスを毎週更新中。">
   <meta property="og:type" content="website">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Noto Sans JP', sans-serif; color: #1a1a2e; background: #f8faff; }
-    nav { background: #fff; border-bottom: 1px solid #e0eaf5; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
-    .nav-logo { font-size: 20px; font-weight: 700; color: #185FA5; text-decoration: none; }
-    .nav-logo span { font-size: 11px; color: #888; display: block; font-weight: 400; }
-    .nav-links { display: flex; gap: 24px; }
-    .nav-links a { font-size: 14px; color: #555; text-decoration: none; }
-    .nav-links a:hover { color: #185FA5; }
-    .nav-btn { background: #185FA5; color: #fff; border: none; border-radius: 8px; padding: 8px 18px; font-size: 13px; cursor: pointer; text-decoration: none; }
-    .page-header { background: linear-gradient(135deg, #e8f2fd 0%, #c5ddf8 100%); padding: 3rem 2rem; text-align: center; }
-    .page-header h1 { font-size: 28px; font-weight: 700; color: #042C53; margin-bottom: 0.5rem; }
-    .page-header p { font-size: 14px; color: #0C447C; }
+    nav { background: #4DC8E8; border-bottom: 1px solid #B2EBF7; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .nav-logo { font-family: 'Noto Serif JP', serif; font-size: 18px; color: #fff; text-decoration: none; }
+    .nav-logo span { font-size: 11px; color: #fff; display: block; font-weight: 400; opacity: 0.85; }
+    .nav-btn { background: #fff; color: #1DA8CC; border: none; border-radius: 8px; padding: 8px 18px; font-size: 13px; font-weight: 700; cursor: pointer; text-decoration: none; }
+    .page-header { background: linear-gradient(135deg, #E0F7FC 0%, #B2EBF7 100%); padding: 3rem 2rem; text-align: center; }
+    .page-header h1 { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 700; color: #1DA8CC; margin-bottom: 0.5rem; }
+    .page-header p { font-size: 14px; color: #1DA8CC; }
     .blog-container { max-width: 960px; margin: 0 auto; padding: 2.5rem 2rem; }
     .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-    .blog-card { background: #fff; border: 1px solid #d0e4f7; border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s; }
-    .blog-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(24,95,165,0.12); }
-    .blog-img { height: 140px; background: #c5ddf8; display: flex; align-items: center; justify-content: center; font-size: 48px; }
+    .blog-card { background: #fff; border: 1px solid #B2EBF7; border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s; display: block; }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(77,200,232,0.15); }
+    .blog-img { height: 140px; background: #E0F7FC; display: flex; align-items: center; justify-content: center; font-size: 48px; }
     .blog-body { padding: 1.2rem; }
     .blog-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 0.6rem; }
-    .blog-tag { font-size: 11px; background: #e8f2fd; color: #185FA5; padding: 3px 10px; border-radius: 99px; }
+    .blog-tag { font-size: 11px; background: #E0F7FC; color: #1DA8CC; padding: 3px 10px; border-radius: 99px; }
     .blog-date { font-size: 11px; color: #999; }
-    .blog-card h2 { font-size: 15px; font-weight: 700; line-height: 1.5; margin-bottom: 0.6rem; color: #042C53; }
+    .blog-card h2 { font-size: 15px; font-weight: 700; line-height: 1.5; margin-bottom: 0.6rem; color: #1a1a2e; }
     .blog-card p { font-size: 13px; color: #666; line-height: 1.6; }
-    footer { background: #042C53; padding: 2rem; text-align: center; margin-top: 3rem; }
-    footer p { font-size: 13px; color: #7ab0d4; }
-    @media (max-width: 600px) { .nav-links { display: none; } }
+    footer { background: #1DA8CC; padding: 2rem; text-align: center; margin-top: 3rem; }
+    footer p { font-size: 13px; color: #fff; }
+    @media (max-width: 600px) { .nav-logo span { display: none; } }
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">⭐ Starlight English<span>福山市の小学生英会話スクール</span></a>
-  <div class="nav-links">
-    <a href="index.html#features">塾について</a>
-    <a href="index.html#courses">コース・料金</a>
-    <a href="blog.html">ブログ</a>
-    <a href="index.html#contact">お問い合わせ</a>
-  </div>
+  <a href="index.html" class="nav-logo">学習塾スタイル<span>JUKU STYLE</span></a>
   <a href="members.html" class="nav-btn">生徒・保護者ログイン</a>
 </nav>
 
 <div class="page-header">
-  <h1>📝 英会話ブログ</h1>
-  <p>毎週自動更新！小学生のための役立つ英語フレーズをお届けします</p>
+  <h1>📝 学習ブログ</h1>
+  <p>受験対策・勉強法・保護者向け情報を毎週お届けします</p>
 </div>
 
 <div class="blog-container">
-  <div class="blog-grid" id="blog-list">{cards_html}
-  </div>
-      <div class="blog-body">
-        <div class="blog-meta">
-          <span class="blog-tag">保護者向け</span>
-          <span class="blog-date">2026年03月29日</span>
-        </div>
-        <h2>子どもが勉強しない理由5選と効果的な対策法</h2>
-        <p>子どもが勉強しない本当の理由を現場経験から解説。やる気を引き出す具体的な声かけや環境作りの方法を紹介します。</p>
-      </div>
-    </a>
-    <a href="post_20260329094856.html" class="blog-card">
-      <div class="blog-img">💬</div>
-      <div class="blog-body">
-        <div class="blog-meta">
-          <span class="blog-tag">保護者向け</span>
-          <span class="blog-date">2026年03月29日</span>
-        </div>
-        <h2>中学生の成績が上がらない5つの原因と具体的解決策</h2>
-        <p>勉強時間は増えたのに成績が伸び悩む中学生によくある5つの原因を現場経験から解説。具体的な改善方法も紹介します。</p>
-      </div>
-    </a>
-  </div>
+  <div class="blog-grid" id="blog-list">
+    <div style="text-align:center; padding: 3rem; color: #999; grid-column: 1/-1;">
+      <p style="font-size:16px;">記事を準備中です。もうしばらくお待ちください。</p>
+    </div>
   </div>
 </div>
 
 <footer>
-  <p>© 2025 Starlight English — 福山市の小学生英会話スクール</p>
+  <p>© 2025 学習塾スタイル</p>
 </footer>
 
 </body>
