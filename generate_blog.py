@@ -131,10 +131,13 @@ def update_blog_html(posts):
     
     new_grid = '<div class="blog-grid" id="blog-list">' + cards_html + "\n  </div>"
     
-    if '<div class="blog-grid" id="blog-list">' in html:
-        start = html.find('<div class="blog-grid" id="blog-list">')
-        end = html.find('</div>', start) + len('</div>')
-        html = html[:start] + new_grid + html[end:]
+    # 正規表現でblog-gridブロック全体（入れ子のタグを含む）を正確に置換する
+    html = re.sub(
+        r'<div class="blog-grid" id="blog-list">.*?</div>(?=\s*</div>)',
+        new_grid,
+        html,
+        flags=re.DOTALL
+    )
     
     with open("blog.html", "w", encoding="utf-8") as f:
         f.write(html)
