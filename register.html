@@ -7,23 +7,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --blue: #185FA5;
-      --blue-dark: #042C53;
-      --blue-light: #e8f2fd;
-      --accent: #c8a96e;
-      --border: #d0e4f7;
+      --blue: #4DC8E8;
+      --blue-dark: #1DA8CC;
+      --blue-light: #E0F7FC;
+      --accent: #F8BBD9;
+      --border: #B2EBF7;
       --muted: #666;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Noto Sans JP', sans-serif; color: #1a1a2e; background: #f8faff; min-height: 100vh; }
 
-    nav { background: var(--blue-dark); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    nav { background: var(--blue); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
     .nav-logo { font-family: 'Noto Serif JP', serif; font-size: 18px; color: #fff; text-decoration: none; }
-    .nav-logo span { font-size: 10px; color: var(--accent); display: block; }
+    .nav-logo span { font-size: 10px; color: #fff; display: block; opacity: 0.85; }
 
-    .page-header { background: linear-gradient(135deg, #e8f2fd 0%, #c5ddf8 100%); padding: 3rem 2rem; text-align: center; }
+    .page-header { background: linear-gradient(135deg, #E0F7FC 0%, #B2EBF7 100%); padding: 3rem 2rem; text-align: center; }
     .page-header h1 { font-family: 'Noto Serif JP', serif; font-size: 24px; color: var(--blue-dark); margin-bottom: 0.5rem; }
-    .page-header p { font-size: 14px; color: #0C447C; line-height: 1.7; }
+    .page-header p { font-size: 14px; color: #17A0C0; line-height: 1.7; }
 
     .container { max-width: 560px; margin: 0 auto; padding: 2.5rem 2rem; }
 
@@ -37,10 +37,10 @@
     .form-hint { font-size: 12px; color: var(--muted); margin-top: 0.4rem; }
 
     .submit-btn { width: 100%; background: var(--blue); color: #fff; border: none; border-radius: 8px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: 'Noto Sans JP', sans-serif; transition: background 0.2s; }
-    .submit-btn:hover { background: #0C447C; }
+    .submit-btn:hover { background: var(--blue-dark); }
     .submit-btn:disabled { background: #aaa; cursor: not-allowed; }
 
-    .notice { background: var(--blue-light); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; margin-bottom: 1.5rem; font-size: 13px; color: #0C447C; line-height: 1.7; }
+    .notice { background: var(--blue-light); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; margin-bottom: 1.5rem; font-size: 13px; color: #17A0C0; line-height: 1.7; }
     .notice strong { display: block; margin-bottom: 0.3rem; color: var(--blue-dark); }
 
     .success-card { display: none; text-align: center; padding: 2rem; }
@@ -51,7 +51,7 @@
     .error-msg { background: #fff0f0; border: 1px solid #f5c1c1; border-radius: 8px; padding: 0.8rem 1rem; font-size: 13px; color: #c0392b; margin-top: 1rem; display: none; }
 
     footer { background: var(--blue-dark); padding: 2rem; text-align: center; margin-top: 3rem; }
-    footer p { font-size: 13px; color: #7ab0d4; }
+    footer p { font-size: 13px; color: #fff; }
   </style>
 </head>
 <body>
