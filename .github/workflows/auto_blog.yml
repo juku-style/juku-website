@@ -1,14 +1,11 @@
 name: 学習ブログ自動生成
-
 on:
   schedule:
     - cron: '0 0 * * 1'
   workflow_dispatch:
-
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: false
-
 jobs:
   generate-blog:
     runs-on: ubuntu-latest
@@ -19,20 +16,18 @@ jobs:
     steps:
       - name: リポジトリをチェックアウト
         uses: actions/checkout@v4
-
       - name: Pythonをセットアップ
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: 必要なライブラリをインストール
         run: pip install anthropic
-
       - name: ブログ記事を生成
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python generate_blog.py
-
+        run: |
+          python repair_blog.py
+          python generate_blog.py
       - name: 生成した記事をコミット・プッシュ
         run: |
           git config --local user.email "action@github.com"
