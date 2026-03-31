@@ -128,6 +128,22 @@
       .fixed-banner { padding: 10px 1rem; }
       .banner-text strong { font-size: 13px; }
     }
+
+    /* 塾長のつぶやき */
+    .tweet-filter-btn { background: #fff; border: 1px solid var(--border); border-radius: 99px; padding: 6px 16px; font-size: 12px; color: var(--muted); cursor: pointer; font-family: inherit; transition: all 0.2s; }
+    .tweet-filter-btn.active, .tweet-filter-btn:hover { background: var(--sky); color: #fff; border-color: var(--sky); }
+    .tweet-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.2rem 1.4rem; margin-bottom: 12px; transition: transform 0.2s; }
+    .tweet-card:hover { transform: translateY(-2px); }
+    .tweet-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 0.7rem; }
+    .tweet-avatar { width: 40px; height: 40px; background: var(--sky); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .tweet-author { font-size: 14px; font-weight: 700; color: var(--sky-dark); }
+    .tweet-handle { font-size: 12px; color: #bbb; }
+    .tweet-cat-badge { font-size: 11px; background: var(--sky-light); color: var(--sky-dark); padding: 2px 10px; border-radius: 99px; margin-left: auto; }
+    .tweet-body { font-size: 14px; color: #333; line-height: 1.8; padding-left: 50px; }
+    .tweet-footer { display: flex; align-items: center; gap: 1rem; margin-top: 0.8rem; padding-left: 50px; }
+    .tweet-time { font-size: 12px; color: #bbb; }
+    .tweet-loading { text-align: center; color: var(--muted); font-size: 14px; padding: 3rem 0; }
+    .tweet-empty { text-align: center; color: #bbb; font-size: 14px; padding: 3rem 0; }
   </style>
 </head>
 <body>
@@ -144,6 +160,7 @@
   <button class="tab-btn active" onclick="showTab('home')">ホーム</button>
   <button class="tab-btn" onclick="showTab('courses')">コース・料金</button>
   <button class="tab-btn" onclick="showTab('philosophy')">スタイルの考え方</button>
+  <button class="tab-btn" onclick="showTab('tweets')">塾長のつぶやき</button>
   <button class="tab-btn" onclick="showTab('blog')">ブログ</button>
   <button class="tab-btn" onclick="showTab('notice')">お知らせ</button>
   <button class="tab-btn" onclick="showTab('flow')">入塾の流れ</button>
@@ -415,6 +432,30 @@
   </div>
 </div>
 
+<div class="tab-content" id="tab-tweets">
+  <div class="section">
+    <div class="inner">
+      <p class="section-title">塾長のつぶやき</p>
+      <p class="section-sub">日々の出来事や教育への想いをつぶやいています。</p>
+
+      <!-- カテゴリフィルター -->
+      <div id="tweet-filter" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.5rem;">
+        <button class="tweet-filter-btn active" onclick="filterTweets('all')">すべて</button>
+        <button class="tweet-filter-btn" onclick="filterTweets('日常')">日常</button>
+        <button class="tweet-filter-btn" onclick="filterTweets('勉強・学習')">勉強・学習</button>
+        <button class="tweet-filter-btn" onclick="filterTweets('受験')">受験</button>
+        <button class="tweet-filter-btn" onclick="filterTweets('教育')">教育</button>
+        <button class="tweet-filter-btn" onclick="filterTweets('塾のこと')">塾のこと</button>
+        <button class="tweet-filter-btn" onclick="filterTweets('その他')">その他</button>
+      </div>
+
+      <div id="tweets-container">
+        <div class="tweet-loading">読み込み中...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="tab-content" id="tab-blog">
   <div class="section">
     <div class="inner">
@@ -565,15 +606,68 @@
 </div>
 
 <script>
+  // ★GASのウェブアプリURLをここに貼り付けてください
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbwBFM1WSeM0yOtx_T-KKHiUnLh5eVdG6pMjl7GVxUALxpnubUbmZ71igIyNAlwGsYV9/exec';
+
+  let allTweets = [];
+  let tweetsLoaded = false;
+
   function showTab(name) {
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
     document.getElementById('tab-' + name).classList.add('active');
-    const tabs = ['home','courses','philosophy','blog','notice','flow'];
+    const tabs = ['home','courses','philosophy','tweets','blog','notice','flow'];
     const idx = tabs.indexOf(name);
     if (idx >= 0) document.querySelectorAll('.tab-btn')[idx].classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (name === 'tweets' && !tweetsLoaded) loadTweets();
   }
+
+  async function loadTweets() {
+    tweetsLoaded = true;
+    try {
+      const res = await fetch(GAS_URL + '?action=get');
+      allTweets = await res.json();
+      renderTweets(allTweets);
+    } catch (e) {
+      document.getElementById('tweets-container').innerHTML = '<p class="tweet-empty">読み込みに失敗しました。しばらくしてから再度お試しください。</p>';
+    }
+  }
+
+  function renderTweets(tweets) {
+    const container = document.getElementById('tweets-container');
+    if (!tweets || tweets.length === 0) {
+      container.innerHTML = '<p class="tweet-empty">まだつぶやきがありません 🌱</p>';
+      return;
+    }
+    container.innerHTML = tweets.map(t => `
+      <div class="tweet-card" data-category="${t.category}">
+        <div class="tweet-card-header">
+          <div class="tweet-avatar">👨‍🏫</div>
+          <div>
+            <div class="tweet-author">塾長</div>
+            <div class="tweet-handle">@juku-style</div>
+          </div>
+          <span class="tweet-cat-badge">${t.category}</span>
+        </div>
+        <div class="tweet-body">${t.text.replace(/\n/g, '<br>')}</div>
+        <div class="tweet-footer">
+          <span class="tweet-time">🕐 ${t.datetime}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function filterTweets(category) {
+    document.querySelectorAll('.tweet-filter-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    if (category === 'all') {
+      renderTweets(allTweets);
+    } else {
+      renderTweets(allTweets.filter(t => t.category === category));
+    }
+  }
+
 </script>
 </body>
 </html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>つぶやき管理画面 | 学習塾スタイル</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sky: #4DC8E8;
+      --sky-dark: #1DA8CC;
+      --sky-light: #E0F7FC;
+      --sky-pale: #F0FBFD;
+      --accent: #F8BBD9;
+      --border: #B2EBF7;
+      --muted: #666;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: var(--sky-pale); color: #1a1a2e; min-height: 100vh; }
+
+    /* ログイン画面 */
+    .login-wrap { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; }
+    .login-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; width: 100%; max-width: 380px; text-align: center; }
+    .login-card h1 { font-family: 'Noto Serif JP', serif; font-size: 20px; color: var(--sky-dark); margin-bottom: 0.4rem; }
+    .login-card p { font-size: 13px; color: var(--muted); margin-bottom: 2rem; }
+    .login-card input { width: 100%; border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 14px; margin-bottom: 1rem; outline: none; font-family: inherit; }
+    .login-card input:focus { border-color: var(--sky); }
+    .btn-primary { width: 100%; background: var(--sky); color: #fff; border: none; border-radius: 8px; padding: 12px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; }
+    .btn-primary:hover { background: var(--sky-dark); }
+    .login-error { font-size: 13px; color: #e53935; margin-top: 0.8rem; display: none; }
+
+    /* 管理画面 */
+    .admin-wrap { display: none; max-width: 700px; margin: 0 auto; padding: 2rem; }
+    nav.admin-nav { background: var(--sky); border-radius: 12px; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
+    nav.admin-nav h1 { font-family: 'Noto Serif JP', serif; font-size: 16px; color: #fff; }
+    .btn-logout { background: rgba(255,255,255,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; padding: 6px 14px; font-size: 12px; cursor: pointer; font-family: inherit; }
+
+    /* 投稿フォーム */
+    .post-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .post-card h2 { font-size: 15px; font-weight: 700; color: var(--sky-dark); margin-bottom: 1.2rem; }
+    .form-row { margin-bottom: 1rem; }
+    .form-row label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 0.4rem; }
+    .form-row textarea { width: 100%; border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 14px; font-family: inherit; resize: vertical; min-height: 100px; outline: none; line-height: 1.7; }
+    .form-row textarea:focus { border-color: var(--sky); }
+    .form-row select { width: 100%; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-size: 14px; font-family: inherit; outline: none; background: #fff; }
+    .form-row select:focus { border-color: var(--sky); }
+    .char-count { font-size: 11px; color: #bbb; text-align: right; margin-top: 4px; }
+    .char-count.over { color: #e53935; }
+    .btn-post { background: var(--sky); color: #fff; border: none; border-radius: 8px; padding: 12px 28px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; }
+    .btn-post:hover { background: var(--sky-dark); }
+    .btn-post:disabled { opacity: 0.5; cursor: not-allowed; }
+    .post-status { font-size: 13px; margin-top: 0.8rem; display: none; }
+    .post-status.success { color: #2e7d32; }
+    .post-status.error { color: #e53935; }
+
+    /* 投稿済み一覧 */
+    .tweets-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; }
+    .tweets-card h2 { font-size: 15px; font-weight: 700; color: var(--sky-dark); margin-bottom: 1.2rem; }
+    .tweet-item { border: 1px solid var(--border); border-radius: 10px; padding: 1rem; margin-bottom: 10px; position: relative; }
+    .tweet-item-header { display: flex; align-items: center; gap: 8px; margin-bottom: 0.6rem; }
+    .tweet-cat { font-size: 11px; background: var(--sky-light); color: var(--sky-dark); padding: 2px 10px; border-radius: 99px; }
+    .tweet-dt { font-size: 11px; color: #bbb; }
+    .tweet-text { font-size: 14px; color: #333; line-height: 1.7; }
+    .btn-delete { position: absolute; top: 0.8rem; right: 0.8rem; background: none; border: 1px solid #ffcdd2; color: #e53935; border-radius: 6px; padding: 4px 10px; font-size: 11px; cursor: pointer; font-family: inherit; }
+    .btn-delete:hover { background: #ffebee; }
+    .empty-msg { text-align: center; color: #bbb; font-size: 13px; padding: 2rem 0; }
+    .loading { text-align: center; color: var(--muted); font-size: 13px; padding: 1.5rem 0; }
+  </style>
+</head>
+<body>
+
+<!-- ログイン画面 -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-card">
+    <h1>🔑 管理画面ログイン</h1>
+    <p>塾長専用ページです</p>
+    <input type="password" id="passwordInput" placeholder="パスワードを入力" onkeydown="if(event.key==='Enter')login()">
+    <button class="btn-primary" onclick="login()">ログイン</button>
+    <p class="login-error" id="loginError">パスワードが違います</p>
+  </div>
+</div>
+
+<!-- 管理画面 -->
+<div class="admin-wrap" id="adminWrap">
+  <nav class="admin-nav">
+    <h1>✏️ つぶやき管理画面</h1>
+    <button class="btn-logout" onclick="logout()">ログアウト</button>
+  </nav>
+
+  <!-- 投稿フォーム -->
+  <div class="post-card">
+    <h2>📝 新しいつぶやきを投稿</h2>
+    <div class="form-row">
+      <label>カテゴリ</label>
+      <select id="category">
+        <option value="日常">日常</option>
+        <option value="勉強・学習">勉強・学習</option>
+        <option value="受験">受験</option>
+        <option value="教育">教育</option>
+        <option value="塾のこと">塾のこと</option>
+        <option value="その他">その他</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>つぶやき内容（最大140文字）</label>
+      <textarea id="tweetText" placeholder="今日のひとことを入力..." oninput="updateCount()"></textarea>
+      <p class="char-count" id="charCount">0 / 140</p>
+    </div>
+    <button class="btn-post" id="postBtn" onclick="postTweet()">投稿する</button>
+    <p class="post-status" id="postStatus"></p>
+  </div>
+
+  <!-- 投稿済み一覧 -->
+  <div class="tweets-card">
+    <h2>📋 投稿済み一覧</h2>
+    <div id="tweetList"><p class="loading">読み込み中...</p></div>
+  </div>
+</div>
+
+<script>
+  // ★ここにGASのウェブアプリURLを貼り付けてください
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbwBFM1WSeM0yOtx_T-KKHiUnLh5eVdG6pMjl7GVxUALxpnubUbmZ71igIyNAlwGsYV9/exec';
+  const ADMIN_PASSWORD = 'juku-style-2025'; // GASのパスワードと合わせてください
+
+  let currentPassword = '';
+
+  function login() {
+    const pw = document.getElementById('passwordInput').value;
+    if (pw === ADMIN_PASSWORD) {
+      currentPassword = pw;
+      document.getElementById('loginWrap').style.display = 'none';
+      document.getElementById('adminWrap').style.display = 'block';
+      loadTweets();
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+    }
+  }
+
+  function logout() {
+    currentPassword = '';
+    document.getElementById('loginWrap').style.display = 'flex';
+    document.getElementById('adminWrap').style.display = 'none';
+    document.getElementById('passwordInput').value = '';
+  }
+
+  function updateCount() {
+    const text = document.getElementById('tweetText').value;
+    const count = text.length;
+    const el = document.getElementById('charCount');
+    el.textContent = count + ' / 140';
+    el.className = 'char-count' + (count > 140 ? ' over' : '');
+    document.getElementById('postBtn').disabled = count === 0 || count > 140;
+  }
+
+  async function postTweet() {
+    const text = document.getElementById('tweetText').value.trim();
+    const category = document.getElementById('category').value;
+    if (!text) return;
+
+    const btn = document.getElementById('postBtn');
+    const status = document.getElementById('postStatus');
+    btn.disabled = true;
+    btn.textContent = '投稿中...';
+
+    try {
+      const res = await fetch(GAS_URL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'post', password: currentPassword, text, category })
+      });
+      const data = await res.json();
+      if (data.success) {
+        document.getElementById('tweetText').value = '';
+        updateCount();
+        status.textContent = '✅ 投稿しました！';
+        status.className = 'post-status success';
+        status.style.display = 'block';
+        setTimeout(() => status.style.display = 'none', 3000);
+        loadTweets();
+      } else {
+        throw new Error(data.error);
+      }
+    } catch (e) {
+      status.textContent = '❌ 投稿に失敗しました: ' + e.message;
+      status.className = 'post-status error';
+      status.style.display = 'block';
+    }
+
+    btn.disabled = false;
+    btn.textContent = '投稿する';
+  }
+
+  async function loadTweets() {
+    const list = document.getElementById('tweetList');
+    list.innerHTML = '<p class="loading">読み込み中...</p>';
+    try {
+      const res = await fetch(GAS_URL + '?action=get');
+      const tweets = await res.json();
+      if (tweets.length === 0) {
+        list.innerHTML = '<p class="empty-msg">まだつぶやきがありません</p>';
+        return;
+      }
+      list.innerHTML = tweets.map(t => `
+        <div class="tweet-item" id="tweet-${t.id}">
+          <div class="tweet-item-header">
+            <span class="tweet-cat">${t.category}</span>
+            <span class="tweet-dt">${t.datetime}</span>
+          </div>
+          <p class="tweet-text">${t.text.replace(/\n/g, '<br>')}</p>
+          <button class="btn-delete" onclick="deleteTweet('${t.id}')">削除</button>
+        </div>
+      `).join('');
+    } catch (e) {
+      list.innerHTML = '<p class="empty-msg">読み込みに失敗しました</p>';
+    }
+  }
+
+  async function deleteTweet(id) {
+    if (!confirm('このつぶやきを削除しますか？')) return;
+    try {
+      const res = await fetch(GAS_URL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'delete', password: currentPassword, id })
+      });
+      const data = await res.json();
+      if (data.success) {
+        document.getElementById('tweet-' + id)?.remove();
+      }
+    } catch (e) {
+      alert('削除に失敗しました');
+    }
+  }
+
+  updateCount();
+</script>
+</body>
+</html>
