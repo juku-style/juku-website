@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>画像管理 | 学習塾スタイル</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sky: #4DC8E8;
+      --sky-dark: #1DA8CC;
+      --sky-light: #E0F7FC;
+      --sky-pale: #F0FBFD;
+      --accent: #F8BBD9;
+      --border: #B2EBF7;
+      --muted: #666;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: var(--sky-pale); color: #1a1a2e; min-height: 100vh; }
+
+    /* ログイン */
+    .login-wrap { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; }
+    .login-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; width: 100%; max-width: 380px; text-align: center; }
+    .login-card h1 { font-family: 'Noto Serif JP', serif; font-size: 20px; color: var(--sky-dark); margin-bottom: 0.4rem; }
+    .login-card p { font-size: 13px; color: var(--muted); margin-bottom: 2rem; }
+    .login-card input { width: 100%; border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 14px; margin-bottom: 1rem; outline: none; font-family: inherit; }
+    .login-card input:focus { border-color: var(--sky); }
+    .btn-primary { width: 100%; background: var(--sky); color: #fff; border: none; border-radius: 8px; padding: 12px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; transition: background 0.2s; }
+    .btn-primary:hover { background: var(--sky-dark); }
+    .login-error { font-size: 13px; color: #e53935; margin-top: 0.8rem; display: none; }
+
+    /* 管理画面 */
+    .admin-wrap { display: none; max-width: 860px; margin: 0 auto; padding: 2rem; }
+    nav.admin-nav { background: var(--sky); border-radius: 12px; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 0.8rem; }
+    nav.admin-nav h1 { font-family: 'Noto Serif JP', serif; font-size: 16px; color: #fff; }
+    .nav-links { display: flex; gap: 8px; }
+    .btn-nav { background: rgba(255,255,255,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; padding: 6px 14px; font-size: 12px; cursor: pointer; font-family: inherit; text-decoration: none; }
+    .btn-nav:hover { background: rgba(255,255,255,0.3); }
+
+    /* アップロードゾーン */
+    .upload-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .upload-card h2 { font-size: 15px; font-weight: 700; color: var(--sky-dark); margin-bottom: 1.2rem; }
+    .drop-zone { border: 2px dashed var(--border); border-radius: 12px; padding: 3rem 2rem; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--sky-pale); }
+    .drop-zone.dragover { border-color: var(--sky); background: var(--sky-light); }
+    .drop-zone.uploading { opacity: 0.6; pointer-events: none; }
+    .drop-icon { font-size: 48px; margin-bottom: 1rem; }
+    .drop-text { font-size: 15px; font-weight: 700; color: var(--sky-dark); margin-bottom: 0.4rem; }
+    .drop-sub { font-size: 12px; color: var(--muted); }
+    .drop-zone input[type="file"] { display: none; }
+    .upload-progress { margin-top: 1rem; display: none; }
+    .progress-bar-wrap { background: var(--sky-light); border-radius: 99px; height: 8px; overflow: hidden; }
+    .progress-bar { background: var(--sky); height: 100%; border-radius: 99px; transition: width 0.3s; width: 0%; }
+    .progress-text { font-size: 12px; color: var(--muted); text-align: center; margin-top: 6px; }
+    .upload-result { margin-top: 1rem; display: none; }
+    .url-box { display: flex; gap: 8px; align-items: center; }
+    .url-input { flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: monospace; background: var(--sky-pale); outline: none; color: #333; }
+    .btn-copy { background: var(--sky); color: #fff; border: none; border-radius: 8px; padding: 10px 16px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; white-space: nowrap; flex-shrink: 0; }
+    .btn-copy:hover { background: var(--sky-dark); }
+    .btn-copy.copied { background: #2e7d32; }
+    .copy-hint { font-size: 12px; color: var(--muted); margin-top: 0.5rem; }
+
+    /* 画像一覧 */
+    .images-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; }
+    .images-card h2 { font-size: 15px; font-weight: 700; color: var(--sky-dark); margin-bottom: 1.2rem; }
+    .images-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+    .image-item { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; position: relative; background: #f5f5f5; }
+    .image-thumb { width: 100%; height: 130px; object-fit: cover; display: block; }
+    .image-thumb-placeholder { width: 100%; height: 130px; display: flex; align-items: center; justify-content: center; font-size: 32px; background: var(--sky-light); }
+    .image-info { padding: 0.7rem; }
+    .image-name { font-size: 11px; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
+    .image-date { font-size: 10px; color: #bbb; margin-bottom: 6px; }
+    .image-actions { display: flex; gap: 6px; }
+    .btn-url { flex: 1; background: var(--sky-light); color: var(--sky-dark); border: none; border-radius: 6px; padding: 5px 8px; font-size: 11px; font-weight: 700; cursor: pointer; font-family: inherit; }
+    .btn-url:hover { background: var(--sky); color: #fff; }
+    .btn-del { background: #ffebee; color: #e53935; border: none; border-radius: 6px; padding: 5px 8px; font-size: 11px; cursor: pointer; font-family: inherit; }
+    .btn-del:hover { background: #ffcdd2; }
+    .images-empty { text-align: center; color: #bbb; font-size: 13px; padding: 2rem 0; }
+    .images-loading { text-align: center; color: var(--muted); font-size: 13px; padding: 2rem 0; }
+
+    /* コピー成功トースト */
+    .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); background: #1a1a2e; color: #fff; padding: 10px 24px; border-radius: 99px; font-size: 13px; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 999; }
+    .toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+
+<!-- ログイン -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-card">
+    <h1>🖼️ 画像管理画面</h1>
+    <p>塾長専用ページです</p>
+    <input type="password" id="passwordInput" placeholder="パスワードを入力" onkeydown="if(event.key==='Enter')login()">
+    <button class="btn-primary" onclick="login()">ログイン</button>
+    <p class="login-error" id="loginError">パスワードが違います</p>
+  </div>
+</div>
+
+<!-- 管理画面 -->
+<div class="admin-wrap" id="adminWrap">
+  <nav class="admin-nav">
+    <h1>🖼️ 画像管理</h1>
+    <div class="nav-links">
+      <a href="tweet_admin.html" class="btn-nav">✏️ つぶやき管理</a>
+      <button class="btn-nav" onclick="logout()">ログアウト</button>
+    </div>
+  </nav>
+
+  <!-- アップロードゾーン -->
+  <div class="upload-card">
+    <h2>📤 画像をアップロード</h2>
+    <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+      <input type="file" id="fileInput" accept="image/*" multiple onchange="handleFiles(this.files)">
+      <div class="drop-icon">📁</div>
+      <p class="drop-text">ここに画像をドラッグ＆ドロップ</p>
+      <p class="drop-sub">またはクリックしてファイルを選択（JPG・PNG・GIF・WebP対応）</p>
+    </div>
+
+    <div class="upload-progress" id="uploadProgress">
+      <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+      <p class="progress-text" id="progressText">アップロード中...</p>
+    </div>
+
+    <div class="upload-result" id="uploadResult">
+      <p style="font-size:13px; font-weight:700; color:#2e7d32; margin-bottom:0.8rem;">✅ アップロード完了！URLをコピーして使ってください</p>
+      <div class="url-box">
+        <input type="text" class="url-input" id="resultUrl" readonly>
+        <button class="btn-copy" id="copyBtn" onclick="copyUrl()">コピー</button>
+      </div>
+      <p class="copy-hint">このURLをHTMLの &lt;img src="..."&gt; に貼り付けてください</p>
+    </div>
+  </div>
+
+  <!-- 画像一覧 -->
+  <div class="images-card">
+    <h2>📋 アップロード済み画像</h2>
+    <div class="images-grid" id="imagesGrid">
+      <p class="images-loading">読み込み中...</p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">URLをコピーしました！</div>
+
+<script>
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbwVRL38m5YJJ9-5tXR7UD6fiKyFU0GPhpjfmJ8FbMHBAXtKp3dN1DSwvIvcIHD70jhc/exec';
+  const ADMIN_PASSWORD = 'juku-style-2025';
+  let currentPassword = '';
+
+  function login() {
+    const pw = document.getElementById('passwordInput').value;
+    if (pw === ADMIN_PASSWORD) {
+      currentPassword = pw;
+      document.getElementById('loginWrap').style.display = 'none';
+      document.getElementById('adminWrap').style.display = 'block';
+      loadImages();
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+    }
+  }
+
+  function logout() {
+    currentPassword = '';
+    document.getElementById('loginWrap').style.display = 'flex';
+    document.getElementById('adminWrap').style.display = 'none';
+    document.getElementById('passwordInput').value = '';
+  }
+
+  // ドラッグ&ドロップ
+  function onDragOver(e) {
+    e.preventDefault();
+    document.getElementById('dropZone').classList.add('dragover');
+  }
+  function onDragLeave(e) {
+    document.getElementById('dropZone').classList.remove('dragover');
+  }
+  function onDrop(e) {
+    e.preventDefault();
+    document.getElementById('dropZone').classList.remove('dragover');
+    handleFiles(e.dataTransfer.files);
+  }
+
+  // ファイル処理
+  function handleFiles(files) {
+    if (!files || files.length === 0) return;
+    // 複数ファイルの場合は1枚ずつ処理
+    uploadFile(files[0]);
+  }
+
+  function uploadFile(file) {
+    if (!file.type.startsWith('image/')) {
+      alert('画像ファイルを選択してください');
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      alert('5MB以下の画像を選択してください');
+      return;
+    }
+
+    const dropZone = document.getElementById('dropZone');
+    const progress = document.getElementById('uploadProgress');
+    const result = document.getElementById('uploadResult');
+
+    dropZone.classList.add('uploading');
+    progress.style.display = 'block';
+    result.style.display = 'none';
+
+    // プログレスバーアニメーション
+    let prog = 0;
+    const timer = setInterval(() => {
+      prog = Math.min(prog + 5, 85);
+      document.getElementById('progressBar').style.width = prog + '%';
+      document.getElementById('progressText').textContent = 'アップロード中... ' + prog + '%';
+    }, 200);
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const base64 = e.target.result.split(',')[1];
+      try {
+        const res = await fetch(GAS_URL, {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'uploadImage',
+            password: currentPassword,
+            base64: base64,
+            mimeType: file.type,
+            fileName: file.name
+          })
+        });
+        const data = await res.json();
+        clearInterval(timer);
+
+        if (data.success) {
+          document.getElementById('progressBar').style.width = '100%';
+          document.getElementById('progressText').textContent = '完了！';
+          setTimeout(() => {
+            progress.style.display = 'none';
+            document.getElementById('resultUrl').value = data.url;
+            result.style.display = 'block';
+            dropZone.classList.remove('uploading');
+            loadImages();
+          }, 500);
+        } else {
+          throw new Error(data.error);
+        }
+      } catch (err) {
+        clearInterval(timer);
+        progress.style.display = 'none';
+        dropZone.classList.remove('uploading');
+        alert('アップロードに失敗しました: ' + err.message);
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function copyUrl() {
+    const url = document.getElementById('resultUrl').value;
+    navigator.clipboard.writeText(url).then(() => {
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = 'コピー済み✓';
+      btn.classList.add('copied');
+      showToast();
+      setTimeout(() => {
+        btn.textContent = 'コピー';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  function copyImageUrl(url) {
+    navigator.clipboard.writeText(url).then(() => showToast());
+  }
+
+  function showToast() {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  }
+
+  async function loadImages() {
+    const grid = document.getElementById('imagesGrid');
+    grid.innerHTML = '<p class="images-loading">読み込み中...</p>';
+    try {
+      const res = await fetch(GAS_URL + '?action=getImages');
+      const images = await res.json();
+      if (images.length === 0) {
+        grid.innerHTML = '<p class="images-empty">まだ画像がありません</p>';
+        return;
+      }
+      grid.innerHTML = images.map(img => `
+        <div class="image-item" id="img-${img.fileId}">
+          <img class="image-thumb" src="${img.url}" alt="${img.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="image-thumb-placeholder" style="display:none">🖼️</div>
+          <div class="image-info">
+            <p class="image-name" title="${img.name}">${img.name}</p>
+            <p class="image-date">${img.createdAt}</p>
+            <div class="image-actions">
+              <button class="btn-url" onclick="copyImageUrl('${img.url}')">URLコピー</button>
+              <button class="btn-del" onclick="deleteImage('${img.fileId}')">削除</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    } catch (e) {
+      grid.innerHTML = '<p class="images-empty">読み込みに失敗しました</p>';
+    }
+  }
+
+  async function deleteImage(fileId) {
+    if (!confirm('この画像を削除しますか？\n※削除すると画像URLが使えなくなります')) return;
+    try {
+      const res = await fetch(GAS_URL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'deleteImage', password: currentPassword, fileId })
+      });
+      const data = await res.json();
+      if (data.success) {
+        document.getElementById('img-' + fileId)?.remove();
+        showToast();
+      }
+    } catch (e) {
+      alert('削除に失敗しました');
+    }
+  }
+</script>
+</body>
+</html>
