@@ -217,6 +217,7 @@
   <button class="tab-btn" onclick="showTab('tweets')">塾長のつぶやき</button>
   <button class="tab-btn" onclick="showTab('blog')">ブログ</button>
   <button class="tab-btn" onclick="showTab('notice')">お知らせ</button>
+  <button class="tab-btn" onclick="showTab('contact')">お問合せ</button>
   <button class="tab-btn" onclick="showTab('flow')">入塾の流れ</button>
 </nav>
 
@@ -581,40 +582,74 @@
     <div class="inner">
       <p class="section-title">お知らせ</p>
       <p class="section-sub">塾からの最新情報をお届けします。</p>
-      <div class="notice-list">
-        <div class="notice-item important">
-          <div><p class="notice-date">2025年3月28日</p><span class="notice-badge badge-imp">重要</span></div>
-          <div class="notice-content">
-            <h4>4月の授業開始日について</h4>
-            <p>4月の授業は4月7日（月）より開始いたします。新学期もどうぞよろしくお願いいたします。</p>
+
+    </div>
+  </div>
+</div>
+
+<div class="tab-content" id="tab-contact">
+  <div class="section">
+    <div class="inner">
+      <p class="section-title">お問合せ</p>
+      <p class="section-sub">お気軽にご連絡ください。</p>
+
+      <div style="display:flex; flex-direction:column; gap:1.5rem;">
+
+        <!-- 電話 -->
+        <div style="background:#fff; border:1px solid var(--border); border-radius:14px; padding:1.8rem;">
+          <p style="font-size:13px; font-weight:700; color:var(--sky); letter-spacing:0.08em; margin-bottom:0.8rem;">📞 お電話でのお問合せ</p>
+          <a href="tel:084-975-4851" style="font-family:'Noto Serif JP',serif; font-size:32px; font-weight:700; color:var(--sky-dark); text-decoration:none; display:block; margin-bottom:1.2rem; letter-spacing:0.05em;">084-975-4851</a>
+          <p style="font-size:13px; font-weight:700; color:var(--sky-dark); margin-bottom:0.8rem;">電話受付時間</p>
+          <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:8px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; background:var(--sky-pale); border:1px solid var(--border); border-radius:8px; padding:8px 14px;">
+              <span style="font-size:13px; font-weight:700; color:var(--sky-dark);">月曜</span>
+              <span style="font-size:13px; color:#444;">PM5:00〜9:00</span>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:space-between; background:var(--sky-pale); border:1px solid var(--border); border-radius:8px; padding:8px 14px;">
+              <span style="font-size:13px; font-weight:700; color:var(--sky-dark);">火曜</span>
+              <span style="font-size:13px; color:#444;">PM5:00〜9:00</span>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:space-between; background:#f5f5f5; border:1px solid #ddd; border-radius:8px; padding:8px 14px;">
+              <span style="font-size:13px; font-weight:700; color:#999;">水曜</span>
+              <span style="font-size:13px; color:#999;">お休み</span>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:space-between; background:var(--sky-pale); border:1px solid var(--border); border-radius:8px; padding:8px 14px;">
+              <span style="font-size:13px; font-weight:700; color:var(--sky-dark);">木曜</span>
+              <span style="font-size:13px; color:#444;">PM5:00〜9:00</span>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:space-between; background:var(--sky-pale); border:1px solid var(--border); border-radius:8px; padding:8px 14px;">
+              <span style="font-size:13px; font-weight:700; color:var(--sky-dark);">金曜</span>
+              <span style="font-size:13px; color:#444;">PM5:00〜9:00</span>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:space-between; background:var(--sky-pale); border:1px solid var(--border); border-radius:8px; padding:8px 14px;">
+              <span style="font-size:13px; font-weight:700; color:var(--sky-dark);">土曜</span>
+              <span style="font-size:13px; color:#444;">PM5:00〜9:00</span>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:space-between; background:#f5f5f5; border:1px solid #ddd; border-radius:8px; padding:8px 14px;">
+              <span style="font-size:13px; font-weight:700; color:#999;">日曜</span>
+              <span style="font-size:13px; color:#999;">お休み</span>
+            </div>
+          </div>
+          <div style="margin-top:1.2rem;">
+            <a href="tel:084-975-4851" style="display:inline-block; background:var(--sky); color:#fff; border-radius:8px; padding:12px 32px; font-size:15px; font-weight:700; text-decoration:none;">📞 今すぐ電話する</a>
           </div>
         </div>
-        <div class="notice-item holiday">
-          <div><p class="notice-date">2025年3月20日</p><span class="notice-badge badge-hol">休講</span></div>
-          <div class="notice-content">
-            <h4>春休み期間中の休講について</h4>
-            <p>3月25日（火）〜4月6日（日）は春休みのため休講となります。</p>
+
+        <!-- 住所・MAP -->
+        <div style="background:#fff; border:1px solid var(--border); border-radius:14px; padding:1.8rem;">
+          <p style="font-size:13px; font-weight:700; color:var(--sky); letter-spacing:0.08em; margin-bottom:0.8rem;">📍 所在地</p>
+          <p style="font-size:16px; font-weight:700; color:var(--sky-dark); margin-bottom:1.2rem;">福山市多治米町5丁目14-9</p>
+          <div style="border-radius:12px; overflow:hidden; border:1px solid var(--border);">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.0!2d133.3905!3d34.4748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3550a9e3a1234567%3A0x0!2z5bqD5bGx5biC5aSa5rCX56aP55S677yV5LiB55uu77yR77yU4oiS77yZ!5e0!3m2!1sja!2sjp!4v1"
+              width="100%" height="300" style="border:0; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
+          <p style="font-size:12px; color:var(--muted); margin-top:0.8rem; text-align:center;">
+            <a href="https://maps.google.com/?q=広島県福山市多治米町5丁目14-9" target="_blank" style="color:var(--sky);">Google マップで開く →</a>
+          </p>
         </div>
-        <div class="notice-item">
-          <div><p class="notice-date">2025年3月10日</p><span class="notice-badge badge-inf">情報</span></div>
-          <div class="notice-content">
-            <h4>保護者懇談会のご案内</h4>
-            <p>4月19日（土）14:00〜16:00に保護者懇談会を開催予定です。</p>
-          </div>
-        </div>
+
       </div>
-      <p class="section-title" style="margin-top:2.5rem;">4月の授業スケジュール</p>
-      <table class="schedule-table">
-        <thead><tr><th>日付</th><th>曜日</th><th>クラス</th><th>時間</th></tr></thead>
-        <tbody>
-          <tr><td>4月7日</td><td>月</td><td>小学生クラスA</td><td>16:00〜17:00</td></tr>
-          <tr><td>4月8日</td><td>火</td><td>中学生クラスA</td><td>17:00〜18:30</td></tr>
-          <tr><td>4月9日</td><td>水</td><td>小学生クラスB</td><td>16:00〜17:00</td></tr>
-          <tr><td>4月10日</td><td>木</td><td>高校生クラスA</td><td>18:00〜19:30</td></tr>
-          <tr><td>4月12日</td><td>土</td><td>全学年・自習</td><td>10:00〜17:00</td></tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </div>
@@ -698,7 +733,7 @@
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
     document.getElementById('tab-' + name).classList.add('active');
-    const tabs = ['home','courses','philosophy','tweets','blog','notice','flow'];
+    const tabs = ['home','courses','philosophy','tweets','blog','notice','contact','flow'];
     const idx = tabs.indexOf(name);
     if (idx >= 0) document.querySelectorAll('.tab-btn')[idx].classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
