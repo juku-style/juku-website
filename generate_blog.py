@@ -142,6 +142,21 @@ def update_blog_html(posts):
     with open("blog.html", "w", encoding="utf-8") as f:
         f.write(html)
 
+    # index.html のブログタブも同様に更新する
+    if os.path.exists("index.html"):
+        with open("index.html", "r", encoding="utf-8") as f:
+            index_html = f.read()
+
+        index_html = re.sub(
+            r'<div class="blog-grid" id="blog-list">.*?</div>(?=\s*</div>)',
+            new_grid,
+            index_html,
+            flags=re.DOTALL
+        )
+
+        with open("index.html", "w", encoding="utf-8") as f:
+            f.write(index_html)
+
 def create_post_page(post):
     emoji = EMOJIS[post.get('index', 0) % len(EMOJIS)]
     pid = post['id']
