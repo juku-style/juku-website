@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学力コア養成コース</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:#fff;
+  color:#444;
+  font-family:'Hiragino Kaku Gothic ProN','Hiragino Sans','Meiryo',sans-serif;
+}
+.lp{
+  max-width:800px;
+  margin:0 auto;
+  padding:0 24px 80px;
+}
+.hero{
+  background:linear-gradient(135deg,#0ABAB5,#81D8D0);
+  border-radius:12px;
+  padding:64px 40px;
+  text-align:center;
+  margin-top:32px;
+}
+.hero-title{
+  font-size:36px;
+  font-weight:800;
+  color:#fff;
+  margin-bottom:18px;
+  line-height:1.4;
+}
+.hero-badge{
+  display:inline-block;
+  background:#F0A500;
+  color:#fff;
+  font-size:16px;
+  font-weight:700;
+  padding:10px 28px;
+  border-radius:4px;
+}
+.sec{
+  padding:52px 0 0;
+}
+.sec-title{
+  font-size:22px;
+  font-weight:700;
+  color:#0ABAB5;
+  text-align:center;
+  margin-bottom:28px;
+  line-height:1.5;
+}
+
+.check-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-bottom:16px;
+}
+.clabel{
+  display:inline-block;
+  background:#0ABAB5;
+  color:#fff;
+  font-size:13px;
+  padding:4px 14px;
+  border-radius:4px;
+  margin-bottom:10px;
+  font-weight:700;
+}
+.cbox{
+  background:#fff;
+  border:1.5px solid #81D8D0;
+  border-radius:8px;
+  padding:14px 14px 14px 44px;
+  position:relative;
+  font-size:14px;
+  color:#444;
+  font-weight:600;
+  line-height:1.6;
+  margin-bottom:10px;
+}
+.cbox::before{
+  content:'✓';
+  position:absolute;
+  left:14px;
+  top:13px;
+  font-size:18px;
+  color:#F0A500;
+  font-weight:900;
+}
+.wbar{
+  background:#0ABAB5;
+  color:#fff;
+  text-align:center;
+  padding:14px 20px;
+  border-radius:8px;
+  font-size:15px;
+  font-weight:600;
+  line-height:1.7;
+}
+
+.dsec{
+  background:linear-gradient(135deg,#0ABAB5,#81D8D0);
+  border-radius:12px;
+  padding:52px 40px;
+  text-align:center;
+  margin-top:52px;
+}
+.dlabel{
+  font-size:16px;
+  color:#fff;
+  margin-bottom:14px;
+  opacity:0.9;
+}
+.dmain{
+  font-size:30px;
+  font-weight:800;
+  color:#F0A500;
+  line-height:1.4;
+  margin-bottom:22px;
+}
+.dsub{
+  background:rgba(255,255,255,0.2);
+  border:1px solid rgba(255,255,255,0.35);
+  border-radius:8px;
+  padding:18px 24px;
+  color:#fff;
+  font-size:15px;
+  line-height:1.8;
+}
+.ddef{
+  margin-top:18px;
+  background:#fff;
+  border-radius:10px;
+  padding:20px 24px;
+  text-align:left;
+  max-width:620px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.ddef-title{
+  font-size:15px;
+  font-weight:700;
+  color:#0ABAB5;
+  margin-bottom:10px;
+}
+.ddef-text{
+  font-size:15px;
+  color:#444;
+  line-height:1.9;
+  font-weight:600;
+}
+.ddef-text strong{
+  color:#0ABAB5;
+}
+
+.bridge{
+  text-align:center;
+  font-size:19px;
+  font-weight:700;
+  color:#0ABAB5;
+  margin-bottom:24px;
+  line-height:1.6;
+}
+.acard{
+  background:#fff;
+  border:1.5px solid #81D8D0;
+  border-radius:12px;
+  padding:36px 32px;
+}
+.atitle{
+  font-size:17px;
+  font-weight:700;
+  color:#444;
+  margin-bottom:28px;
+  line-height:1.6;
+}
+.sgrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-bottom:16px;
+}
+.sbox{
+  background:#f9fefe;
+  border:1.5px solid #81D8D0;
+  border-radius:8px;
+  padding:18px 16px;
+}
+.slabel{
+  font-size:12px;
+  font-weight:700;
+  color:#888;
+  letter-spacing:.05em;
+  margin-bottom:10px;
+}
+.stext{
+  font-size:14px;
+  color:#444;
+  font-weight:600;
+  line-height:1.6;
+}
+.snote{
+  font-size:13px;
+  color:#555;
+  margin-top:8px;
+  line-height:1.6;
+}
+.plabel{
+  font-size:11px;
+  color:#888;
+  margin-bottom:5px;
+}
+.ptrack{
+  background:#c8edea;
+  border-radius:4px;
+  height:10px;
+  width:100%;
+  overflow:hidden;
+  margin-bottom:4px;
+}
+.pfull{
+  background:#0ABAB5;
+  height:100%;
+  width:92%;
+  border-radius:4px;
+}
+.pshort{
+  background:#F0A500;
+  height:100%;
+  width:20%;
+  border-radius:4px;
+}
+.pcap{
+  font-size:11px;
+  color:#999;
+}
+.warn{
+  background:#F0A500;
+  color:#fff;
+  border-radius:8px;
+  padding:16px 20px;
+  text-align:center;
+  font-size:15px;
+  font-weight:600;
+  line-height:1.7;
+}
+
+.ctable{
+  width:100%;
+  border-collapse:collapse;
+  border-radius:10px;
+  overflow:hidden;
+  border:1.5px solid #81D8D0;
+  table-layout:fixed;
+  margin-top:20px;
+}
+.ctable th{
+  padding:14px 16px;
+  font-weight:700;
+  font-size:14px;
+}
+.ctable td{
+  padding:14px 16px;
+  border-top:1px solid #c8edea;
+  color:#444;
+  text-align:center;
+  font-size:14px;
+  line-height:1.6;
+}
+.ctable td:first-child{
+  text-align:left;
+  font-weight:600;
+}
+.thgold{
+  background:#F0A500;
+  color:#fff;
+}
+.thteal{
+  background:#0ABAB5;
+  color:#fff;
+}
+.thempty{
+  background:#f9fefe;
+}
+.tnote{
+  background:#0ABAB5;
+  color:#fff;
+  padding:14px 20px;
+  text-align:center;
+  font-size:13px;
+  line-height:1.7;
+}
+.pyrnote{
+  background:#fff;
+  border:1.5px solid #81D8D0;
+  border-radius:8px;
+  padding:14px 20px;
+  font-size:14px;
+  color:#444;
+  font-weight:600;
+  margin:16px auto 0;
+  max-width:520px;
+  text-align:center;
+  line-height:1.7;
+}
+
+.flow-intro{
+  background:#f9fefe;
+  border:1.5px solid #81D8D0;
+  border-radius:12px;
+  padding:22px 24px;
+  max-width:700px;
+  margin:0 auto 20px;
+}
+.flow-intro p{
+  font-size:15px;
+  line-height:1.9;
+  color:#444;
+  font-weight:600;
+}
+.flow-intro p + p{
+  margin-top:10px;
+}
+.flow-intro strong{
+  color:#0ABAB5;
+}
+.flow-lead{
+  max-width:680px;
+  margin:0 auto 22px;
+  font-size:15px;
+  line-height:1.9;
+  color:#444;
+  text-align:center;
+}
+.flow-lead strong{
+  color:#0ABAB5;
+}
+.flow-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-top:18px;
+}
+.fcard{
+  background:#fff;
+  border:1.5px solid #81D8D0;
+  border-radius:12px;
+  padding:20px 18px;
+}
+.fnum{
+  display:inline-block;
+  background:#0ABAB5;
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+  padding:5px 10px;
+  border-radius:999px;
+  margin-bottom:12px;
+}
+.ftitle{
+  font-size:16px;
+  font-weight:700;
+  color:#444;
+  line-height:1.5;
+  margin-bottom:10px;
+}
+.fdesc{
+  font-size:14px;
+  color:#555;
+  line-height:1.8;
+}
+.center-msg{
+  background:#0ABAB5;
+  color:#fff;
+  border-radius:10px;
+  padding:18px 20px;
+  max-width:700px;
+  margin:20px auto 0;
+  text-align:center;
+  font-size:16px;
+  font-weight:700;
+  line-height:1.8;
+}
+.dual-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-top:20px;
+}
+.dual-card{
+  background:#fff;
+  border:1.5px solid #81D8D0;
+  border-radius:12px;
+  padding:24px 20px;
+}
+.dual-title{
+  font-size:17px;
+  font-weight:700;
+  color:#0ABAB5;
+  margin-bottom:14px;
+  text-align:center;
+}
+.dual-card ul{
+  padding-left:1.2em;
+}
+.dual-card li{
+  font-size:14px;
+  line-height:1.8;
+  color:#555;
+  margin-bottom:6px;
+}
+.note-box{
+  background:#fff7e6;
+  border:1.5px solid #F0A500;
+  border-radius:12px;
+  padding:20px 22px;
+  max-width:700px;
+  margin:18px auto 0;
+}
+.note-box-title{
+  font-size:15px;
+  font-weight:700;
+  color:#c48300;
+  margin-bottom:10px;
+  text-align:center;
+}
+.note-box ul{
+  padding-left:1.2em;
+}
+.note-box li{
+  font-size:14px;
+  line-height:1.8;
+  color:#555;
+  margin-bottom:4px;
+}
+
+.sec-soft{
+  background:#fff;
+  border-radius:18px;
+  padding:36px 28px;
+  margin-top:52px;
+  box-shadow:0 10px 30px rgba(10,186,181,0.08), 0 4px 12px rgba(0,0,0,0.04);
+  border:1px solid rgba(129,216,208,0.35);
+}
+.sec-soft .sec-title{
+  margin-bottom:24px;
+}
+
+.change-list{
+  max-width:680px;
+  margin:0 auto;
+}
+.change-item{
+  position:relative;
+  padding:10px 0 10px 28px;
+  margin-bottom:10px;
+  font-size:16px;
+  font-weight:700;
+  line-height:1.7;
+  color:#333;
+}
+.change-item::before{
+  content:"✓";
+  position:absolute;
+  left:0;
+  top:8px;
+  color:#0ABAB5;
+  font-size:18px;
+  font-weight:900;
+}
+
+.future-message{
+  background:none;
+  color:#333;
+  padding:10px 0;
+  border-radius:0;
+  text-align:center;
+  margin-top:20px;
+  font-weight:700;
+  line-height:2;
+  font-size:18px;
+}
+.future-message span{
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 72%,
+      rgba(240,165,0,0.0) 72%,
+      rgba(240,165,0,0.85) 76%,
+      rgba(240,165,0,0.65) 82%,
+      rgba(240,165,0,0.0) 88%
+    );
+  padding:0 2px 2px;
+  box-decoration-break:clone;
+  -webkit-box-decoration-break:clone;
+}
+
+.prcard{
+  background:#fff;
+  border:1.5px solid #81D8D0;
+  border-radius:12px;
+  overflow:hidden;
+  margin-top:20px;
+}
+.prhead{
+  background:linear-gradient(135deg,#0ABAB5,#81D8D0);
+  padding:20px 32px;
+}
+.prhead-title{
+  font-size:18px;
+  font-weight:700;
+  color:#fff;
+}
+.prhead-sub{
+  font-size:13px;
+  color:rgba(255,255,255,0.85);
+  margin-top:4px;
+}
+.prbody{
+  padding:28px 32px;
+}
+.prow{
+  display:flex;
+  align-items:center;
+  padding:18px 0;
+  border-bottom:1px solid #c8edea;
+  gap:16px;
+}
+.prow:last-of-type{
+  border-bottom:none;
+}
+.picon{
+  width:40px;
+  height:40px;
+  border-radius:8px;
+  background:#0ABAB5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+.picon svg{
+  width:20px;
+  height:20px;
+}
+.plbl{
+  font-size:13px;
+  color:#888;
+  font-weight:600;
+  min-width:80px;
+}
+.pval{
+  font-size:16px;
+  font-weight:700;
+  color:#444;
+}
+.pval span{
+  font-size:13px;
+  font-weight:400;
+  color:#666;
+  margin-left:6px;
+}
+.pbig{
+  font-size:28px;
+  font-weight:800;
+  color:#F0A500;
+}
+.pbig span{
+  font-size:14px;
+  font-weight:400;
+  color:#666;
+  margin-left:4px;
+}
+.prnote{
+  font-size:13px;
+  color:#888;
+  margin-top:20px;
+  line-height:1.7;
+  padding:16px 20px;
+  background:#f9fefe;
+  border-radius:8px;
+  border:1px solid #c8edea;
+}
+
+.cta{
+  background:#fff;
+  border:1.5px solid #81D8D0;
+  border-radius:12px;
+  padding:52px 40px;
+  margin-top:52px;
+  text-align:center;
+}
+.ctamain{
+  font-size:28px;
+  font-weight:800;
+  color:#0ABAB5;
+  line-height:1.5;
+  margin-bottom:20px;
+}
+.ctasub{
+  font-size:15px;
+  color:#444;
+  line-height:1.9;
+  margin-bottom:28px;
+}
+.ctabtn{
+  display:inline-block;
+  background:linear-gradient(135deg,#0ABAB5,#81D8D0);
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+  padding:14px 32px;
+  border-radius:6px;
+  text-decoration:none;
+}
+
+@media(max-width:600px){
+  .hero{
+    padding:40px 24px;
+  }
+  .hero-title{
+    font-size:26px;
+  }
+  .check-grid,
+  .sgrid,
+  .flow-grid,
+  .dual-grid{
+    grid-template-columns:1fr;
+  }
+  .dsec{
+    padding:40px 24px;
+  }
+  .acard{
+    padding:24px 20px;
+  }
+  .cta{
+    padding:40px 24px;
+  }
+  .ctamain{
+    font-size:22px;
+  }
+  .prbody{
+    padding:20px;
+  }
+  .ddef{
+    padding:16px 18px;
+  }
+  .flow-intro{
+    padding:18px 16px;
+  }
+  .future-message{
+    font-size:16px;
+    line-height:1.9;
+  }
+  .sec-soft{
+    padding:28px 18px;
+    border-radius:14px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="lp">
+
+  <div class="hero">
+    <div class="hero-title">学力の「コア」を鍛える</div>
+    <div class="hero-badge">学力コア養成コースのご案内</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">お子様の現在の学習状況は、<br>これらに当てはまりませんか？</div>
+    <div class="check-grid">
+      <div>
+        <div class="clabel">中学生</div>
+        <div class="cbox">評定では「3」が最高で、「2」が目立つ</div>
+        <div class="cbox">テストでは平均点以下の科目が多い</div>
+      </div>
+      <div>
+        <div class="clabel">小学生</div>
+        <div class="cbox">通知表は「できる」が中心</div>
+        <div class="cbox">「頑張りましょう」の項目もある</div>
+      </div>
+    </div>
+    <div class="wbar">もし当てはまるなら、原因は能力そのものよりも、学習の土台不足にある可能性があります。</div>
+  </div>
+
+  <div class="dsec">
+    <div class="dlabel">本当の課題は、</div>
+    <div class="dmain">学力の「コア」が<br>不足していることです。</div>
+    <div class="dsub">勉強習慣のない状態で、いきなり成績向上を目指すのは困難です。まずは学力の「コア」をつける必要があります。</div>
+
+    <div class="ddef">
+      <div class="ddef-title">学力の「コア」とは？</div>
+      <div class="ddef-text">
+        学力の「コア」とは、<strong>勉強習慣と基礎学力を組み合わせたもの</strong>です。<br>
+        どちらか一方では不十分で、両方が揃ってはじめて、安定した学力が身につきます。
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="bridge">ピアノを例に、「学力のコア」とは何かを考えてみましょう。</div>
+    <div class="acard">
+      <div class="atitle">発表会の前日だけ猛練習しても、曲は弾けない。</div>
+      <div class="sgrid">
+        <div class="sbox">
+          <div class="slabel">毎日練習している子</div>
+          <div class="plabel">指の動き</div>
+          <div class="ptrack"><div class="pfull"></div></div>
+          <div class="pcap" style="margin-bottom:10px;">曲の最後まで弾き切れる</div>
+          <div class="stext">楽譜を見ながら指が自然と動く</div>
+          <div class="snote">毎日の積み重ねで「弾き続ける力」ができている</div>
+        </div>
+        <div class="sbox">
+          <div class="slabel">前日だけ練習した子</div>
+          <div class="plabel">指の動き</div>
+          <div class="ptrack"><div class="pshort"></div></div>
+          <div class="pcap" style="margin-bottom:10px;">すぐに指がもつれる</div>
+          <div class="stext">音符を読む前に指が止まる</div>
+          <div class="snote">弾き方を知っていても、弾き続ける土台がない</div>
+        </div>
+      </div>
+      <div class="warn">どれだけ楽譜の読み方を教えても、<br>毎日弾く積み重ねがなければ指は動きません。</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">ピアノの「毎日の練習」は、勉強における「学力のコア」と同じです。</div>
+    <table class="ctable">
+      <thead>
+        <tr><th class="thempty"></th><th class="thgold">ピアノの世界</th><th class="thteal">勉強の世界</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>本番</td><td>発表会で曲を弾く</td><td>テスト・受験</td></tr>
+        <tr><td>必要なコア</td><td>毎日弾くことで育つ指の動き</td><td>毎日取り組む勉強習慣と、それを支える基礎学力</td></tr>
+        <tr><td>技術・内容</td><td>楽譜の読み方・演奏技術</td><td>公式や解法</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec" style="text-align:center;">
+    <div class="sec-title">学力向上のための「構造図」</div>
+    <svg viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:420px;display:block;margin:0 auto;" role="img" aria-label="中央に学力のコアがあり、その中に勉強習慣と基礎学力が含まれ、外側に公式・解法がある構造図">
+      <defs>
+        <linearGradient id="tgrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#0ABAB5"/>
+          <stop offset="100%" style="stop-color:#81D8D0"/>
+        </linearGradient>
+      </defs>
+      <circle cx="250" cy="210" r="165" fill="url(#tgrad)"/>
+      <circle cx="250" cy="210" r="100" fill="#F0A500"/>
+      <text x="250" y="72" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="sans-serif">公式・解法</text>
+      <text x="250" y="190" text-anchor="middle" font-size="21" font-weight="800" fill="#fff" font-family="sans-serif">学力のコア</text>
+      <rect x="160" y="220" rx="20" ry="20" width="180" height="34" fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.45)" />
+      <text x="250" y="242" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="sans-serif">勉強習慣 ・ 基礎学力</text>
+    </svg>
+    <div class="pyrnote">学力の「コア」は、勉強習慣と基礎学力の2つで成り立っています。その外側に、公式・解法があります。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">本コースでは、何をするの？</div>
+
+    <div class="flow-intro">
+      <p>正直にお伝えすると、<strong>週1回の授業だけで勉強習慣を“作る”には少し短いです。</strong></p>
+      <p>しかし、週1回で<strong>「習慣が回る仕組み」を作ること</strong>は可能なんです。</p>
+      <p>本コースでは、勉強を一方的に教えるのではなく、<strong>設計・自主性・再現性</strong>に特化した指導を行います。</p>
+    </div>
+
+    <div class="flow-lead">
+      塾の役割は、<strong>「勉強を教えること」ではなく「勉強が続く状態を作ること」</strong>です。
+    </div>
+
+    <div class="flow-grid">
+      <div class="fcard">
+        <div class="fnum">STEP 1</div>
+        <div class="ftitle">1週間の実施状況をチェック</div>
+        <div class="fdesc">
+          「やったかどうか」だけでなく、どこで止まったか、なぜ止まったかまで確認します。<br>
+          記録提出などを通して、曖昧にならない形で振り返ります。
+        </div>
+      </div>
+
+      <div class="fcard">
+        <div class="fnum">STEP 2</div>
+        <div class="ftitle">習慣が崩れた原因を特定</div>
+        <div class="fdesc">
+          時間が長すぎた、内容が難しすぎた、何をやればいいか分からなかったなど、崩れた理由を見つけます。<br>
+          勉強不足ではなく、設計ミスを直していきます。
+        </div>
+      </div>
+
+      <div class="fcard">
+        <div class="fnum">STEP 3</div>
+        <div class="ftitle">その場でやり方を実演</div>
+        <div class="fdesc">
+          英単語の回し方、計算問題の進め方などを、その場で実際にやらせます。<br>
+          「分かった」で終わらせず、「このやり方で進める」を体に入れます。
+        </div>
+      </div>
+
+      <div class="fcard">
+        <div class="fnum">STEP 4</div>
+        <div class="ftitle">次の1週間を再設計</div>
+        <div class="fdesc">
+          月〜金で何分やるか、何をやるかを具体的に決めます。<br>
+          迷いをなくし、家でそのまま動ける状態にします。
+        </div>
+      </div>
+    </div>
+
+    <div class="center-msg">つまりこの授業は、「1週間を設計する授業」です。</div>
+
+    <div class="dual-grid">
+      <div class="dual-card">
+        <div class="dual-title">家庭での実行を支える仕組み</div>
+        <ul>
+          <li>毎日の学習記録の提出</li>
+          <li>未提出・未実施時のフォロー</li>
+          <li>必要に応じた保護者様への共有</li>
+        </ul>
+      </div>
+
+      <div class="dual-card">
+        <div class="dual-title">指導するのは「教科」だけではありません</div>
+        <ul>
+          <li>勉強の始め方</li>
+          <li>1問ずつ進めるやり方</li>
+          <li>分からない問題への対処</li>
+          <li>時間で切る終わり方</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <div class="note-box-title">よくある失敗</div>
+      <ul>
+        <li>宿題を出すだけで終わる</li>
+        <li>内容を増やしすぎる</li>
+        <li>「頑張ろう」で締めてしまう</li>
+        <li>習慣は、気合いだけでは続きません。続くように設計することが大切です。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec sec-soft">
+    <div class="sec-title">本コース受講後に期待できる変化</div>
+
+    <div class="change-list">
+      <div class="change-item">何をやればいいか分からない状態が減る</div>
+      <div class="change-item">毎日の学習に取りかかりやすくなる</div>
+      <div class="change-item">勉強のペースが安定してくる</div>
+      <div class="change-item">基礎的な内容でつまずきにくくなる</div>
+      <div class="change-item">「やらされる」から「自分でやる」へ少しずつ変わっていく</div>
+    </div>
+
+    <div class="future-message">
+      <span>お子さまが毎日机に向かう姿を見て、ほっとする。</span><br>
+      <span>そんな日常が、少しずつ当たり前になっていきます。</span>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">なぜ「個別指導コース」と分けているのか？</div>
+    <table class="ctable">
+      <thead>
+        <tr><th class="thempty"></th><th class="thgold">学力コア養成コース</th><th class="thteal">個別指導コース</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>主な対象</td><td style="color:#F0A500;font-weight:600;">習慣と基礎が不足している生徒</td><td>すでに学習習慣がある生徒</td></tr>
+        <tr><td>コアづくり</td><td style="font-size:20px;color:#F0A500;">◎</td><td style="font-size:20px;color:#ccc;">△</td></tr>
+        <tr><td>個別指導の内容</td><td style="font-size:20px;color:#F0A500;">△</td><td style="font-size:20px;color:#0ABAB5;">◎</td></tr>
+      </tbody>
+    </table>
+    <div class="tnote">勉強習慣と基礎学力の不足が明確な場合は、本コース（学力コア養成コース）の受講をおすすめします。個別指導コースは、コアづくりを主目的とした設計ではありません。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">コース詳細・料金</div>
+    <div class="prcard">
+      <div class="prhead">
+        <div class="prhead-title">学力コア養成コース</div>
+        <div class="prhead-sub">勉強習慣と基礎学力の土台を作る</div>
+      </div>
+      <div class="prbody">
+        <div class="prow">
+          <div class="picon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div><div class="plbl">対象学年</div><div class="pval">小学生・中学生</div></div>
+        </div>
+
+        <div class="prow">
+          <div class="picon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div><div class="plbl">開講時間</div><div class="pval">土曜日 17:30 〜 19:30 <span>（120分）</span></div></div>
+        </div>
+
+        <div class="prow">
+          <div class="picon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"/>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
+          <div><div class="plbl">月額授業料</div><div class="pbig">¥11,000 <span>（税込）</span></div></div>
+        </div>
+
+        <div class="prnote">※ 授業料は月額です。教材費等が別途かかる場合がございます。詳細はお気軽にお問い合わせください。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <div class="ctamain">お子様に必要なのは、<br>新しい参考書だけではありません。</div>
+    <div class="ctasub">まず学力の「コア」である、勉強習慣と基礎学力を整えることから始めましょう。<br>そこから、お子様の本当の学力向上が始まります。</div>
+    <a href="#" class="ctabtn">お問い合わせはこちら</a>
+  </div>
+
+</div>
+</body>
+</html>
