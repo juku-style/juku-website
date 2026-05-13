@@ -9,62 +9,11 @@
   <meta property="og:title" content="福山市の受験に強い「学習塾スタイル」">
   <meta property="og:description" content="福山市の小学生・中学生・高校生におすすめな学習塾。1対1からの個別指導で納得の授業料。">
   <meta property="og:type" content="website">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": "学習塾スタイル",
-    "alternateName": "JUKU STYLE",
-    "url": "https://juku-style.com",
-    "description": "福山市の小学生・中学生・高校生におすすめな学習塾。1対1からの個別指導で納得の授業料。中学受験・高校受験・大学受験お任せ下さい！",
-    "telephone": "084-975-4851",
-    "address": {
-      "@type": "PostalAddress",
-      "addressRegion": "広島県",
-      "addressLocality": "福山市",
-      "addressCountry": "JP"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 34.4853,
-      "longitude": 133.3625
-    },
-    "areaServed": [
-      "福山市多治米町",
-      "福山市新涯町",
-      "福山市川口町",
-      "福山市曙町",
-      "福山市沖野上町",
-      "福山市草戸町",
-      "福山市熊野町",
-      "福山市水呑町"
-    ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "コース一覧",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Course",
-            "name": "個別指導コース",
-            "description": "生徒一人ひとりの学力・目標に合わせたオーダーメイドのカリキュラム"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Course",
-            "name": "最適化指導コース",
-            "description": "一人ひとりの学力に合わせた指導と課題で、学習習慣の養成を図るコース。"
-          }
-        }
-      ]
-    }
-  }
-  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
+    /* ===== カラー変数（スカイブルー基調 + ポップアクセント） ===== */
     :root {
       --sky: #4DC8E8;
       --sky-dark: #1DA8CC;
@@ -72,134 +21,591 @@
       --sky-light: #E0F7FC;
       --sky-pale: #F0FBFD;
       --accent: #F8BBD9;
+      --yellow: #ffd83d;
+      --yellow-soft: #fff4a8;
+      --pink: #f9b8d4;
+      --pink-soft: #fde0ec;
+      --orange: #ffaa5c;
+      --green: #9bd87e;
       --text: #1a1a2e;
+      --black: #1a1a2e;
       --muted: #666;
-      --border: #B2EBF7;
+      --gray: #666;
+      --border: #1a1a2e;
+      --white: #ffffff;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: #F0FBFD; padding-bottom: 80px; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text);
+      background: var(--sky-pale);
+      padding-bottom: 88px;
+      font-weight: 500;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
-    header { background: var(--sky); padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 200; }
-    .logo-main { font-family: 'Noto Serif JP', serif; font-size: 18px; color: #fff; letter-spacing: 0.05em; }
-    .logo-sub { font-size: 10px; color: #fff; letter-spacing: 0.08em; margin-top: 2px; }
-    .header-btn { background: var(--accent); color: var(--sky-dark); border: none; border-radius: 6px; padding: 8px 16px; font-size: 12px; font-weight: 700; cursor: pointer; text-decoration: none; white-space: nowrap; }
+    /* ===== ヘッダー ===== */
+    header {
+      background: var(--sky);
+      padding: 0 1.5rem;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      border-bottom: 3px solid var(--black);
+    }
+    .logo-main {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 19px;
+      color: #fff;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+    }
+    .logo-sub { font-size: 10px; color: rgba(255,255,255,0.95); letter-spacing: 0.1em; margin-top: 3px; font-weight: 700; }
+    .header-btn {
+      background: var(--yellow);
+      color: var(--black);
+      border: 2.5px solid var(--black);
+      border-radius: 50px;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: 2px 2px 0 var(--black);
+      transition: all 0.15s;
+    }
+    .header-btn:hover { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--black); }
 
-    .tab-nav { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 64px; z-index: 100; overflow-x: auto; display: flex; scrollbar-width: none; }
+    /* ===== タブナビ ===== */
+    .tab-nav {
+      background: #fff;
+      border-bottom: 3px solid var(--black);
+      position: sticky;
+      top: 68px;
+      z-index: 100;
+      overflow-x: auto;
+      display: flex;
+      scrollbar-width: none;
+      padding: 0 6px;
+    }
     .tab-nav::-webkit-scrollbar { display: none; }
-    .tab-btn { flex-shrink: 0; padding: 14px 20px; font-size: 13px; font-weight: 500; color: var(--muted); background: none; border: none; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s; }
-    .tab-btn.active { color: var(--sky); border-bottom-color: var(--sky); }
-    .tab-btn:hover { color: var(--sky); }
+    .tab-btn {
+      flex-shrink: 0;
+      padding: 13px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray);
+      background: none;
+      border: none;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      transition: all 0.2s;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .tab-btn.active { color: var(--sky-dark); border-bottom-color: var(--yellow); }
+    .tab-btn:hover { color: var(--sky-dark); }
 
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    .hero { background: var(--sky); padding: 4rem 2rem 3.5rem; text-align: center; position: relative; overflow: hidden; }
-    .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse at 60% 40%, rgba(24,95,165,0.4) 0%, transparent 60%); pointer-events: none; }
-    .hero-eyebrow { font-size: 11px; color: #fff; letter-spacing: 0.15em; margin-bottom: 1.2rem; }
-    .hero h1 { font-family: 'Noto Serif JP', serif; font-size: 32px; color: #fff; line-height: 1.6; margin-bottom: 1rem; }
-    .hero-sub { font-size: 14px; color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 2rem; }
+    /* ===== ヒーロー ===== */
+    .hero {
+      background: var(--sky);
+      padding: 3.8rem 1.5rem 4.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 3px solid var(--black);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      left: -60px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(255,255,255,0.55) 2px, transparent 2px);
+      background-size: 16px 16px;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 160px;
+      height: 160px;
+      background: var(--yellow);
+      clip-path: polygon(100% 0, 100% 100%, 0 100%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .hero-inner-card {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 26px;
+      padding: 2.2rem 1.8rem;
+      box-shadow: 8px 8px 0 var(--black);
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--black);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.55;
+      margin-bottom: 1rem;
+    }
+    .hero h1 .hl {
+      background: linear-gradient(transparent 65%, var(--yellow) 65%);
+      padding: 0 4px;
+    }
+    .hero-sub {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+      font-weight: 500;
+    }
     .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn-gold { background: var(--accent); color: var(--sky-dark); border: none; border-radius: 6px; padding: 12px 28px; font-size: 14px; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-block; }
-    .btn-outline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; padding: 12px 28px; font-size: 14px; cursor: pointer; text-decoration: none; display: inline-block; }
-    .hero-badges { display: flex; gap: 16px; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
-    .hero-badge { font-size: 12px; color: rgba(255,255,255,0.9); display: flex; align-items: center; gap: 6px; }
-    .hero-badge::before { content: '✓'; color: #fff; }
 
-    .section { padding: 3rem 2rem; }
-    .section-alt { padding: 3rem 2rem; background: var(--sky-pale); }
-    .section-title { font-family: 'Noto Serif JP', serif; font-size: 22px; color: var(--sky-dark); margin-bottom: 0.4rem; }
-    .section-sub { font-size: 13px; color: var(--muted); margin-bottom: 2rem; line-height: 1.7; }
-    .inner { max-width: 880px; margin: 0 auto; }
+    .btn-gold, .btn-outline {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: 3px solid var(--black);
+      transition: all 0.15s;
+      box-shadow: 4px 4px 0 var(--black);
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .btn-gold { background: var(--yellow); color: var(--black); }
+    .btn-outline { background: #fff; color: var(--black); }
+    .btn-gold:hover, .btn-outline:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--black); }
 
-    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-    .feature-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
-    .feature-num { font-size: 11px; color: #FFD740; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
-    .feature-card h3 { font-size: 15px; font-weight: 700; color: var(--sky-dark); margin-bottom: 0.6rem; }
-    .feature-card p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .hero-badges { display: flex; gap: 10px; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+    .hero-badge {
+      font-size: 12px;
+      color: var(--black);
+      font-weight: 700;
+      background: #fff;
+      border: 2px solid var(--black);
+      border-radius: 50px;
+      padding: 4px 12px;
+    }
+    .hero-badge::before { content: '✓ '; color: var(--orange); font-weight: 900; }
 
-    .courses { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-    .course-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
-    .course-card.featured { border: 2px solid var(--sky); }
-    .course-label { font-size: 11px; background: var(--sky-light); color: var(--sky); padding: 3px 10px; border-radius: 99px; display: inline-block; margin-bottom: 0.8rem; }
-    .course-label.gold { background: #FFF9E0; color: #d4a000; border: 1px solid #FFD740; }
-    .course-card h3 { font-size: 16px; font-weight: 700; color: var(--sky-dark); margin-bottom: 0.5rem; }
-    .course-card .price { font-size: 22px; font-weight: 700; color: var(--sky); margin: 0.8rem 0 0.4rem; }
-    .course-card .price span { font-size: 12px; color: var(--muted); font-weight: 400; }
-    .course-card p { font-size: 13px; color: var(--muted); line-height: 1.7; }
-    .course-divider { height: 1px; background: var(--border); margin: 1rem 0; }
-    .course-feature { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
-    .course-feature::before { content: '✓'; color: var(--sky); flex-shrink: 0; }
+    /* ===== セクション ===== */
+    .section { padding: 3.5rem 1.5rem; background: #fff; }
+    .section-alt { padding: 3.5rem 1.5rem; background: var(--sky-light); }
+    .inner { max-width: 920px; margin: 0 auto; }
 
-    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
-    .blog-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.2s; display: block; }
-    .blog-card:hover { transform: translateY(-3px); }
-    .blog-thumb { height: 120px; background: linear-gradient(135deg, var(--sky-light), #c5ddf8); display: flex; align-items: center; justify-content: center; font-size: 44px; }
-    .blog-body { padding: 1rem; }
-    .blog-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 0.5rem; }
-    .blog-tag { font-size: 11px; background: var(--sky-light); color: var(--sky); padding: 2px 10px; border-radius: 99px; }
-    .blog-date { font-size: 11px; color: #999; }
-    .blog-card h3 { font-size: 14px; font-weight: 700; line-height: 1.5; color: var(--sky-dark); margin-bottom: 0.4rem; }
-    .blog-card p { font-size: 12px; color: var(--muted); line-height: 1.6; }
-    .blog-more { text-align: center; margin-top: 1.5rem; }
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--sky-dark);
+      margin-bottom: 0.6rem;
+      position: relative;
+      display: inline-block;
+      padding: 0 10px;
+    }
+    .section-title::before {
+      content: '';
+      position: absolute;
+      left: -14px;
+      top: -12px;
+      width: 34px;
+      height: 34px;
+      background: var(--yellow);
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+      z-index: -1;
+    }
+    .section-sub { font-size: 13px; color: var(--gray); margin-bottom: 2rem; line-height: 1.7; font-weight: 500; }
 
-    .notice-list { display: flex; flex-direction: column; gap: 12px; }
-    .notice-item { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; display: flex; gap: 1rem; align-items: flex-start; }
-    .notice-item.important { border-left: 3px solid var(--sky); }
-    .notice-item.holiday { border-left: 3px solid #e8a020; }
-    .notice-badge { font-size: 11px; padding: 3px 10px; border-radius: 99px; white-space: nowrap; flex-shrink: 0; }
-    .badge-imp { background: var(--sky-light); color: var(--sky); }
-    .badge-hol { background: #fff3e0; color: #e8a020; }
-    .badge-inf { background: #e8f5e9; color: #2e7d32; }
-    .notice-content h4 { font-size: 14px; font-weight: 700; color: var(--sky-dark); margin-bottom: 4px; }
-    .notice-content p { font-size: 13px; color: var(--muted); line-height: 1.6; }
-    .notice-date { font-size: 11px; color: #999; margin-bottom: 4px; }
+    /* ===== 特徴カード ===== */
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .feature-card {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 18px;
+      padding: 1.5rem 1.3rem;
+      box-shadow: 4px 4px 0 var(--black);
+      transition: transform 0.15s;
+    }
+    .feature-card:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--black); }
+    .feature-num {
+      display: inline-block;
+      font-size: 11px;
+      color: var(--black);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      background: var(--yellow);
+      border: 2px solid var(--black);
+      padding: 3px 10px;
+      border-radius: 50px;
+      margin-bottom: 0.8rem;
+    }
+    .feature-card h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--sky-dark);
+      margin-bottom: 0.6rem;
+      line-height: 1.5;
+    }
+    .feature-card p { font-size: 13px; color: var(--text); line-height: 1.75; font-weight: 500; }
 
-    .flow-steps { display: flex; flex-direction: column; gap: 0; max-width: 600px; margin: 0 auto; }
-    .flow-step { display: flex; gap: 1.5rem; align-items: flex-start; position: relative; padding-bottom: 2rem; }
+    /* ===== コースカード ===== */
+    .courses { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+    .course-card {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 18px;
+      padding: 1.5rem;
+      box-shadow: 4px 4px 0 var(--black);
+      transition: transform 0.15s;
+    }
+    .course-card:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--black); }
+    .course-card.featured { background: var(--sky-light); }
+    .course-label {
+      font-size: 11px;
+      background: var(--sky);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 99px;
+      display: inline-block;
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+      border: 2px solid var(--black);
+    }
+    .course-label.gold { background: var(--yellow); color: var(--black); }
+    .course-card h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--sky-dark);
+      margin-bottom: 0.4rem;
+    }
+    .course-card .price {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--sky-dark);
+      margin: 0.6rem 0 0.3rem;
+    }
+    .course-card .price span { font-size: 12px; color: var(--gray); font-weight: 400; }
+    .course-card p { font-size: 13px; color: var(--text); line-height: 1.7; font-weight: 500; }
+    .course-divider { height: 2px; background: var(--black); margin: 0.9rem 0; }
+    .course-feature { font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 6px; margin-bottom: 4px; font-weight: 600; }
+    .course-feature::before { content: '✓'; color: var(--orange); flex-shrink: 0; font-weight: 900; }
+
+    /* ===== ブログ ===== */
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+    .blog-card {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 18px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 4px 4px 0 var(--black);
+      transition: transform 0.15s;
+      display: block;
+    }
+    .blog-card:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--black); }
+    .blog-thumb, .blog-img {
+      height: 120px;
+      background: linear-gradient(135deg, var(--sky-light), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      border-bottom: 3px solid var(--black);
+    }
+    .blog-body { padding: 1rem 1.2rem; }
+    .blog-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 0.5rem; flex-wrap: wrap; }
+    .blog-tag {
+      font-size: 11px;
+      background: var(--yellow);
+      color: var(--black);
+      padding: 3px 10px;
+      border-radius: 99px;
+      font-weight: 700;
+      border: 1.5px solid var(--black);
+    }
+    .blog-date { font-size: 11px; color: var(--gray); font-weight: 600; }
+    .blog-card h3, .blog-card h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.5;
+      color: var(--sky-dark);
+      margin-bottom: 0.4rem;
+    }
+    .blog-card p { font-size: 12px; color: var(--gray); line-height: 1.65; font-weight: 500; }
+
+    /* ===== お知らせ ===== */
+    .notice-list { display: flex; flex-direction: column; gap: 14px; }
+    .notice-item {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 14px;
+      padding: 1.2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      box-shadow: 4px 4px 0 var(--black);
+    }
+    .notice-item.important { background: var(--sky-light); }
+    .notice-item.holiday { background: var(--pink-soft); }
+    .notice-badge {
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: 99px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-weight: 700;
+      border: 2px solid var(--black);
+    }
+    .badge-imp { background: var(--sky); color: #fff; }
+    .badge-hol { background: var(--accent); color: var(--black); }
+    .badge-inf { background: var(--green); color: var(--black); }
+    .notice-content h4 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--sky-dark);
+      margin-bottom: 4px;
+    }
+    .notice-content p { font-size: 13px; color: var(--text); line-height: 1.65; font-weight: 500; }
+    .notice-date { font-size: 11px; color: var(--gray); margin-bottom: 4px; font-weight: 600; }
+
+    /* ===== 入塾フロー ===== */
+    .flow-steps { display: flex; flex-direction: column; gap: 0; max-width: 640px; margin: 0 auto; }
+    .flow-step { display: flex; gap: 1.2rem; align-items: flex-start; position: relative; padding-bottom: 1.5rem; }
     .flow-step:last-child { padding-bottom: 0; }
-    .flow-step:not(:last-child)::after { content: ''; position: absolute; left: 19px; top: 44px; bottom: 0; width: 2px; background: var(--border); }
-    .flow-num { width: 40px; height: 40px; background: var(--sky); color: #fff; border: 3px solid #FFD740; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; z-index: 1; }
-    .flow-body { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; flex: 1; }
-    .flow-body h3 { font-size: 15px; font-weight: 700; color: var(--sky-dark); margin-bottom: 0.4rem; }
-    .flow-body p { font-size: 13px; color: var(--muted); line-height: 1.7; }
-    .flow-time { font-size: 11px; color: #fff; font-weight: 700; margin-bottom: 0.3rem; }
+    .flow-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 21px;
+      top: 48px;
+      bottom: 0;
+      width: 3px;
+      background: var(--black);
+    }
+    .flow-num {
+      width: 44px;
+      height: 44px;
+      background: var(--sky);
+      color: #fff;
+      border: 3px solid var(--black);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 900;
+      flex-shrink: 0;
+      z-index: 1;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .flow-step:nth-child(2) .flow-num { background: var(--yellow); color: var(--black); }
+    .flow-step:nth-child(3) .flow-num { background: var(--accent); color: var(--black); }
+    .flow-step:nth-child(4) .flow-num { background: var(--orange); color: var(--black); }
+    .flow-body {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 14px;
+      padding: 1.2rem;
+      flex: 1;
+      box-shadow: 4px 4px 0 var(--black);
+    }
+    .flow-body h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--sky-dark);
+      margin-bottom: 0.4rem;
+    }
+    .flow-body p { font-size: 13px; color: var(--text); line-height: 1.7; font-weight: 500; }
+    .flow-time {
+      display: inline-block;
+      font-size: 11px;
+      background: var(--black);
+      color: #fff;
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
     .flow-cta { text-align: center; margin-top: 2.5rem; }
 
-    .schedule-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); margin-top: 1rem; }
-    .schedule-table th { background: var(--sky); color: #fff; padding: 12px 16px; font-size: 13px; text-align: left; }
-    .schedule-table td { padding: 12px 16px; font-size: 13px; color: #333; border-bottom: 1px solid var(--sky-light); }
+    /* ===== スケジュール表 ===== */
+    .schedule-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 3px solid var(--black);
+      margin-top: 1rem;
+      box-shadow: 4px 4px 0 var(--black);
+    }
+    .schedule-table th {
+      background: var(--sky);
+      color: #fff;
+      padding: 12px 16px;
+      font-size: 13px;
+      text-align: left;
+      font-weight: 700;
+      border-bottom: 3px solid var(--black);
+    }
+    .schedule-table td {
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--text);
+      border-bottom: 2px solid var(--sky-light);
+      font-weight: 500;
+    }
     .schedule-table tr:last-child td { border-bottom: none; }
     .schedule-table tr:hover td { background: var(--sky-pale); }
 
-    .fixed-banner { position: fixed; bottom: 0; left: 0; right: 0; background: var(--sky); border-top: 1px solid rgba(255,255,255,0.1); padding: 12px 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; z-index: 300; }
-    .banner-text strong { font-size: 14px; color: #fff; display: block; }
-    .banner-text span { font-size: 11px; color: rgba(255,255,255,0.9); }
-    .banner-btn { background: var(--accent); color: var(--sky-dark); border: none; border-radius: 6px; padding: 10px 20px; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
+    /* ===== 固定下部バナー ===== */
+    .fixed-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--sky);
+      border-top: 3px solid var(--black);
+      padding: 12px 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      z-index: 300;
+    }
+    .banner-text strong { font-size: 14px; color: #fff; display: block; font-weight: 700; }
+    .banner-text span { font-size: 11px; color: rgba(255,255,255,0.95); font-weight: 600; }
+    .banner-btn {
+      background: var(--yellow);
+      color: var(--black);
+      border: 2.5px solid var(--black);
+      border-radius: 50px;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      box-shadow: 3px 3px 0 var(--black);
+      transition: all 0.15s;
+    }
+    .banner-btn:hover { transform: translate(1px,1px); box-shadow: 1.5px 1.5px 0 var(--black); }
 
+    /* ===== つぶやき ===== */
+    .tweet-filter-btn {
+      background: #fff;
+      border: 2px solid var(--black);
+      border-radius: 99px;
+      padding: 6px 16px;
+      font-size: 12px;
+      color: var(--text);
+      cursor: pointer;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 700;
+      transition: all 0.15s;
+      box-shadow: 2px 2px 0 var(--black);
+    }
+    .tweet-filter-btn.active, .tweet-filter-btn:hover {
+      background: var(--sky);
+      color: #fff;
+      transform: translate(1px,1px);
+      box-shadow: 1px 1px 0 var(--black);
+    }
+    .tweet-card {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 16px;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 14px;
+      box-shadow: 4px 4px 0 var(--black);
+      transition: transform 0.15s;
+    }
+    .tweet-card:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--black); }
+    .tweet-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 0.7rem; }
+    .tweet-avatar {
+      width: 44px;
+      height: 44px;
+      background: var(--sky);
+      border: 2px solid var(--black);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .tweet-author {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--sky-dark);
+    }
+    .tweet-handle { font-size: 12px; color: var(--gray); font-weight: 600; }
+    .tweet-cat-badge {
+      font-size: 11px;
+      background: var(--yellow);
+      color: var(--black);
+      padding: 3px 10px;
+      border-radius: 99px;
+      margin-left: auto;
+      font-weight: 700;
+      border: 1.5px solid var(--black);
+    }
+    .tweet-body { font-size: 14px; color: var(--text); line-height: 1.8; padding-left: 54px; font-weight: 500; }
+    .tweet-footer { display: flex; align-items: center; gap: 1rem; margin-top: 0.8rem; padding-left: 54px; }
+    .tweet-time { font-size: 12px; color: var(--gray); font-weight: 600; }
+    .tweet-loading, .tweet-empty { text-align: center; color: var(--gray); font-size: 14px; padding: 3rem 0; font-weight: 600; }
+
+    /* ===== レスポンシブ ===== */
     @media (max-width: 600px) {
-      .hero h1 { font-size: 24px; }
+      .hero h1 { font-size: 22px; }
+      .section-title { font-size: 21px; }
       .fixed-banner { padding: 10px 1rem; }
       .banner-text strong { font-size: 13px; }
+      .hero-inner-card { padding: 1.6rem 1.2rem; }
     }
-
-    /* 塾長のつぶやき */
-    .tweet-filter-btn { background: #fff; border: 1px solid var(--border); border-radius: 99px; padding: 6px 16px; font-size: 12px; color: var(--muted); cursor: pointer; font-family: inherit; transition: all 0.2s; }
-    .tweet-filter-btn.active, .tweet-filter-btn:hover { background: var(--sky); color: #fff; border-color: var(--sky); }
-    .tweet-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.2rem 1.4rem; margin-bottom: 12px; transition: transform 0.2s; }
-    .tweet-card:hover { transform: translateY(-2px); }
-    .tweet-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 0.7rem; }
-    .tweet-avatar { width: 40px; height: 40px; background: var(--sky); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-    .tweet-author { font-size: 14px; font-weight: 700; color: var(--sky-dark); }
-    .tweet-handle { font-size: 12px; color: #bbb; }
-    .tweet-cat-badge { font-size: 11px; background: var(--sky-light); color: var(--sky-dark); padding: 2px 10px; border-radius: 99px; margin-left: auto; }
-    .tweet-body { font-size: 14px; color: #333; line-height: 1.8; padding-left: 50px; }
-    .tweet-footer { display: flex; align-items: center; gap: 1rem; margin-top: 0.8rem; padding-left: 50px; }
-    .tweet-time { font-size: 12px; color: #bbb; }
-    .tweet-loading { text-align: center; color: var(--muted); font-size: 14px; padding: 3rem 0; }
-    .tweet-empty { text-align: center; color: #bbb; font-size: 14px; padding: 3rem 0; }
   </style>
 </head>
+
 <body>
 
 <header>
@@ -223,17 +629,19 @@
 
 <div class="tab-content active" id="tab-home">
   <div class="hero">
-    <p class="hero-eyebrow">JUKU STYLE / 学習塾スタイル</p>
-    <h1>福山市多治米町の学習塾｜小学生・中学生・高校生対応の学習塾スタイル</h1>
-    <p class="hero-sub">どこで学ぶか。それはライフスタイルの選択。<br>個別指導と自立型学習で、あなただけの学びを。</p>
-    <div class="hero-btns">
-      <button class="btn-gold" onclick="showTab('flow')">体験授業を申し込む</button>
-      <button class="btn-outline" onclick="showTab('courses')">コースを見る</button>
-    </div>
-    <div class="hero-badges">
-      <span class="hero-badge">小学生〜高校生対応</span>
-      <span class="hero-badge">個別指導</span>
-      <span class="hero-badge">最適化指導</span>
+    <div class="hero-inner-card">
+      <p class="hero-eyebrow">JUKU STYLE / 学習塾スタイル</p>
+      <h1>福山市多治米町の<span class="hl">学習塾</span><br>小学生・中学生・高校生対応の<br><span class="hl">学習塾スタイル</span></h1>
+      <p class="hero-sub">どこで学ぶか。それはライフスタイルの選択。<br>個別指導と自立型学習で、あなただけの学びを。</p>
+      <div class="hero-btns">
+        <button class="btn-gold" onclick="showTab('flow')">体験授業を申し込む</button>
+        <button class="btn-outline" onclick="showTab('courses')">コースを見る</button>
+      </div>
+      <div class="hero-badges">
+        <span class="hero-badge">小学生〜高校生対応</span>
+        <span class="hero-badge">個別指導</span>
+        <span class="hero-badge">最適化指導</span>
+      </div>
     </div>
   </div>
   <div class="section">
@@ -250,8 +658,8 @@
           <p class="feature-num">FEATURE 02</p>
           <h3>最適化指導コース</h3>
           <p>一人ひとりの学力に合わせた指導と課題で、学習習慣の養成を図るコース。１コマの授業は２部構成。前半はカリキュラム指導を行い、学力の現状を塾長がチェック。後半は、それぞれに合わせた課題に取り組み効率的に学力向上を狙います。</p>
-          <a href="core-course.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:linear-gradient(135deg,#FF6B6B,#FF8E53);color:#fff;font-size:13px;font-weight:700;padding:8px 16px;border-radius:99px;text-decoration:none;box-shadow:0 3px 10px rgba(255,107,107,0.4);animation:badge-pulse 2s infinite;">🔥 特設サイトはこちら →</a>
-          <style>@keyframes badge-pulse{0%,100%{box-shadow:0 3px 10px rgba(255,107,107,0.4)}50%{box-shadow:0 3px 18px rgba(255,107,107,0.75)}}</style>
+          <a href="core-course.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:var(--yellow);color:var(--black);font-size:13px;font-weight:700;padding:8px 18px;border-radius:99px;text-decoration:none;border:2.5px solid var(--black);box-shadow:3px 3px 0 var(--black);animation:badge-pulse 2s infinite;">🔥 特設サイトはこちら →</a>
+          <style>@keyframes badge-pulse{0%,100%{box-shadow:3px 3px 0 var(--black)}50%{box-shadow:5px 5px 0 var(--black)}}</style>
         </div>
       </div>
 
@@ -432,20 +840,29 @@
         </div>
       </div>
 
-      <!-- 最適化指導コース -->
-      <p style="font-size:15px; font-weight:700; color:var(--sky-dark); margin-bottom:1rem; padding-left:0.8rem; border-left:3px solid var(--sky);">⑤ 最適化指導コース</p>
+      <!-- 個別最適化コース -->
+      <p style="font-size:15px; font-weight:700; color:var(--sky-dark); margin-bottom:1rem; padding-left:0.8rem; border-left:3px solid var(--sky);">⑤ 個別最適化コース</p>
+      <div style="margin-bottom:0.8rem; display:flex; justify-content:flex-end;">
+        <a href="core-course.html" style="display:inline-flex;align-items:center;gap:4px;background:var(--accent);color:var(--black);font-size:11px;font-weight:700;padding:5px 12px;border-radius:99px;text-decoration:none;border:2px solid var(--black);box-shadow:2px 2px 0 var(--black);animation:badge-pulse 2s infinite;">🔥 特設サイト →</a>
+      </div>
       <div class="courses" style="margin-bottom:0.8rem;">
-        <div class="course-card featured">
-          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px; margin-bottom:0.8rem;">
-            <span class="course-label gold">小学生・中学生</span>
-            <a href="core-course.html" style="display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,var(--sky),var(--sky-dark));color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px;text-decoration:none;box-shadow:0 2px 8px rgba(77,200,232,0.4);animation:badge-pulse 2s infinite;">🔥 特設サイト →</a>
-          </div>
+        <div class="course-card">
+          <span class="course-label">週1コース</span>
           <h3>120分 × 4回</h3>
           <div class="price">¥11,000<span>/月（税込）</span></div>
           <div class="course-divider"></div>
-          <p class="course-feature">土曜日 17:30〜19:30</p>
+          <p class="course-feature">火曜 18:00〜20:00 または<br>土曜 17:30〜19:30</p>
           <p class="course-feature">勉強習慣と基礎学力の土台づくり</p>
           <p class="course-feature">毎週の学習計画を一緒に設計</p>
+        </div>
+        <div class="course-card featured">
+          <span class="course-label gold">週2コース</span>
+          <h3>120分 × 8回</h3>
+          <div class="price">¥19,000<span>/月（税込）</span></div>
+          <div class="course-divider"></div>
+          <p class="course-feature">火曜 18:00〜20:00 と<br>土曜 17:30〜19:30</p>
+          <p class="course-feature">学習量をしっかり確保</p>
+          <p class="course-feature">理解度に応じた個別最適化</p>
         </div>
       </div>
       <div style="background:var(--sky-light); border-radius:10px; padding:1rem; margin-bottom:2rem; font-size:13px; color:var(--sky-dark); line-height:1.7;">
