@@ -602,7 +602,15 @@
       .fixed-banner { padding: 10px 1rem; }
       .banner-text strong { font-size: 13px; }
       .hero-inner-card { padding: 1.6rem 1.2rem; }
+      /* モバイルでは考え方タブのfloat画像を小さめに */
+      .tab-content#tab-philosophy img[style*="float:right"] { max-width: 110px !important; }
+      /* モバイルでお問合せの塾長キャラを小さめに */
+      .tab-content#tab-contact img[style*="position:absolute"] { width: 80px !important; }
+      /* モバイルで入塾の流れのアイコンを小さめに */
+      .tab-content#tab-flow img[style*="float:right"] { width: 60px !important; }
     }
+    /* 考え方タブのカードでfloat画像が枠からはみ出さないように */
+    #tab-philosophy > .section > .inner > div > div { overflow: hidden; }
   </style>
 </head>
 
@@ -630,6 +638,7 @@
 <div class="tab-content active" id="tab-home">
   <div class="hero">
     <div class="hero-inner-card">
+      <img src="images/lp/index-hero.png" alt="塾長と生徒の個別指導イメージ" style="display:block; width:100%; max-width:520px; height:auto; margin:0 auto 1.2rem; border-radius:18px;">
       <p class="hero-eyebrow">JUKU STYLE / 学習塾スタイル</p>
       <h1>福山市多治米町の<span class="hl">学習塾</span><br>小学生・中学生・高校生対応の<br><span class="hl">学習塾スタイル</span></h1>
       <p class="hero-sub">どこで学ぶか。それはライフスタイルの選択。<br>個別指導と自立型学習で、あなただけの学びを。</p>
@@ -650,13 +659,15 @@
       <p class="section-sub">一人ひとりに寄り添い、自分から学べる力を育てます。</p>
       <div class="features">
         <div class="feature-card">
+          <img src="images/lp/index-feature-01-group.png" alt="個別指導コース" style="display:block; width:100%; max-width:160px; height:auto; margin:0 auto 0.8rem;">
           <p class="feature-num">FEATURE 01</p>
           <h3>個別指導コース</h3>
           <p>生徒一人ひとりの学力・目標に合わせたオーダーメイドのカリキュラム。講師１人：生徒１～３人で、丁寧で細やかな指導を実現。生徒のレベルごとに、最適な問題集を選定するところからはじめます。受験対策や弱点の克服、さまざまな学習目標に対応します。</p>
         </div>
         <div class="feature-card">
+          <img src="images/lp/pillar-check.png" alt="個別最適化コース" style="display:block; width:100%; max-width:140px; height:auto; margin:0 auto 0.8rem;">
           <p class="feature-num">FEATURE 02</p>
-          <h3>最適化指導コース</h3>
+          <h3>個別最適化コース</h3>
           <p>一人ひとりの学力に合わせた指導と課題で、学習習慣の養成を図るコース。１コマの授業は２部構成。前半はカリキュラム指導を行い、学力の現状を塾長がチェック。後半は、それぞれに合わせた課題に取り組み効率的に学力向上を狙います。</p>
           <a href="core-course.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:var(--yellow);color:var(--black);font-size:13px;font-weight:700;padding:8px 18px;border-radius:99px;text-decoration:none;border:2.5px solid var(--black);box-shadow:3px 3px 0 var(--black);animation:badge-pulse 2s infinite;">🔥 特設サイトはこちら →</a>
           <style>@keyframes badge-pulse{0%,100%{box-shadow:3px 3px 0 var(--black)}50%{box-shadow:5px 5px 0 var(--black)}}</style>
@@ -665,16 +676,19 @@
 
       <div style="margin-top:16px; display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
         <div class="feature-card">
+          <img src="images/lp/pillar-school.png" alt="スタイルってどんな塾？" style="display:block; width:100%; max-width:140px; height:auto; margin:0 auto 0.8rem;">
           <p class="feature-num">FEATURE 03</p>
           <h3>スタイルってどんな塾？</h3>
           <p>小学生・中学生・高校生を対象に指導する学習塾です。勉強することが得意ではない塾生から、難関校・難関大学を目指す塾生まで、それぞれの目標に向けて頑張っています。</p>
         </div>
         <div class="feature-card">
+          <img src="images/lp/pillar-teacher.png" alt="すべて塾長が担当します" style="display:block; width:100%; max-width:140px; height:auto; margin:0 auto 0.8rem;">
           <p class="feature-num">FEATURE 04</p>
           <h3>すべて塾長が担当します</h3>
           <p>指導から保護者対応まで、すべて塾長が一貫して行います。生徒数を限定しておりますが、価格以上の満足度を保証いたします。無料の振替制度・オリジナル教材など、塾生への特典もたくさんあります。</p>
         </div>
         <div class="feature-card">
+          <img src="images/lp/pillar-book.png" alt="学習空間" style="display:block; width:100%; max-width:140px; height:auto; margin:0 auto 0.8rem;">
           <p class="feature-num">FEATURE 05</p>
           <h3>学習空間</h3>
           <p>１人あたりのスペースを十分に確保しています。２人掛け用の机を１人で使用してもらい、問題集・参考書・タブレットを快適に使用できます。居心地のよい学習環境を提供できるよう工夫しています。</p>
@@ -691,7 +705,7 @@
       <p class="section-sub">学年や目標に合わせて選べるコースをご用意しています。開講日：毎週月〜土　授業時間帯：17:00〜21:00（相談の上決定）</p>
 
       <!-- 小学生 -->
-      <p style="font-size:15px; font-weight:700; color:var(--sky-dark); margin-bottom:1rem; padding-left:0.8rem; border-left:3px solid var(--sky);">① 小学生クラス</p>
+      <p style="font-size:15px; font-weight:700; color:var(--sky-dark); margin-bottom:1rem; padding-left:0.8rem; border-left:3px solid var(--sky); display:flex; align-items:center; gap:8px;"><img src="images/lp/index-icon-elementary.png" alt="" style="width:36px; height:36px; object-fit:contain;">① 小学生クラス</p>
       <div class="courses" style="margin-bottom:2rem;">
         <div class="course-card featured">
           <span class="course-label gold">選ばれNo.1</span>
@@ -897,6 +911,7 @@
       <div style="display:flex; flex-direction:column; gap:2rem;">
 
         <div style="background:#fff; border:1px solid var(--border); border-left:4px solid var(--sky); border-radius:12px; padding:1.8rem;">
+          <img src="images/lp/index-philosophy-1-joy.png" alt="" style="display:block; width:100%; max-width:180px; height:auto; float:right; margin-left:1rem; margin-bottom:0.5rem;">
           <h3 style="font-family:'Noto Serif JP',serif; font-size:18px; color:var(--sky-dark); margin-bottom:1rem;">スタイルへ携わる人の人生を豊かにする</h3>
           <p style="font-size:14px; color:#444; line-height:1.9;">スタイルでは、「スタイルへ携わる人の生活を豊かにする」ということをメインミッションに掲げています。例え、表現の仕方が多少変わることが今後あるとしても、このスタイルが掲げるミッションの本質は揺るぎないものです。</p>
           <p style="font-size:14px; color:#444; line-height:1.9; margin-top:1rem;">では「生活を豊かにする」とは具体的にどういうことでしょうか？例えば、スタイルでの体験を通して勉強そのものが好きになってくれれば、それ以上の喜びはありません。スタイルでは、新たな知識を得ることの楽しさ・ゲーム的な面白さを指導の中に取り込み、勉強が元々得意な人にはもちろんのこと、苦手意識を持っている人にも、その楽しさを体験できるよう工夫をしています。</p>
@@ -904,17 +919,20 @@
         </div>
 
         <div style="background:#fff; border:1px solid var(--border); border-left:4px solid #FFD740; border-radius:12px; padding:1.8rem;">
+          <img src="images/lp/index-philosophy-2-passion.png" alt="" style="display:block; width:100%; max-width:180px; height:auto; float:right; margin-left:1rem; margin-bottom:0.5rem;">
           <h3 style="font-family:'Noto Serif JP',serif; font-size:18px; color:var(--sky-dark); margin-bottom:1rem;">人生で打ち込める何かを見つけて欲しい</h3>
           <p style="font-size:14px; color:#444; line-height:1.9;">特に、勉強に対して苦手意識を持っている生徒には、勉強を強いるような環境は、勉強に対して嫌なイメージを増大させてしまうリスクもあります。苦手なことへ向き合う姿勢は、勉強だけに限らず何事においても大切ですが、得意不得意は人それぞれ。勉強であれば、不得意なところはスタイルに任せてください。苦手なことへのストレスや労力が軽減した分、例えそれが勉強以外のことであっても、自分が打ち込める"何か"を精一杯頑張って欲しいと考えています。なぜならそれが結果として、間接的なものであったとしても、勉強と相乗効果をもたらすとスタイルは確信しているからです。</p>
         </div>
 
         <div style="background:#fff; border:1px solid var(--border); border-left:4px solid var(--sky); border-radius:12px; padding:1.8rem;">
+          <img src="images/lp/index-philosophy-3-form.png" alt="" style="display:block; width:100%; max-width:200px; height:auto; float:right; margin-left:1rem; margin-bottom:0.5rem;">
           <h3 style="font-family:'Noto Serif JP',serif; font-size:18px; color:var(--sky-dark); margin-bottom:1rem;">より効率的な"勉強のフォーム"を学ぶ</h3>
           <p style="font-size:14px; color:#444; line-height:1.9;">「やる気はあるけど、何をどうしたら良いのか分からない」「勉強時間はたくさんとっているのに、結果が思うように出ない」という人にも、スタイルが最適。押さえるべきポイントと家庭学習でのコツを丁寧に指導します。言わば勉強のフォームを教えます。</p>
           <p style="font-size:14px; color:#444; line-height:1.9; margin-top:1rem;">身近な例を用いますと、あらゆるスポーツや武道において、そのフォームや型はとても大切です。サッカーであればキックフォーム、柔道であれば技の型と言った具合です。どちらの場合も、ちょっとした置き足の位置であったり、フォロースルーの動作を意識するだけで、力の伝わりが効率的になり、無駄なモーションが改善されます。スタイルではこのように、塾生へ勉強のフォームを指導するトレーナーの役割も兼ねています。正しい方法を学んだ生徒は自発的に勉強へ取り組むようになり、成績も加速度的に上昇します。</p>
         </div>
 
         <div style="background:linear-gradient(135deg, var(--sky-light) 0%, #c5ddf8 100%); border:1px solid var(--border); border-radius:12px; padding:1.8rem;">
+          <img src="images/lp/index-philosophy-4-lifestyle.png" alt="" style="display:block; width:100%; max-width:180px; height:auto; float:right; margin-left:1rem; margin-bottom:0.5rem;">
           <h3 style="font-family:'Noto Serif JP',serif; font-size:18px; color:var(--sky-dark); margin-bottom:1rem;">ライフスタイルの選択として塾を選ぶ</h3>
           <p style="font-size:14px; color:#444; line-height:1.9;">学生時代にしなくてはならないことはとにかく膨大です。また学生時代はその人生の方向性に大きく関わる大切な期間です。そして「どこの塾へ行くか？」ということも、豊かな学生時代を送るための柱となってきています。その経験が豊かであれば、その後の人生を豊かにすることは言うまでもありません。</p>
           <p style="font-size:14px; color:#444; line-height:1.9; margin-top:1rem;">スタイルは勉強をライフスタイルの1つとして提案する学習塾です。人生の多様性が求められ、時代の過渡期にある今、勉強とは人生により多くの選択肢を与えてくれる素敵なものです。今後もその傾向が増していく状況にあるでしょう。</p>
@@ -1112,7 +1130,8 @@
       <div style="display:flex; flex-direction:column; gap:1.5rem;">
 
         <!-- 電話 -->
-        <div style="background:#fff; border:1px solid var(--border); border-radius:14px; padding:1.8rem;">
+        <div style="background:#fff; border:1px solid var(--border); border-radius:14px; padding:1.8rem; position:relative; overflow:hidden;">
+          <img src="images/lp/index-character-teacher-phone.png" alt="" style="position:absolute; top:1rem; right:1rem; width:120px; height:auto; pointer-events:none;">
           <p style="font-size:13px; font-weight:700; color:var(--sky); letter-spacing:0.08em; margin-bottom:0.8rem;">📞 お電話でのお問合せ</p>
           <a href="tel:084-975-4851" style="font-family:'Noto Serif JP',serif; font-size:32px; font-weight:700; color:var(--sky-dark); text-decoration:none; display:block; margin-bottom:1.2rem; letter-spacing:0.05em;">084-975-4851</a>
           <p style="font-size:13px; font-weight:700; color:var(--sky-dark); margin-bottom:0.8rem;">電話受付時間</p>
@@ -1185,6 +1204,7 @@
         <div class="flow-step">
           <div class="flow-num">1</div>
           <div class="flow-body">
+            <img src="images/lp/index-icon-phone-call.png" alt="" style="float:right; width:80px; height:auto; margin-left:1rem; margin-bottom:0.5rem;">
             <p class="flow-time">まずはここから</p>
             <h3>お問い合わせ</h3>
             <p>まずはお電話から、お問い合わせください。その後、必要事項を確認し体験版授業の予約をしていただきます。日時はご相談の上、決定いたします。<br><br>体験版授業の受講料は<strong>1,000円（税込）</strong>となります。<br><br>📞 084-975-4851<br><br>※仮に入塾となった場合に、希望される曜日と時間のコマも確認させていただく場合がございます。</p>
@@ -1193,6 +1213,7 @@
         <div class="flow-step">
           <div class="flow-num">2</div>
           <div class="flow-body">
+            <img src="images/lp/index-icon-parent-child-visit.png" alt="" style="float:right; width:90px; height:auto; margin-left:1rem; margin-bottom:0.5rem;">
             <p class="flow-time">予約日に塾へお越しください</p>
             <h3>体験版授業を実施</h3>
             <p>ご予約をいただいた日に、塾へお越しください。授業を受けていただく前に、面談とヒアリングを行い、30分の体験版授業の実施となります。<br><br>必ずお子さまに保護者がお付き添いのうえお越しください。<br>お子さまは筆記用具のみご持参ください。</p>
@@ -1201,6 +1222,7 @@
         <div class="flow-step">
           <div class="flow-num">3</div>
           <div class="flow-body">
+            <img src="images/lp/index-icon-document-signing.png" alt="" style="float:right; width:80px; height:auto; margin-left:1rem; margin-bottom:0.5rem;">
             <p class="flow-time">体験版授業受講後</p>
             <h3>入塾手続き</h3>
             <p>体験版授業を受講していただき、問題がないようであれば、入塾手続きとなります。手続きの際に必要な初回費用は以下のとおりです。</p>
@@ -1216,6 +1238,7 @@
         <div class="flow-step">
           <div class="flow-num">4</div>
           <div class="flow-body">
+            <img src="images/lp/flow-study.png" alt="" style="float:right; width:90px; height:auto; margin-left:1rem; margin-bottom:0.5rem;">
             <p class="flow-time">入塾後</p>
             <h3>入塾後に必要となる料金について</h3>
             <p>入塾後にかかる料金は月の授業料のみです。授業料は月謝制となっております。（進級時には新しいテキストをご購入いただく必要があります）<br><br>必要な金額は以上です。ここに記載した以外の費用は一切かかりません。<br><br>なお、夏休み・冬休みなど長期休みの期間は別に講座を設けることもあります。これらの季節講座の受講は強制ではありません。必要がなければ通常通りの授業を行います。</p>
