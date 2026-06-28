@@ -1364,5 +1364,131 @@
   }
 
 </script>
+
+<!-- お知らせポップアップ（GAS連携版）ここから -->
+<script>
+(function() {
+  // ★★★ GASのURL ★★★
+  var POPUP_GAS_URL = 'https://script.google.com/macros/s/AKfycbwxBk9d7h9_Cx1pyFDQm817whH0dq07HE6XMDnXb4LxIP83CDjyH_mAV6uTpCtNt1s5/exec';
+
+  // 表示済みフラグ用キー
+  var STORAGE_PREFIX = 'noticePopupShown_';
+
+  function shouldShow(config) {
+    var freq = config.freq || 'always';
+    if (freq === 'always') return true;
+    // 「最終更新時刻」をキーに含める → 内容が更新されたら自動でリセット
+    var key = STORAGE_PREFIX + (config.updatedAt || 'v1');
+    try {
+      var stored = localStorage.getItem(key);
+      if (!stored) return true;
+      if (freq === 'once') return false;
+      if (freq === 'daily') return stored !== new Date().toDateString();
+    } catch (e) { return true; }
+    return true;
+  }
+
+  function markShown(config) {
+    var freq = config.freq || 'always';
+    var key = STORAGE_PREFIX + (config.updatedAt || 'v1');
+    try {
+      if (freq === 'daily') localStorage.setItem(key, new Date().toDateString());
+      else if (freq === 'once') localStorage.setItem(key, '1');
+    } catch (e) {}
+  }
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function injectStyles(config) {
+    var c = config.colors || {};
+    var bg = c.bg || '#ffffff';
+    var border = c.border || '#1a1a2e';
+    var titleColor = c.titleColor || '#1DA8CC';
+    var textColor = c.textColor || '#1a1a2e';
+    var btnBg = c.btnBg || '#ffd83d';
+    var btnColor = c.btnColor || '#1a1a2e';
+
+    var css = ''
+      + '.notice-popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;animation:noticeFadeIn .3s ease}'
+      + '.notice-popup{background:' + bg + ';color:' + textColor + ';border:3px solid ' + border + ';border-radius:20px;padding:2rem 1.8rem;max-width:420px;width:100%;box-shadow:8px 8px 0 ' + border + ';position:relative;text-align:center;animation:noticePopIn .4s cubic-bezier(.2,.9,.3,1.2);font-family:"Noto Sans JP",sans-serif}'
+      + '.notice-popup-title{font-size:22px;font-weight:700;color:' + titleColor + ';margin-bottom:1rem;line-height:1.5}'
+      + '.notice-popup-body{font-size:15px;line-height:1.85;color:' + textColor + ';margin-bottom:1.5rem;white-space:pre-line}'
+      + '.notice-popup-btn{background:' + btnBg + ';color:' + btnColor + ';border:2.5px solid ' + border + ';border-radius:50px;padding:10px 32px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:2px 2px 0 ' + border + ';font-family:inherit;transition:all .15s}'
+      + '.notice-popup-btn:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 ' + border + '}'
+      + '.notice-popup-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:' + textColor + ';line-height:1;width:30px;height:30px;border-radius:50%;padding:0}'
+      + '.notice-popup-close:hover{background:rgba(0,0,0,.06)}'
+      + '@keyframes noticeFadeIn{from{opacity:0}to{opacity:1}}'
+      + '@keyframes noticePopIn{from{opacity:0;transform:scale(.85) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}';
+
+    var style = document.createElement('style');
+    style.setAttribute('data-notice-popup', '1');
+    style.textContent = css;
+    document.head.appendChild(style);
+  }
+
+  function showPopup(config) {
+    injectStyles(config);
+
+    var overlay = document.createElement('div');
+    overlay.className = 'notice-popup-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.innerHTML = ''
+      + '<div class="notice-popup">'
+      + '<button class="notice-popup-close" aria-label="閉じる">×</button>'
+      + '<div class="notice-popup-title">' + escapeHtml(config.title) + '</div>'
+      + '<div class="notice-popup-body">' + escapeHtml(config.body) + '</div>'
+      + '<button class="notice-popup-btn">' + escapeHtml(config.btnText || '閉じる') + '</button>'
+      + '</div>';
+
+    function close() {
+      overlay.style.opacity = '0';
+      overlay.style.transition = 'opacity .2s';
+      setTimeout(function() { overlay.remove(); }, 200);
+    }
+    overlay.querySelector('.notice-popup-close').addEventListener('click', close);
+    overlay.querySelector('.notice-popup-btn').addEventListener('click', close);
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+    var onKey = function(e) {
+      if (e.key === 'Escape') { close(); document.removeEventListener('keydown', onKey); }
+    };
+    document.addEventListener('keydown', onKey);
+
+    document.body.appendChild(overlay);
+    markShown(config);
+  }
+
+  function init() {
+    if (!POPUP_GAS_URL) return;
+
+    fetch(POPUP_GAS_URL + '?action=getPopup')
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .then(function(config) {
+        if (!config || !config.enabled) return;
+        if (!shouldShow(config)) return;
+
+        var delay = (parseFloat(config.delay) || 0) * 1000;
+        setTimeout(function() { showPopup(config); }, delay);
+      })
+      .catch(function(e) {
+        // 静かに失敗（ホームページ本体に影響を与えない）
+        if (window.console) console.warn('Popup fetch failed:', e);
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+<!-- お知らせポップアップ（GAS連携版）ここまで -->
+
 </body>
 </html>
