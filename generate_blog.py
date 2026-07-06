@@ -8,8 +8,20 @@ client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
 EMOJIS = ["✏️", "💬", "📚", "🌟", "🎯", "🎮", "🌈", "🎵"]
 
-def generate_blog_post():
+def generate_blog_post(past_posts=None):
     today = datetime.now().strftime("%Y年%m月%d日")
+    
+    # 過去記事のタイトル一覧をプロンプト用に整形
+    past_titles_block = ""
+    if past_posts and len(past_posts) > 0:
+        past_titles_block = "\n【過去に公開済みの記事タイトル一覧（重要）】\n"
+        past_titles_block += "以下は当ブログで既に公開している記事です。テーマや切り口が重複しないよう、必ず違う内容の記事を書いてください。\n"
+        past_titles_block += "同じ大テーマ（例：テスト効果、分散学習など）を扱う場合でも、具体例・実践方法・切り口を大きく変えてください。\n"
+        for post in past_posts[:20]:  # 直近20件まで
+            title = post.get('title', '')
+            if title:
+                past_titles_block += "・" + title + "\n"
+        past_titles_block += "\n上記と重複しないテーマを選んでください。\n"
     
     prompt = """あなたは学習塾のプロ講師兼、教育・認知科学に詳しいライターです。
 以下の条件でブログ記事を1つ作成してください。
@@ -25,10 +37,51 @@ def generate_blog_post():
 ・勉強法を改善したい生徒本人
 
 【テーマの選び方】
-・学習科学・認知心理学・教育心理学の知見からテーマを選ぶ
-・例：分散学習(spacing effect)、テスト効果(retrieval practice)、インターリービング、
-  ワーキングメモリ、メタ認知、成長マインドセット、習慣形成、睡眠と記憶の関係 など
-・「なんとなく良いと言われている勉強法」を科学的に裏付ける／覆す内容も歓迎
+以下のような幅広い分野からテーマを選んでください。毎回異なる分野・切り口を意識すること。
+
+■記憶と学習の科学
+・分散学習（Spacing Effect）
+・テスト効果（Testing Effect / Retrieval Practice）
+・インターリービング（交互学習）
+・精緻化（Elaboration）
+・二重符号化（Dual Coding：文字と図の併用）
+・生成効果（Generation Effect）
+・忘却曲線（Ebbinghaus）
+
+■モチベーションと意欲
+・成長マインドセット（Growth Mindset）
+・内発的動機付け vs 外発的動機付け
+・自己決定理論（SDT）
+・目標設定理論
+・フロー状態
+・自己効力感（Self-efficacy）
+
+■認知能力・脳のはたらき
+・ワーキングメモリの働きと鍛え方
+・メタ認知（自分の理解度を客観視する力）
+・注意と集中のメカニズム
+・実行機能（Executive Function）
+・脳の可塑性
+
+■生活習慣と学習
+・睡眠と記憶の関係
+・運動と学習効果
+・栄養・食事と認知能力
+・スクリーンタイム（スマホ）の影響
+・朝型 vs 夜型と学習効率
+
+■学習環境と心理
+・学習環境（音、照明、温度、片付け）
+・テスト不安・プレッシャーへの対処
+・ピア効果（一緒に学ぶ仲間の影響）
+・ピグマリオン効果（期待の影響）
+・ステレオタイプ脅威
+
+■時間管理・習慣化
+・ポモドーロ・テクニックの科学
+・習慣形成のメカニズム
+・スケジューリングと計画立て
+・先延ばし行動（Procrastination）の心理学
 
 【記事構成】
 ① 導入：保護者や生徒が抱きがちな疑問や思い込みを提示（150〜200文字）
@@ -74,7 +127,7 @@ def generate_blog_post():
 ・「**」（アスタリスク2つ）による強調記号を使わない。強調したい場合は<strong>タグを使う
 
 【文字数】2000文字程度
-
+""" + past_titles_block + """
 今日の日付：""" + today + """
 
 以下のJSON形式のみで返答してください（前後の説明文・```は不要）：
@@ -239,8 +292,8 @@ def create_post_page(post):
 def main():
     print("ブログ記事を生成中...")
     
-    post_data = generate_blog_post()
     posts = load_blog_posts()
+    post_data = generate_blog_post(past_posts=posts)
     
     new_post = {
         "id": datetime.now().strftime("%Y%m%d%H%M%S"),
