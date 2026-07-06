@@ -125,6 +125,9 @@ def generate_blog_post(past_posts=None):
 ・お堅い教科書のような無機質な文章
 ・AIが書いたとわかるような硬い表現
 ・「**」（アスタリスク2つ）による強調記号を使わない。強調したい場合は<strong>タグを使う
+・content内のHTMLタグには属性（class="..." など）を付けない。素のタグ（<h2>、<p>、<ul>、<li>、<strong>など）のみを使用する
+・content内で引用や強調に使う記号は、ダブルクォート（"）ではなく、日本語のカギ括弧「」を使う
+・JSON形式を壊さないよう、content内でダブルクォート（"）を使用しない
 
 【文字数】2000文字程度
 """ + past_titles_block + """
@@ -140,7 +143,7 @@ def generate_blog_post(past_posts=None):
 
     message = client.messages.create(
         model="claude-sonnet-4-6",
-        max_tokens=4096,
+        max_tokens=8192,
         messages=[
             {
                 "role": "user",
