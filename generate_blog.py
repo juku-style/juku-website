@@ -160,7 +160,7 @@ def generate_blog_post(past_posts=None):
     text = text.strip()
 
     try:
-        return json.loads(text)
+        return json.loads(text, strict=False)
     except json.JSONDecodeError as e:
         print("JSONパースエラー: " + str(e))
         print("受け取ったテキスト（先頭300文字）: " + text[:300])
