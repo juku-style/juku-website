@@ -595,6 +595,244 @@
     .tweet-time { font-size: 12px; color: var(--gray); font-weight: 600; }
     .tweet-loading, .tweet-empty { text-align: center; color: var(--gray); font-size: 14px; padding: 3rem 0; font-weight: 600; }
 
+    /* ===== 授業の様子（インスタ風） ===== */
+    .insta-profile {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 20px;
+      padding: 1.6rem 1.4rem;
+      box-shadow: 6px 6px 0 var(--black);
+      display: flex;
+      gap: 1.4rem;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    .insta-profile-avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: conic-gradient(from 45deg, var(--yellow), var(--pink), var(--sky), var(--orange), var(--yellow));
+      padding: 4px;
+      flex-shrink: 0;
+      border: 3px solid var(--black);
+    }
+    .insta-profile-avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid #fff;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+    }
+    .insta-profile-avatar-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .insta-profile-info { flex: 1; min-width: 0; }
+    .insta-profile-name-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 0.9rem;
+    }
+    .insta-username {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--black);
+    }
+    .insta-verified {
+      display: inline-flex;
+      width: 18px;
+      height: 18px;
+      background: var(--sky);
+      color: #fff;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 900;
+      border: 2px solid var(--black);
+    }
+    .insta-follow-btn {
+      background: var(--sky);
+      color: #fff;
+      border: 2.5px solid var(--black);
+      border-radius: 50px;
+      padding: 6px 18px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 2px 2px 0 var(--black);
+      transition: all 0.15s;
+      margin-left: auto;
+      font-family: inherit;
+    }
+    .insta-follow-btn:hover { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--black); }
+
+    .insta-stats {
+      display: flex;
+      gap: 1.6rem;
+      margin-bottom: 0.9rem;
+      flex-wrap: wrap;
+    }
+    .insta-stat { font-size: 12px; color: var(--text); }
+    .insta-stat strong {
+      display: block;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--sky-dark);
+      line-height: 1.2;
+    }
+    .insta-stat span { font-size: 11px; color: var(--gray); font-weight: 600; }
+
+    .insta-fullname {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--sky-dark);
+      margin-bottom: 0.3rem;
+    }
+    .insta-bio-text {
+      font-size: 12px;
+      color: var(--text);
+      line-height: 1.75;
+      font-weight: 500;
+    }
+
+    /* ハイライト（ストーリーズ風） */
+    /* 削除済み */
+
+    /* インスタ内タブ・グリッド */
+    /* 削除済み */
+
+    /* いいねボタン */
+    .insta-like-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-size: 26px;
+      line-height: 1;
+      color: var(--black);
+      transition: transform 0.15s;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .insta-like-btn:hover { transform: scale(1.18); }
+    .insta-like-btn:active { transform: scale(0.9); }
+    .insta-like-btn .heart-empty { display: inline; }
+    .insta-like-btn .heart-filled { display: none; color: #e91e63; }
+    .insta-like-btn.liked .heart-empty { display: none; }
+    .insta-like-btn.liked .heart-filled { display: inline; animation: heartPop 0.4s ease; }
+    @keyframes heartPop {
+      0% { transform: scale(1); }
+      35% { transform: scale(1.4); }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); }
+    }
+
+    /* 個別投稿カード */
+    .insta-post {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 4px 4px 0 var(--black);
+      margin-bottom: 1.5rem;
+    }
+    .insta-post-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.8rem 1rem;
+      border-bottom: 2px solid var(--black);
+      background: #fff;
+    }
+    .insta-post-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: conic-gradient(from 45deg, var(--yellow), var(--pink), var(--sky), var(--orange), var(--yellow));
+      padding: 2px;
+      flex-shrink: 0;
+      border: 2px solid var(--black);
+    }
+    .insta-post-avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #fff;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    .insta-post-avatar-inner img { width: 100%; height: 100%; object-fit: cover; }
+    .insta-post-username {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.2;
+    }
+    .insta-post-location { font-size: 11px; color: var(--gray); font-weight: 600; }
+    .insta-post-menu { margin-left: auto; font-size: 20px; color: var(--black); cursor: pointer; }
+
+    .insta-post-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 2px solid var(--black);
+      overflow: hidden;
+      position: relative;
+    }
+    .insta-post-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .insta-emoji { filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.15)); line-height: 1; }
+    .insta-post-photo .insta-emoji { font-size: 90px; }
+
+    .insta-post-actions {
+      display: flex;
+      align-items: center;
+      padding: 0.6rem 1rem;
+      border-bottom: 2px solid var(--black);
+    }
+    .insta-post-icons {
+      display: flex;
+      gap: 14px;
+      font-size: 22px;
+    }
+    .insta-post-icons span { cursor: pointer; transition: transform 0.15s; line-height: 1; }
+    .insta-post-icons span:hover { transform: scale(1.18); }
+    .insta-post-save { margin-left: auto; font-size: 22px; cursor: pointer; }
+    .insta-post-likes {
+      padding: 0.5rem 1rem 0.3rem;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--black);
+    }
+    .insta-post-likes strong { color: var(--sky-dark); }
+    .insta-post-caption {
+      padding: 0.3rem 1rem 0.6rem;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.7;
+      font-weight: 500;
+    }
+    .insta-post-caption strong { color: var(--black); margin-right: 6px; font-weight: 700; }
+    .insta-hashtag { color: var(--sky-dark); font-weight: 700; }
+
     /* ===== レスポンシブ ===== */
     @media (max-width: 600px) {
       .hero h1 { font-size: 22px; }
@@ -608,6 +846,13 @@
       .tab-content#tab-contact img[style*="position:absolute"] { width: 80px !important; }
       /* モバイルで入塾の流れのアイコンを小さめに */
       .tab-content#tab-flow img[style*="float:right"] { width: 60px !important; }
+      /* モバイルでインスタ風プロフィールを縦積みに */
+      .insta-profile { flex-direction: column; align-items: center; text-align: center; gap: 1rem; }
+      .insta-profile-avatar { width: 88px; height: 88px; }
+      .insta-profile-name-row { justify-content: center; }
+      .insta-follow-btn { margin: 0.3rem 0 0; }
+      .insta-stats { justify-content: center; gap: 1.2rem; }
+      .insta-post-photo .insta-emoji { font-size: 64px; }
     }
     /* 考え方タブのカードでfloat画像が枠からはみ出さないように */
     #tab-philosophy > .section > .inner > div > div { overflow: hidden; }
@@ -630,7 +875,7 @@
   <button class="tab-btn" onclick="showTab('philosophy')">スタイルの考え方</button>
   <button class="tab-btn" onclick="showTab('tweets')">塾長のつぶやき</button>
   <button class="tab-btn" onclick="showTab('blog')">ブログ</button>
-  <button class="tab-btn" onclick="showTab('notice')">お知らせ</button>
+  <button class="tab-btn" onclick="showTab('lessons')">授業の様子</button>
   <button class="tab-btn" onclick="showTab('contact')">お問合せ</button>
   <button class="tab-btn" onclick="showTab('flow')">入塾の流れ</button>
 </nav>
@@ -1199,11 +1444,305 @@
   </div>
 </div>
 
-<div class="tab-content" id="tab-notice">
+<div class="tab-content" id="tab-lessons">
   <div class="section">
     <div class="inner">
-      <p class="section-title">お知らせ</p>
-      <p class="section-sub">塾からの最新情報をお届けします。</p>
+      <p class="section-title">授業の様子</p>
+      <p class="section-sub">スタイルの日常をお届け。塾生たちの頑張る姿をご覧ください📸</p>
+
+      <!-- ▼ インスタ風プロフィールヘッダー ▼ -->
+      <div class="insta-profile">
+        <div class="insta-profile-avatar">
+          <div class="insta-profile-avatar-inner">
+            <!-- 塾長の似顔絵。差し替える場合は下のimgタグに画像パスを入れてください -->
+            <img src="images/lp/index-character-teacher-phone.png" alt="学習塾スタイル 塾長" onerror="this.style.display='none';this.parentNode.innerHTML='👨‍🏫';">
+          </div>
+        </div>
+        <div class="insta-profile-info">
+          <div class="insta-profile-name-row">
+            <span class="insta-username">juku_style</span>
+            <span class="insta-verified" title="認証済み">✓</span>
+            <button class="insta-follow-btn" onclick="showTab('contact')">お問合せ</button>
+          </div>
+          <div class="insta-stats">
+            <div class="insta-stat"><strong>128</strong><span>投稿</span></div>
+            <div class="insta-stat"><strong>1対1〜3</strong><span>個別指導</span></div>
+            <div class="insta-stat"><strong>15年+</strong><span>指導実績</span></div>
+          </div>
+          <div class="insta-fullname">学習塾スタイル｜JUKU STYLE</div>
+          <div class="insta-bio-text">
+            📚 福山市多治米町の個別指導塾<br>
+            🎓 小学生・中学生・高校生対応<br>
+            📍 多治米町5丁目14-9<br>
+            ✏️ 日々の授業風景をお届けします
+          </div>
+        </div>
+      </div>
+
+      <!-- ▼ 投稿（フル投稿カード）▼
+           投稿を追加する場合は、下記の <div class="insta-post"> ～ </div> のブロックを丸ごとコピーして、
+           img の src とファイル名、<span class="like-count"> の数字を書き換えてください。 -->
+
+      <div class="insta-post">
+        <div class="insta-post-header">
+          <div class="insta-post-avatar">
+            <div class="insta-post-avatar-inner">👨‍🏫</div>
+          </div>
+          <div>
+            <div class="insta-post-username">juku_style</div>
+            <div class="insta-post-location">📍 学習塾スタイル</div>
+          </div>
+          <span class="insta-post-menu">⋯</span>
+        </div>
+        <div class="insta-post-photo">
+          <img src="images/lp/IMG_3870.JPG" alt="授業中の様子">
+        </div>
+        <div class="insta-post-actions">
+          <div class="insta-post-icons">
+            <button class="insta-like-btn" onclick="toggleLike(this)" aria-label="いいね"><span class="heart-empty">♡</span><span class="heart-filled">♥</span></button>
+            <span title="コメント">💬</span>
+            <span title="シェア">📤</span>
+          </div>
+          <span class="insta-post-save" title="保存">🔖</span>
+        </div>
+        <div class="insta-post-likes">いいね！<strong><span class="like-count">87</span>件</strong></div>
+        <div class="insta-post-caption">
+          <strong>juku_style</strong>授業中の様子<br>
+          <span class="insta-hashtag">#個別指導#福山市#学習塾スタイル</span>
+        </div>
+      </div>
+
+      <div class="insta-post">
+        <div class="insta-post-header">
+          <div class="insta-post-avatar">
+            <div class="insta-post-avatar-inner">👨‍🏫</div>
+          </div>
+          <div>
+            <div class="insta-post-username">juku_style</div>
+            <div class="insta-post-location">📍 学習塾スタイル</div>
+          </div>
+          <span class="insta-post-menu">⋯</span>
+        </div>
+        <div class="insta-post-photo">
+          <img src="images/lp/IMG_4215.JPG" alt="授業中の様子">
+        </div>
+        <div class="insta-post-actions">
+          <div class="insta-post-icons">
+            <button class="insta-like-btn" onclick="toggleLike(this)" aria-label="いいね"><span class="heart-empty">♡</span><span class="heart-filled">♥</span></button>
+            <span title="コメント">💬</span>
+            <span title="シェア">📤</span>
+          </div>
+          <span class="insta-post-save" title="保存">🔖</span>
+        </div>
+        <div class="insta-post-likes">いいね！<strong><span class="like-count">156</span>件</strong></div>
+        <div class="insta-post-caption">
+          <strong>juku_style</strong>授業中の様子<br>
+          <span class="insta-hashtag">#個別指導#福山市#学習塾スタイル</span>
+        </div>
+      </div>
+
+      <div class="insta-post">
+        <div class="insta-post-header">
+          <div class="insta-post-avatar">
+            <div class="insta-post-avatar-inner">👨‍🏫</div>
+          </div>
+          <div>
+            <div class="insta-post-username">juku_style</div>
+            <div class="insta-post-location">📍 学習塾スタイル</div>
+          </div>
+          <span class="insta-post-menu">⋯</span>
+        </div>
+        <div class="insta-post-photo">
+          <img src="images/lp/IMG_4216.JPG" alt="授業中の様子">
+        </div>
+        <div class="insta-post-actions">
+          <div class="insta-post-icons">
+            <button class="insta-like-btn" onclick="toggleLike(this)" aria-label="いいね"><span class="heart-empty">♡</span><span class="heart-filled">♥</span></button>
+            <span title="コメント">💬</span>
+            <span title="シェア">📤</span>
+          </div>
+          <span class="insta-post-save" title="保存">🔖</span>
+        </div>
+        <div class="insta-post-likes">いいね！<strong><span class="like-count">124</span>件</strong></div>
+        <div class="insta-post-caption">
+          <strong>juku_style</strong>授業中の様子<br>
+          <span class="insta-hashtag">#個別指導#福山市#学習塾スタイル</span>
+        </div>
+      </div>
+
+      <div class="insta-post">
+        <div class="insta-post-header">
+          <div class="insta-post-avatar">
+            <div class="insta-post-avatar-inner">👨‍🏫</div>
+          </div>
+          <div>
+            <div class="insta-post-username">juku_style</div>
+            <div class="insta-post-location">📍 学習塾スタイル</div>
+          </div>
+          <span class="insta-post-menu">⋯</span>
+        </div>
+        <div class="insta-post-photo">
+          <img src="images/lp/IMG_4291.JPG" alt="授業中の様子">
+        </div>
+        <div class="insta-post-actions">
+          <div class="insta-post-icons">
+            <button class="insta-like-btn" onclick="toggleLike(this)" aria-label="いいね"><span class="heart-empty">♡</span><span class="heart-filled">♥</span></button>
+            <span title="コメント">💬</span>
+            <span title="シェア">📤</span>
+          </div>
+          <span class="insta-post-save" title="保存">🔖</span>
+        </div>
+        <div class="insta-post-likes">いいね！<strong><span class="like-count">178</span>件</strong></div>
+        <div class="insta-post-caption">
+          <strong>juku_style</strong>授業中の様子<br>
+          <span class="insta-hashtag">#個別指導#福山市#学習塾スタイル</span>
+        </div>
+      </div>
+
+      <div class="insta-post">
+        <div class="insta-post-header">
+          <div class="insta-post-avatar">
+            <div class="insta-post-avatar-inner">👨‍🏫</div>
+          </div>
+          <div>
+            <div class="insta-post-username">juku_style</div>
+            <div class="insta-post-location">📍 学習塾スタイル</div>
+          </div>
+          <span class="insta-post-menu">⋯</span>
+        </div>
+        <div class="insta-post-photo">
+          <img src="images/lp/IMG_4378.JPG" alt="授業中の様子">
+        </div>
+        <div class="insta-post-actions">
+          <div class="insta-post-icons">
+            <button class="insta-like-btn" onclick="toggleLike(this)" aria-label="いいね"><span class="heart-empty">♡</span><span class="heart-filled">♥</span></button>
+            <span title="コメント">💬</span>
+            <span title="シェア">📤</span>
+          </div>
+          <span class="insta-post-save" title="保存">🔖</span>
+        </div>
+        <div class="insta-post-likes">いいね！<strong><span class="like-count">92</span>件</strong></div>
+        <div class="insta-post-caption">
+          <strong>juku_style</strong>授業中の様子<br>
+          <span class="insta-hashtag">#個別指導#福山市#学習塾スタイル</span>
+        </div>
+      </div>
+
+      <div class="insta-post">
+        <div class="insta-post-header">
+          <div class="insta-post-avatar">
+            <div class="insta-post-avatar-inner">👨‍🏫</div>
+          </div>
+          <div>
+            <div class="insta-post-username">juku_style</div>
+            <div class="insta-post-location">📍 学習塾スタイル</div>
+          </div>
+          <span class="insta-post-menu">⋯</span>
+        </div>
+        <div class="insta-post-photo">
+          <img src="images/lp/IMG_49281.JPG" alt="授業中の様子">
+        </div>
+        <div class="insta-post-actions">
+          <div class="insta-post-icons">
+            <button class="insta-like-btn" onclick="toggleLike(this)" aria-label="いいね"><span class="heart-empty">♡</span><span class="heart-filled">♥</span></button>
+            <span title="コメント">💬</span>
+            <span title="シェア">📤</span>
+          </div>
+          <span class="insta-post-save" title="保存">🔖</span>
+        </div>
+        <div class="insta-post-likes">いいね！<strong><span class="like-count">143</span>件</strong></div>
+        <div class="insta-post-caption">
+          <strong>juku_style</strong>授業中の様子<br>
+          <span class="insta-hashtag">#個別指導#福山市#学習塾スタイル</span>
+        </div>
+      </div>
+
+      <div class="insta-post">
+        <div class="insta-post-header">
+          <div class="insta-post-avatar">
+            <div class="insta-post-avatar-inner">👨‍🏫</div>
+          </div>
+          <div>
+            <div class="insta-post-username">juku_style</div>
+            <div class="insta-post-location">📍 学習塾スタイル</div>
+          </div>
+          <span class="insta-post-menu">⋯</span>
+        </div>
+        <div class="insta-post-photo">
+          <img src="images/lp/IMG_51351.JPG" alt="授業中の様子">
+        </div>
+        <div class="insta-post-actions">
+          <div class="insta-post-icons">
+            <button class="insta-like-btn" onclick="toggleLike(this)" aria-label="いいね"><span class="heart-empty">♡</span><span class="heart-filled">♥</span></button>
+            <span title="コメント">💬</span>
+            <span title="シェア">📤</span>
+          </div>
+          <span class="insta-post-save" title="保存">🔖</span>
+        </div>
+        <div class="insta-post-likes">いいね！<strong><span class="like-count">165</span>件</strong></div>
+        <div class="insta-post-caption">
+          <strong>juku_style</strong>授業中の様子<br>
+          <span class="insta-hashtag">#個別指導#福山市#学習塾スタイル</span>
+        </div>
+      </div>
+
+      <div class="insta-post">
+        <div class="insta-post-header">
+          <div class="insta-post-avatar">
+            <div class="insta-post-avatar-inner">👨‍🏫</div>
+          </div>
+          <div>
+            <div class="insta-post-username">juku_style</div>
+            <div class="insta-post-location">📍 学習塾スタイル</div>
+          </div>
+          <span class="insta-post-menu">⋯</span>
+        </div>
+        <div class="insta-post-photo">
+          <img src="images/lp/IMG_55121.JPG" alt="授業中の様子">
+        </div>
+        <div class="insta-post-actions">
+          <div class="insta-post-icons">
+            <button class="insta-like-btn" onclick="toggleLike(this)" aria-label="いいね"><span class="heart-empty">♡</span><span class="heart-filled">♥</span></button>
+            <span title="コメント">💬</span>
+            <span title="シェア">📤</span>
+          </div>
+          <span class="insta-post-save" title="保存">🔖</span>
+        </div>
+        <div class="insta-post-likes">いいね！<strong><span class="like-count">109</span>件</strong></div>
+        <div class="insta-post-caption">
+          <strong>juku_style</strong>授業中の様子<br>
+          <span class="insta-hashtag">#個別指導#福山市#学習塾スタイル</span>
+        </div>
+      </div>
+
+      <div class="insta-post">
+        <div class="insta-post-header">
+          <div class="insta-post-avatar">
+            <div class="insta-post-avatar-inner">👨‍🏫</div>
+          </div>
+          <div>
+            <div class="insta-post-username">juku_style</div>
+            <div class="insta-post-location">📍 学習塾スタイル</div>
+          </div>
+          <span class="insta-post-menu">⋯</span>
+        </div>
+        <div class="insta-post-photo">
+          <img src="images/lp/IMG_5805.JPG" alt="授業中の様子">
+        </div>
+        <div class="insta-post-actions">
+          <div class="insta-post-icons">
+            <button class="insta-like-btn" onclick="toggleLike(this)" aria-label="いいね"><span class="heart-empty">♡</span><span class="heart-filled">♥</span></button>
+            <span title="コメント">💬</span>
+            <span title="シェア">📤</span>
+          </div>
+          <span class="insta-post-save" title="保存">🔖</span>
+        </div>
+        <div class="insta-post-likes">いいね！<strong><span class="like-count">187</span>件</strong></div>
+        <div class="insta-post-caption">
+          <strong>juku_style</strong>授業中の様子<br>
+          <span class="insta-hashtag">#個別指導#福山市#学習塾スタイル</span>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -1360,7 +1899,7 @@
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
     document.getElementById('tab-' + name).classList.add('active');
-    const tabs = ['home','courses','philosophy','tweets','blog','notice','contact','flow'];
+    const tabs = ['home','courses','philosophy','tweets','blog','lessons','contact','flow'];
     const idx = tabs.indexOf(name);
     if (idx >= 0) document.querySelectorAll('.tab-btn')[idx].classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1415,6 +1954,23 @@
       renderTweets(allTweets);
     } else {
       renderTweets(allTweets.filter(t => t.category === category));
+    }
+  }
+
+  // ===== 授業の様子：いいねボタン =====
+  function toggleLike(btn) {
+    const post = btn.closest('.insta-post');
+    if (!post) return;
+    const countEl = post.querySelector('.like-count');
+    if (!countEl) return;
+    const current = parseInt(countEl.textContent, 10) || 0;
+    const isLiked = btn.classList.contains('liked');
+    if (isLiked) {
+      countEl.textContent = current - 1;
+      btn.classList.remove('liked');
+    } else {
+      countEl.textContent = current + 1;
+      btn.classList.add('liked');
     }
   }
 
