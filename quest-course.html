@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>個別指導クエスト｜知の探索に出かけよう｜学習塾スタイル（福山市）</title>
+  <meta name="description" content="学習塾スタイルの「個別指導クエスト」。演習中心の個別指導で、『自分で解けた！』を積み重ねながら、実際に『使える力』を育てます。">
+  <meta name="keywords" content="個別指導クエスト,個別指導,福山市,学習塾,多治米町">
+  <meta property="og:title" content="個別指導クエスト｜学習塾スタイル">
+  <meta property="og:description" content="演習中心の個別指導。クエストを一つずつ攻略するように、「自分で解ける力」を育てます。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sky: #4DC8E8;
+      --sky-dark: #1DA8CC;
+      --sky-light: #E0F7FC;
+      --sky-pale: #F0FBFD;
+      --yellow: #ffd83d;
+      --orange: #ffaa5c;
+      --orange-dark: #ff8c42;
+      --orange-light: #ffe4cc;
+      --orange-pale: #fff4e8;
+      --text: #1a1a2e;
+      --black: #1a1a2e;
+      --muted: #666;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text);
+      background: var(--orange-pale);
+      padding-bottom: 88px;
+      font-weight: 500;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ===== ヘッダー ===== */
+    header {
+      background: var(--sky);
+      padding: 0 1.5rem;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      border-bottom: 3px solid var(--black);
+    }
+    header a.logo-link { text-decoration: none; color: inherit; }
+    .logo-main { font-family: 'Noto Serif JP', serif; font-size: 19px; color: #fff; letter-spacing: 0.05em; font-weight: 700; }
+    .logo-sub { font-size: 10px; color: rgba(255,255,255,0.95); letter-spacing: 0.1em; margin-top: 3px; font-weight: 700; }
+    .header-btn {
+      background: var(--yellow);
+      color: var(--black);
+      border: 2.5px solid var(--black);
+      border-radius: 50px;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: 2px 2px 0 var(--black);
+      transition: all 0.15s;
+    }
+    .header-btn:hover { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--black); }
+
+    /* ===== ヒーロー ===== */
+    .hero {
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+      padding: 3rem 1.5rem 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 3px solid var(--black);
+    }
+    /* 冒険マップ風の背景（点線＋星） */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.35) 2px, transparent 2.5px);
+      background-size: 24px 24px;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '⚔ 🗺 ⭐ 🏆 💎';
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      letter-spacing: 1.2em;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .hero-inner-card {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 22px;
+      padding: 2rem 1.6rem;
+      box-shadow: 8px 8px 0 var(--black);
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--black);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+    .hero-icon { font-size: 44px; margin-bottom: 0.4rem; display: block; }
+    .hero h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+    .hero h1 .hl {
+      background: linear-gradient(transparent 65%, var(--orange-light) 65%);
+      padding: 0 4px;
+    }
+    .hero-sub { font-size: 14px; color: var(--text); line-height: 1.85; margin-bottom: 1.4rem; }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    .btn-gold, .btn-outline {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: 3px solid var(--black);
+      transition: all 0.15s;
+      box-shadow: 4px 4px 0 var(--black);
+    }
+    .btn-gold { background: var(--yellow); color: var(--black); }
+    .btn-outline { background: #fff; color: var(--black); }
+    .btn-gold:hover, .btn-outline:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--black); }
+
+    /* ===== セクション ===== */
+    .section { padding: 3rem 1.5rem; background: #fff; }
+    .section-alt { padding: 3rem 1.5rem; background: var(--orange-pale); }
+    .inner { max-width: 920px; margin: 0 auto; }
+
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--black);
+      text-align: center;
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+    .section-title .accent-line {
+      display: inline-block;
+      width: 60px;
+      height: 5px;
+      background: var(--orange);
+      border: 2px solid var(--black);
+      border-radius: 3px;
+      margin: 0.8rem auto 0;
+      vertical-align: middle;
+    }
+    .section-sub { font-size: 14px; color: var(--muted); text-align: center; margin-bottom: 2rem; }
+
+    /* ===== コンセプトカード ===== */
+    .concept-card {
+      background: var(--orange-pale);
+      border: 3px solid var(--black);
+      border-radius: 16px;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 5px 5px 0 var(--orange);
+    }
+    .concept-card p { font-size: 14px; line-height: 1.95; color: var(--text); }
+    .concept-card p + p { margin-top: 1rem; }
+    .concept-card strong.pop {
+      background: linear-gradient(transparent 60%, var(--yellow) 60%);
+      font-weight: 700;
+    }
+
+    /* ===== クエストサイクル ===== */
+    .quest-cycle {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .quest-step {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 14px;
+      padding: 1.3rem 1.1rem;
+      box-shadow: 4px 4px 0 var(--orange-dark);
+      position: relative;
+      text-align: center;
+    }
+    .quest-step-num {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--orange-dark);
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 3px solid var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .quest-step-icon { font-size: 32px; display: block; margin: 0.6rem 0 0.5rem; }
+    .quest-step h3 { font-size: 15px; font-weight: 700; margin-bottom: 0.4rem; color: var(--black); }
+    .quest-step p { font-size: 12.5px; line-height: 1.75; color: #444; }
+
+    .cycle-arrow {
+      text-align: center;
+      margin-top: 1.4rem;
+      font-size: 14px;
+      color: var(--orange-dark);
+      font-weight: 700;
+    }
+    .cycle-arrow strong { font-family: 'Noto Serif JP', serif; }
+
+    /* ===== おすすめチェックリスト ===== */
+    .check-card {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 16px;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 6px 6px 0 var(--yellow);
+    }
+    .check-card h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: var(--orange-dark);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .check-list { list-style: none; display: grid; gap: 0.8rem; }
+    .check-list li {
+      font-size: 14px;
+      line-height: 1.7;
+      padding-left: 2.2rem;
+      position: relative;
+      color: var(--text);
+    }
+    .check-list li::before {
+      content: '⚔';
+      position: absolute;
+      left: 0;
+      top: -2px;
+      background: var(--orange-dark);
+      color: #fff;
+      width: 26px;
+      height: 26px;
+      border: 2px solid var(--black);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    /* ===== 授業バランス図 ===== */
+    .balance-card {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 16px;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 5px 5px 0 var(--orange);
+    }
+    .balance-title {
+      text-align: center;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--orange-dark);
+      margin-bottom: 1.2rem;
+    }
+    .bar-row { display: grid; grid-template-columns: 90px 1fr; gap: 0.8rem; align-items: center; margin-bottom: 0.8rem; }
+    .bar-label { font-size: 13px; font-weight: 700; color: var(--text); }
+    .bar-track { background: var(--orange-pale); border: 2px solid var(--black); border-radius: 8px; height: 26px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--orange-dark); border-right: 2px solid var(--black); display: flex; align-items: center; justify-content: flex-end; padding-right: 0.6rem; font-size: 11px; font-weight: 700; color: #fff; }
+    .balance-note {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ===== 料金 ===== */
+    .grade-label {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--orange-dark);
+      margin-bottom: 1rem;
+      padding-left: 0.8rem;
+      border-left: 3px solid var(--orange);
+    }
+    .courses {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .course-card {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 14px;
+      padding: 1.3rem 1.2rem;
+      position: relative;
+      box-shadow: 4px 4px 0 var(--black);
+    }
+    .course-card.featured { background: linear-gradient(180deg, #fffce6 0%, #fff 100%); }
+    .course-label {
+      position: absolute;
+      top: -12px;
+      left: 12px;
+      background: #fff;
+      color: var(--black);
+      border: 2.5px solid var(--black);
+      border-radius: 50px;
+      padding: 3px 12px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .course-label.gold { background: var(--yellow); }
+    .course-card h3 { font-family: 'Noto Serif JP', serif; font-size: 18px; margin: 0.5rem 0 0.5rem; color: var(--black); }
+    .price { font-size: 22px; font-weight: 700; color: var(--orange-dark); margin-bottom: 0.6rem; }
+    .price span { font-size: 12px; color: var(--muted); font-weight: 500; margin-left: 4px; }
+    .course-divider { height: 2px; background: var(--black); opacity: 0.15; margin: 0.6rem 0; }
+    .course-feature { font-size: 12.5px; color: #444; padding: 0.25rem 0; line-height: 1.5; }
+    .course-feature::before { content: '● '; color: var(--orange); font-weight: 900; }
+
+    /* ===== LAB vs QUEST 比較 ===== */
+    .compare-wrap {
+      background: linear-gradient(135deg, var(--orange-pale) 0%, var(--orange-light) 100%);
+      border: 3px solid var(--black);
+      border-radius: 20px;
+      padding: 2rem 1.4rem;
+      box-shadow: 6px 6px 0 var(--black);
+    }
+    .compare-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+    .compare-sub { font-size: 13px; text-align: center; color: var(--muted); margin-bottom: 1.6rem; }
+    .compare-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 1.4rem; }
+    .compare-card { background: #fff; border: 3px solid var(--black); border-radius: 14px; padding: 1.3rem 1.2rem; }
+    .compare-card.lab { box-shadow: 4px 4px 0 var(--sky-dark); }
+    .compare-card.quest { box-shadow: 4px 4px 0 var(--orange); }
+    .compare-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; margin-bottom: 6px; }
+    .compare-card.lab .compare-eyebrow { color: var(--sky-dark); }
+    .compare-card.quest .compare-eyebrow { color: var(--orange); }
+    .compare-name { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .compare-focus { font-size: 13px; font-weight: 700; margin-bottom: 12px; }
+    .compare-card.lab .compare-focus { color: var(--sky-dark); }
+    .compare-card.quest .compare-focus { color: var(--orange); }
+    .compare-bar { font-size: 12px; line-height: 2; margin-bottom: 12px; color: var(--text); }
+    .compare-card.lab .compare-bar .fill { color: var(--sky-dark); }
+    .compare-card.quest .compare-bar .fill { color: var(--orange); }
+    .compare-desc { font-size: 12.5px; color: var(--muted); line-height: 1.75; }
+    .compare-goal {
+      background: #fff;
+      border: 2px solid var(--black);
+      border-radius: 12px;
+      padding: 1.2rem 1rem;
+      text-align: center;
+    }
+    .compare-goal p:first-child { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+    .compare-goal p:last-child { font-size: 12.5px; color: var(--muted); line-height: 1.85; }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      background: var(--orange);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      border-top: 3px solid var(--black);
+      border-bottom: 3px solid var(--black);
+    }
+    .cta-title { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 700; color: #fff; line-height: 1.5; margin-bottom: 0.8rem; }
+    .cta-sub { font-size: 13px; color: rgba(255,255,255,0.95); margin-bottom: 1.5rem; }
+    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ===== 固定バナー ===== */
+    .fixed-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--black);
+      color: #fff;
+      padding: 0.7rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 150;
+      border-top: 3px solid var(--yellow);
+      gap: 0.8rem;
+    }
+    .banner-text { font-size: 12px; line-height: 1.4; }
+    .banner-text strong { display: block; font-size: 13px; }
+    .banner-btn {
+      background: var(--yellow);
+      color: var(--black);
+      border: 2px solid #fff;
+      border-radius: 50px;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 24px; }
+      .section-title { font-size: 22px; }
+      .bar-row { grid-template-columns: 70px 1fr; }
+      .hero::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== ヘッダー ===== -->
+  <header>
+    <a href="index.html" class="logo-link">
+      <div class="logo-main">学習塾スタイル</div>
+      <div class="logo-sub">JUKU STYLE</div>
+    </a>
+    <a href="index.html" class="header-btn">🏠 トップへ戻る</a>
+  </header>
+
+  <!-- ===== ヒーロー ===== -->
+  <div class="hero">
+    <div class="hero-inner-card">
+      <p class="hero-eyebrow">QUEST / 知の探索に出かけよう</p>
+      <span class="hero-icon">🗺️</span>
+      <h1>個別指導<span class="hl">クエスト</span></h1>
+      <p class="hero-sub">教えてもらうだけではなく、<br>自分で考え、自分で解く時間をたっぷりと。</p>
+      <div class="hero-btns">
+        <a href="index.html#tab-flow" class="btn-gold">体験授業を申し込む</a>
+        <a href="index.html" class="btn-outline">トップへ戻る</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== クエストコースとは？ ===== -->
+  <div class="section">
+    <div class="inner">
+      <p class="section-title">クエストコースとは？<br><span class="accent-line"></span></p>
+      <p class="section-sub">「自分で解けた！」を積み重ねていく個別指導</p>
+
+      <div class="concept-card">
+        <p>個別指導クエストは、<strong class="pop">演習時間を多く取り入れた個別指導コース</strong>です。もちろん、分からない問題や新しい内容については先生が解説します。しかし、授業の中心となるのは生徒自身の演習です。</p>
+        <p>問題に挑戦し、間違え、考え直し、それでも分からなければ先生に質問する。そして理解できたら、もう一度自分の力で問題に挑戦する。まるでクエストを一つずつ攻略していくように、<strong class="pop">「自分で解けた！」を積み重ねながら</strong>学習を進めていきます。</p>
+        <p>勉強では、「説明を聞けば分かる」ことと「自分一人で解ける」ことは同じではありません。クエストコースでは演習量をしっかり確保することで、理解した知識を<strong class="pop">実際に使える力へ変えていくこと</strong>を目指します。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== クエストの4ステップ ===== -->
+  <div class="section-alt">
+    <div class="inner">
+      <p class="section-title">クエスト攻略サイクル<br><span class="accent-line"></span></p>
+      <p class="section-sub">4つのステップを繰り返して、「解ける力」を育てます</p>
+
+      <div class="quest-cycle">
+        <div class="quest-step">
+          <div class="quest-step-num">1</div>
+          <span class="quest-step-icon">⚔️</span>
+          <h3>挑戦する</h3>
+          <p>まずは自分の力で問題に挑む。分からなくてもまず考えてみるのがスタート地点。</p>
+        </div>
+        <div class="quest-step">
+          <div class="quest-step-num">2</div>
+          <span class="quest-step-icon">🤔</span>
+          <h3>間違える・考え直す</h3>
+          <p>つまずいた地点こそ、学びのチャンス。なぜ間違えたのかを自分で振り返ります。</p>
+        </div>
+        <div class="quest-step">
+          <div class="quest-step-num">3</div>
+          <span class="quest-step-icon">💬</span>
+          <h3>分からなければ聞く</h3>
+          <p>自分で考えてもダメなときは、先生にヘルプ。的確なヒントで攻略の糸口をつかみます。</p>
+        </div>
+        <div class="quest-step">
+          <div class="quest-step-num">4</div>
+          <span class="quest-step-icon">🏆</span>
+          <h3>もう一度自分で解く</h3>
+          <p>理解できたら、再挑戦。「自分で解けた！」を実感して次のクエストへ。</p>
+        </div>
+      </div>
+
+      <p class="cycle-arrow">考える → 挑戦する → 分からなければ聞く → <strong>また挑戦する</strong> 🔁</p>
+    </div>
+  </div>
+
+  <!-- ===== 授業のバランス ===== -->
+  <div class="section">
+    <div class="inner">
+      <p class="section-title">授業のバランス<br><span class="accent-line"></span></p>
+      <p class="section-sub">演習を多めに、解ける力をぐんぐん伸ばします</p>
+
+      <div class="balance-card">
+        <p class="balance-title">演習を多めに</p>
+        <div class="bar-row">
+          <span class="bar-label">先生の解説</span>
+          <div class="bar-track"><div class="bar-fill" style="width:30%;">30%</div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">自分で演習</span>
+          <div class="bar-track"><div class="bar-fill" style="width:70%;">70%</div></div>
+        </div>
+        <p class="balance-note">たくさんの問題に挑戦しながら、<strong>「自分で解ける力」</strong>を育てていくのがクエストコースのスタイルです。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== こんな生徒におすすめ ===== -->
+  <div class="section-alt">
+    <div class="inner">
+      <p class="section-title">こんな生徒におすすめ<br><span class="accent-line"></span></p>
+      <p class="section-sub">当てはまるものがあれば、クエストコースが合っているかもしれません</p>
+
+      <div class="check-card">
+        <h3>「解ける力」を伸ばしたい人へ</h3>
+        <ul class="check-list">
+          <li>説明を聞けば分かるけれど、テストではなかなか解けない</li>
+          <li>とにかく問題を解く量を増やしたい</li>
+          <li>自分で考えて問題に挑戦する力をつけたい</li>
+          <li>学校の授業内容はある程度理解できている</li>
+          <li>定期テストに向けて実戦力を高めたい</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 料金 ===== -->
+  <div class="section">
+    <div class="inner">
+      <p class="section-title">クエストコース 料金<br><span class="accent-line"></span></p>
+      <p class="section-sub">全プラン 講師1人：生徒1〜4人／開講日：毎週月〜土　17:00〜21:00</p>
+
+      <!-- ⑤ 小学生・中学1・2年生 -->
+      <p class="grade-label">⑤ 小学生クラス／中学1・2年生クラス</p>
+      <div class="courses">
+        <div class="course-card">
+          <span class="course-label">週1コース</span>
+          <h3>60分 × 4回</h3>
+          <div class="price">¥7,500<span>/月（税込）</span></div>
+          <div class="course-divider"></div>
+          <p class="course-feature">講師1人：生徒1〜4人</p>
+          <p class="course-feature">まずは始めやすいプラン</p>
+          <p class="course-feature">勉強習慣の土台づくり</p>
+        </div>
+        <div class="course-card">
+          <span class="course-label">週1コース</span>
+          <h3>90分 × 4回</h3>
+          <div class="price">¥11,000<span>/月（税込）</span></div>
+          <div class="course-divider"></div>
+          <p class="course-feature">講師1人：生徒1〜4人</p>
+          <p class="course-feature">じっくり演習時間を確保</p>
+          <p class="course-feature">1回あたりの学習量アップ</p>
+        </div>
+        <div class="course-card featured">
+          <span class="course-label gold">選ばれNo.1</span>
+          <h3>60分 × 8回</h3>
+          <div class="price">¥13,000<span>/月（税込）</span></div>
+          <div class="course-divider"></div>
+          <p class="course-feature">講師1人：生徒1〜4人</p>
+          <p class="course-feature">学習量をしっかり確保</p>
+          <p class="course-feature">「解ける力」を育てる演習中心</p>
+        </div>
+        <div class="course-card">
+          <span class="course-label">週2コース</span>
+          <h3>90分 × 8回</h3>
+          <div class="price">¥20,000<span>/月（税込）</span></div>
+          <div class="course-divider"></div>
+          <p class="course-feature">講師1人：生徒1〜4人</p>
+          <p class="course-feature">がっつり演習で実戦力UP</p>
+          <p class="course-feature">定期テスト対策にも最適</p>
+        </div>
+      </div>
+
+      <!-- ⑥ 中学3年生・高校生 -->
+      <p class="grade-label">⑥ 中学3年生クラス／高校生クラス</p>
+      <div class="courses">
+        <div class="course-card">
+          <span class="course-label">週1コース</span>
+          <h3>120分 × 4回</h3>
+          <div class="price">¥17,000<span>/月（税込）</span></div>
+          <div class="course-divider"></div>
+          <p class="course-feature">講師1人：生徒1〜4人</p>
+          <p class="course-feature">長時間で集中演習</p>
+          <p class="course-feature">受験対策にも対応</p>
+        </div>
+        <div class="course-card featured">
+          <span class="course-label gold">選ばれNo.1</span>
+          <h3>60分 × 8回</h3>
+          <div class="price">¥17,000<span>/月（税込）</span></div>
+          <div class="course-divider"></div>
+          <p class="course-feature">講師1人：生徒1〜4人</p>
+          <p class="course-feature">週2回のペースで学習習慣化</p>
+          <p class="course-feature">受験対策にも対応</p>
+        </div>
+        <div class="course-card">
+          <span class="course-label">週2コース</span>
+          <h3>90分 × 8回</h3>
+          <div class="price">¥25,000<span>/月（税込）</span></div>
+          <div class="course-divider"></div>
+          <p class="course-feature">講師1人：生徒1〜4人</p>
+          <p class="course-feature">がっつり演習で実戦力UP</p>
+          <p class="course-feature">大学受験・志望校対策に</p>
+        </div>
+      </div>
+      <p style="font-size:12px; color:#999; text-align:center; margin-top:0.5rem;">※料金はすべて税込です。教材費等が別途かかる場合がございます。</p>
+    </div>
+  </div>
+
+  <!-- ===== LAB vs QUEST 比較 ===== -->
+  <div class="section-alt">
+    <div class="inner">
+      <div class="compare-wrap">
+        <p class="compare-title">LABとQUEST、<br>どちらを選ぶ？</p>
+        <p class="compare-sub">どちらも「個別指導」。違うのは、授業の中で何に多く時間を使うかです。</p>
+
+        <div class="compare-cards">
+          <div class="compare-card lab">
+            <p class="compare-eyebrow">LAB / ラボ</p>
+            <p class="compare-name">個別指導ラボ</p>
+            <p class="compare-focus">「理解する」ことを重視</p>
+            <div class="compare-bar">
+              <div>先生の解説　<span class="fill">■■■■■</span></div>
+              <div>自分で演習　<span class="fill">■■■■■</span></div>
+            </div>
+            <p class="compare-desc">解説と演習をバランスよく。先生と一緒に考えながら、じっくり理解を深めます。</p>
+          </div>
+          <div class="compare-card quest">
+            <p class="compare-eyebrow">QUEST / クエスト（このページ）</p>
+            <p class="compare-name">個別指導クエスト</p>
+            <p class="compare-focus">「自分で解く」ことを重視</p>
+            <div class="compare-bar">
+              <div>先生の解説　<span class="fill">■■■</span></div>
+              <div>自分で演習　<span class="fill">■■■■■■■</span></div>
+            </div>
+            <p class="compare-desc">演習を多めに。たくさんの問題に挑戦し、「自分で解ける力」を育てます。</p>
+          </div>
+        </div>
+
+        <div class="compare-goal">
+          <p>目指すゴールは同じ。そこまでの道のりが違います。</p>
+          <p>じっくり理解を深めたいなら「<strong style="color:var(--sky-dark);">LAB</strong>」。<br>たくさん挑戦して実戦力を高めたいなら「<strong style="color:var(--orange);">QUEST</strong>」。</p>
+        </div>
+
+        <div style="text-align:center; margin-top:1.4rem;">
+          <a href="lab-course.html" style="display:inline-block; background:#fff; color:var(--black); font-size:13px; font-weight:700; padding:10px 22px; border-radius:50px; border:2.5px solid var(--black); text-decoration:none; box-shadow:3px 3px 0 var(--sky-dark);">ラボコースを見る →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CTA ===== -->
+  <div class="cta-section">
+    <p class="cta-title">考える。挑戦する。<br>そして、自分で解ける。</p>
+    <p class="cta-sub">まずは体験授業で、クエストコースの学び方を体感してください。</p>
+    <div class="cta-btns">
+      <a href="index.html#tab-flow" class="btn-gold">体験授業を申し込む</a>
+      <a href="tel:084-975-4851" class="btn-outline">📞 電話で相談する</a>
+    </div>
+  </div>
+
+  <!-- ===== 固定バナー ===== -->
+  <div class="fixed-banner">
+    <div class="banner-text">
+      <strong>🎓体験授業 受付中！</strong>
+      <span>まずはお気軽にお問い合わせください</span>
+    </div>
+    <a href="index.html#tab-flow" class="banner-btn">入塾の流れを見る</a>
+  </div>
+
+</body>
+</html>
