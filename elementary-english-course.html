@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小学生英語コース｜中学英語を得点源に｜学習塾スタイル（福山市）</title>
+  <meta name="description" content="学習塾スタイルの小学生英語コース。英会話ではなく「読む・書く・理解する」を重視し、中高生を教える講師が直接指導。中学に入った瞬間から英語を得点源にできる基礎力を育てます。">
+  <meta name="keywords" content="小学生英語,福山市,学習塾,英検,フォニックス,英文法,中学準備,多治米町">
+  <meta property="og:title" content="小学生英語コース｜学習塾スタイル">
+  <meta property="og:description" content="英会話ではなく「読む・書く・理解する」を重視。中学入学後、英語を即・得点源にする小学生英語コース。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sky: #4DC8E8;
+      --sky-dark: #1DA8CC;
+      --sky-mid: #17A0C0;
+      --sky-light: #E0F7FC;
+      --sky-pale: #F0FBFD;
+      --yellow: #ffd83d;
+      --orange: #ffaa5c;
+      --orange-dark: #ff8c42;
+      /* 英語コース独自のピンク系（ラボ青／クエスト橙と差別化） */
+      --pink: #F394B5;
+      --pink-dark: #C56A8E;
+      --pink-light: #FBDCE7;
+      --pink-pale: #FEF4F8;
+      --text: #1a1a2e;
+      --black: #1a1a2e;
+      --muted: #666;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text);
+      background: var(--pink-pale);
+      padding-bottom: 88px;
+      font-weight: 500;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ===== ヘッダー ===== */
+    header {
+      background: var(--sky);
+      padding: 0 1.5rem;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      border-bottom: 3px solid var(--black);
+    }
+    header a.logo-link { text-decoration: none; color: inherit; }
+    .logo-main { font-family: 'Noto Serif JP', serif; font-size: 19px; color: #fff; letter-spacing: 0.05em; font-weight: 700; }
+    .logo-sub { font-size: 10px; color: rgba(255,255,255,0.95); letter-spacing: 0.1em; margin-top: 3px; font-weight: 700; }
+    .header-btn {
+      background: var(--yellow);
+      color: var(--black);
+      border: 2.5px solid var(--black);
+      border-radius: 50px;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: 2px 2px 0 var(--black);
+      transition: all 0.15s;
+    }
+    .header-btn:hover { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--black); }
+
+    /* ===== ヒーロー ===== */
+    .hero {
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
+      padding: 3rem 1.5rem 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 3px solid var(--black);
+    }
+    /* 英語ノート風の下線背景 */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.18) 1.5px, transparent 1.5px);
+      background-size: 100% 32px;
+      pointer-events: none;
+    }
+    /* ABC装飾 */
+    .hero::after {
+      content: 'A B C · a b c · Hello';
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Noto Serif JP', serif;
+      font-size: 16px;
+      letter-spacing: 0.35em;
+      color: rgba(255,255,255,0.35);
+      font-weight: 700;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .hero-inner-card {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 22px;
+      padding: 2rem 1.6rem;
+      box-shadow: 8px 8px 0 var(--black);
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--black);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+    .hero-icon { font-size: 44px; margin-bottom: 0.4rem; display: block; }
+    .hero h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+    .hero h1 .hl { background: linear-gradient(transparent 65%, var(--yellow) 65%); padding: 0 4px; }
+    .hero-sub { font-size: 14px; color: var(--text); line-height: 1.85; margin-bottom: 1.4rem; }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    .btn-gold, .btn-outline {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: 3px solid var(--black);
+      transition: all 0.15s;
+      box-shadow: 4px 4px 0 var(--black);
+    }
+    .btn-gold { background: var(--yellow); color: var(--black); }
+    .btn-outline { background: #fff; color: var(--black); }
+    .btn-gold:hover, .btn-outline:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--black); }
+
+    /* ===== セクション ===== */
+    .section { padding: 3rem 1.5rem; background: #fff; }
+    .section-alt { padding: 3rem 1.5rem; background: var(--pink-pale); }
+    .inner { max-width: 920px; margin: 0 auto; }
+
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--black);
+      text-align: center;
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+    .section-title .accent-line {
+      display: inline-block;
+      width: 60px;
+      height: 5px;
+      background: var(--pink);
+      border: 2px solid var(--black);
+      border-radius: 3px;
+      margin: 0.8rem auto 0;
+      vertical-align: middle;
+    }
+    .section-sub { font-size: 14px; color: var(--muted); text-align: center; margin-bottom: 2rem; }
+
+    /* ===== コンセプトカード ===== */
+    .concept-card {
+      background: var(--pink-pale);
+      border: 3px solid var(--black);
+      border-radius: 16px;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 5px 5px 0 var(--pink);
+    }
+    .concept-card p { font-size: 14px; line-height: 1.95; color: var(--text); }
+    .concept-card p + p { margin-top: 1rem; }
+    .concept-card strong.pop {
+      background: linear-gradient(transparent 60%, var(--yellow) 60%);
+      font-weight: 700;
+    }
+
+    /* ===== 3つの強みカード ===== */
+    .strength-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+    .strength-card {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 16px;
+      padding: 1.5rem 1.3rem 1.3rem;
+      position: relative;
+      box-shadow: 5px 5px 0 var(--pink-dark);
+    }
+    .strength-badge {
+      position: absolute;
+      top: -14px;
+      left: 16px;
+      background: var(--yellow);
+      color: var(--black);
+      border: 2.5px solid var(--black);
+      border-radius: 50px;
+      padding: 4px 14px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .strength-icon {
+      font-size: 40px;
+      display: block;
+      margin: 0.6rem 0 0.6rem;
+      line-height: 1;
+    }
+    .strength-card h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.55;
+      margin-bottom: 0.7rem;
+    }
+    .strength-card h3 .hl {
+      background: linear-gradient(transparent 60%, var(--yellow) 60%);
+      padding: 0 3px;
+    }
+    .strength-card p {
+      font-size: 13px;
+      line-height: 1.85;
+      color: #333;
+    }
+    .strength-tag {
+      display: inline-block;
+      background: var(--pink-pale);
+      color: var(--pink-dark);
+      border: 2px solid var(--pink-dark);
+      border-radius: 50px;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 0.9rem;
+    }
+
+    /* ===== 学習内容グリッド ===== */
+    .learn-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .learn-card {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 14px;
+      padding: 1.2rem 1.2rem 1.3rem;
+      box-shadow: 4px 4px 0 var(--pink);
+      position: relative;
+    }
+    .learn-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 2.5px solid var(--black);
+      background: var(--pink-light);
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--pink-dark);
+      margin-bottom: 0.8rem;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .learn-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 0.4rem;
+      line-height: 1.5;
+    }
+    .learn-card p {
+      font-size: 12.5px;
+      color: #333;
+      line-height: 1.8;
+    }
+    .learn-step-flow {
+      background: var(--pink-pale);
+      border: 2px dashed var(--pink-dark);
+      border-radius: 8px;
+      padding: 0.6rem 0.7rem;
+      margin-top: 0.6rem;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--pink-dark);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* ===== 授業の進め方（ステップ） ===== */
+    .steps { display: grid; gap: 1rem; margin-top: 1.5rem; }
+    .step-card {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 14px;
+      padding: 1.2rem 1.3rem;
+      box-shadow: 4px 4px 0 var(--pink-dark);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    .step-num {
+      background: var(--pink-dark);
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 3px solid var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 700;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .step-body h3 { font-size: 16px; font-weight: 700; margin-bottom: 0.3rem; color: var(--black); }
+    .step-body p { font-size: 13.5px; line-height: 1.85; color: #333; }
+
+    /* ===== 授業のバランス（円グラフ的バー） ===== */
+    .balance-card {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 16px;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 5px 5px 0 var(--pink);
+    }
+    .balance-title {
+      text-align: center;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--pink-dark);
+      margin-bottom: 1.2rem;
+    }
+    .bar-row { display: grid; grid-template-columns: 110px 1fr; gap: 0.8rem; align-items: center; margin-bottom: 0.8rem; }
+    .bar-label { font-size: 13px; font-weight: 700; color: var(--text); }
+    .bar-track { background: var(--pink-pale); border: 2px solid var(--black); border-radius: 8px; height: 26px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--pink-dark); border-right: 2px solid var(--black); display: flex; align-items: center; justify-content: flex-end; padding-right: 0.6rem; font-size: 11px; font-weight: 700; color: #fff; }
+    .balance-note {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ===== 英会話との違い ===== */
+    .compare-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    .compare-card {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 14px;
+      padding: 1.3rem 1.2rem;
+    }
+    .compare-card.other { box-shadow: 4px 4px 0 #bbb; }
+    .compare-card.this { box-shadow: 4px 4px 0 var(--pink-dark); background: var(--pink-pale); }
+    .compare-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; margin-bottom: 6px; }
+    .compare-card.other .compare-eyebrow { color: #888; }
+    .compare-card.this .compare-eyebrow { color: var(--pink-dark); }
+    .compare-name { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--black); }
+    .compare-focus { font-size: 13px; font-weight: 700; margin-bottom: 12px; }
+    .compare-card.other .compare-focus { color: #666; }
+    .compare-card.this .compare-focus { color: var(--pink-dark); }
+    .compare-list { list-style: none; margin-top: 0.6rem; }
+    .compare-list li {
+      font-size: 13px;
+      padding: 4px 0 4px 22px;
+      position: relative;
+      line-height: 1.7;
+    }
+    .compare-card.this .compare-list li::before {
+      content: '◎'; position: absolute; left: 0; color: var(--pink-dark); font-weight: 900;
+    }
+    .compare-card.other .compare-list li::before {
+      content: '○'; position: absolute; left: 0; color: #aaa; font-weight: 900;
+    }
+
+    /* ===== おすすめチェックリスト ===== */
+    .check-card {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 16px;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 6px 6px 0 var(--yellow);
+    }
+    .check-card h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: var(--pink-dark);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .check-list { list-style: none; display: grid; gap: 0.8rem; }
+    .check-list li {
+      font-size: 14px;
+      line-height: 1.7;
+      padding-left: 2.2rem;
+      position: relative;
+      color: var(--text);
+    }
+    .check-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: -2px;
+      background: var(--pink-dark);
+      color: #fff;
+      width: 26px;
+      height: 26px;
+      border: 2px solid var(--black);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    /* ===== コース料金 ===== */
+    .grade-label {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--pink-dark);
+      margin-bottom: 1rem;
+      padding-left: 0.8rem;
+      border-left: 3px solid var(--pink);
+    }
+    .courses {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .course-card {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 14px;
+      padding: 1.3rem 1.2rem;
+      position: relative;
+      box-shadow: 4px 4px 0 var(--black);
+    }
+    .course-card.featured { background: linear-gradient(180deg, #fffce6 0%, #fff 100%); }
+    .course-label {
+      position: absolute;
+      top: -12px;
+      left: 12px;
+      background: #fff;
+      color: var(--black);
+      border: 2.5px solid var(--black);
+      border-radius: 50px;
+      padding: 3px 12px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .course-label.gold { background: var(--yellow); }
+    .course-card h3 { font-family: 'Noto Serif JP', serif; font-size: 18px; margin: 0.5rem 0 0.5rem; color: var(--black); }
+    .price { font-size: 22px; font-weight: 700; color: var(--pink-dark); margin-bottom: 0.6rem; }
+    .price span { font-size: 12px; color: var(--muted); font-weight: 500; margin-left: 4px; }
+    .course-divider { height: 2px; background: var(--black); opacity: 0.15; margin: 0.6rem 0; }
+    .course-feature { font-size: 12.5px; color: #444; padding: 0.25rem 0; line-height: 1.5; }
+    .course-feature::before { content: '● '; color: var(--pink); font-weight: 900; }
+    .fee-note {
+      background: var(--pink-light);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      font-size: 12.5px;
+      color: var(--pink-dark);
+      line-height: 1.7;
+    }
+    .fee-box {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 14px;
+      padding: 1.4rem 1.3rem;
+      box-shadow: 4px 4px 0 var(--pink-dark);
+    }
+    .fee-box h4 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--pink-dark);
+      margin-bottom: 0.9rem;
+    }
+    .fee-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .fee-item .fee-item-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--pink-dark);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.05em;
+    }
+    .fee-item .fee-item-value { font-size: 13px; line-height: 1.8; color: #333; font-weight: 500; }
+
+    /* ===== ゴール（目指すこと） ===== */
+    .goal-card {
+      background: #fff;
+      border: 3px solid var(--black);
+      border-radius: 20px;
+      padding: 2rem 1.6rem;
+      box-shadow: 6px 6px 0 var(--yellow);
+      text-align: center;
+    }
+    .goal-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      background: var(--black);
+      color: #fff;
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+    .goal-quote {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--pink-dark);
+      line-height: 1.7;
+      margin: 1rem 0;
+    }
+    .goal-quote .hl {
+      background: linear-gradient(transparent 60%, var(--yellow) 60%);
+      padding: 0 4px;
+    }
+    .goal-body { font-size: 14px; line-height: 1.9; color: var(--text); }
+    .goal-body + .goal-body { margin-top: 0.8rem; }
+    .goal-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--pink);
+      border: 1.5px solid var(--black);
+      border-radius: 3px;
+      margin: 1.5rem auto;
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      background: var(--pink);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      border-top: 3px solid var(--black);
+      border-bottom: 3px solid var(--black);
+    }
+    .cta-title { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 700; color: #fff; line-height: 1.5; margin-bottom: 0.8rem; }
+    .cta-sub { font-size: 13px; color: rgba(255,255,255,0.95); margin-bottom: 1.5rem; }
+    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ===== 固定バナー ===== */
+    .fixed-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--black);
+      color: #fff;
+      padding: 0.7rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 150;
+      border-top: 3px solid var(--yellow);
+      gap: 0.8rem;
+    }
+    .banner-text { font-size: 12px; line-height: 1.4; }
+    .banner-text strong { display: block; font-size: 13px; }
+    .banner-btn {
+      background: var(--yellow);
+      color: var(--black);
+      border: 2px solid #fff;
+      border-radius: 50px;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 24px; }
+      .section-title { font-size: 22px; }
+      .bar-row { grid-template-columns: 90px 1fr; }
+      .hero::after { display: none; }
+      .strength-icon { font-size: 34px; }
+      .goal-quote { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== ヘッダー ===== -->
+  <header>
+    <a href="index.html" class="logo-link">
+      <div class="logo-main">学習塾スタイル</div>
+      <div class="logo-sub">JUKU STYLE</div>
+    </a>
+    <a href="index.html" class="header-btn">🏠 トップへ戻る</a>
+  </header>
+
+  <!-- ===== ヒーロー ===== -->
+  <div class="hero">
+    <div class="hero-inner-card">
+      <p class="hero-eyebrow">ENGLISH / 中学英語を得点源に</p>
+      <span class="hero-icon">📖</span>
+      <h1>小学生<span class="hl">英語</span>コース</h1>
+      <p class="hero-sub">英会話ではなく、「読む・書く・理解する」を重視。<br>中学に入った瞬間から、英語を得点源にできる小学生英語コース。</p>
+      <div class="hero-btns">
+        <a href="index.html#tab-flow" class="btn-gold">体験授業を申し込む</a>
+        <a href="index.html" class="btn-outline">トップへ戻る</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 小学生英語コースとは？ ===== -->
+  <div class="section">
+    <div class="inner">
+      <p class="section-title">小学生英語コースとは？<br><span class="accent-line"></span></p>
+      <p class="section-sub">「話す」より、「読む・書く・理解する」を重視した英語コース</p>
+
+      <div class="concept-card">
+        <p>小学生英語コースは、<strong class="pop">中学校以降の英語学習につながる基礎力</strong>を、小学生のうちから身につけるためのコースです。英会話を中心とするのではなく、「英単語を読む・書く」「英文の意味を理解する」「基本的な英文法を理解する」など、<strong class="pop">「読む・書く・理解する」力</strong>を重視します。</p>
+        <p>小学生のうちは、中学生のように定期テストや受験に追われることなく、時間をかけて英語の基礎を身につけられる時期です。中学校に入ってから英語をゼロから始めるのではなく、<strong class="pop">小学生のうちに英語の基本的な仕組みに慣れておくこと</strong>を目標にします。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== このコースの3つの強み ===== -->
+  <div class="section-alt">
+    <div class="inner">
+      <p class="section-title">このコースの3つの強み<br><span class="accent-line"></span></p>
+      <p class="section-sub">「小学生の英語教室」で終わらせない。中学以降の得点力に直結する学び方です。</p>
+
+      <div class="strength-grid">
+
+        <!-- 強み① -->
+        <div class="strength-card">
+          <span class="strength-badge">STRENGTH 01</span>
+          <span class="strength-icon">👨‍🏫</span>
+          <h3>中高生を教える講師が、<br><span class="hl">小学生のうちから直接指導</span></h3>
+          <p>普段、中学生・高校生に<strong>受験英語や定期テスト対策をバチバチに指導している日本人講師</strong>が、そのまま小学生の授業も担当します。「中学に入って何ができれば得点につながるか」を熟知した講師が教えるからこそ、<strong>中学に入った瞬間から英語がすぐに得点源になる</strong>準備ができます。</p>
+          <span class="strength-tag">✓ 中学入学と同時に得点源へ</span>
+        </div>
+
+        <!-- 強み② -->
+        <div class="strength-card">
+          <span class="strength-badge">STRENGTH 02</span>
+          <span class="strength-icon">📚</span>
+          <h3>実際に<span class="hl">中学生が解いているテキスト</span>を使って授業</h3>
+          <p>「小学生向けにやさしくアレンジした英語教材」ではなく、<strong>塾生の中学生が実際に使っているテキスト</strong>を活用して授業を進めます。もちろん、いきなり難しい問題を解かせるのではなく、お子さまのレベルに合わせて段階的に。<strong>中学の教材に自然と慣れていける</strong>のが大きな強みです。</p>
+          <span class="strength-tag">✓ 中学の教材にスムーズに移行</span>
+        </div>
+
+        <!-- 強み③ -->
+        <div class="strength-card">
+          <span class="strength-badge">STRENGTH 03</span>
+          <span class="strength-icon">🎯</span>
+          <h3><span class="hl">日本の学生生活で活きる英語</span>を学べる</h3>
+          <p>日本の中学・高校・大学へと進む中で、本当に必要になる英語を身につけます。単なる会話フレーズの丸暗記ではなく、<strong>定期テスト・受験・英検などの検定でしっかり結果を出せる英語力</strong>——つまり<strong>これから続く学生生活の中で確かな武器になる英語</strong>を、小学生のうちから育てていきます。</p>
+          <span class="strength-tag">✓ 定期テスト・受験・検定で結果を残す</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 主な学習内容 ===== -->
+  <div class="section">
+    <div class="inner">
+      <p class="section-title">主な学習内容<br><span class="accent-line"></span></p>
+      <p class="section-sub">「読む・書く・理解する」を軸に、聞く力もバランスよく育てます</p>
+
+      <div class="learn-grid">
+        <div class="learn-card">
+          <span class="learn-icon">Aa</span>
+          <h3>フォニックス・英語の読み方</h3>
+          <p>アルファベットと音の関係を学び、知らない単語でも少しずつ読める力を身につけます。</p>
+        </div>
+
+        <div class="learn-card">
+          <span class="learn-icon">📖</span>
+          <h3>英単語</h3>
+          <p>ただ聞いて覚えるだけではなく、段階を踏んで語彙を増やしていきます。</p>
+          <div class="learn-step-flow">見て分かる → 読める<br>→ 意味が分かる → 書ける</div>
+        </div>
+
+        <div class="learn-card">
+          <span class="learn-icon">✎</span>
+          <h3>基本文法</h3>
+          <p>be動詞、一般動詞、疑問文、否定文など、中学校で学ぶ英文法の基礎に少しずつ触れます。丸暗記ではなく<strong>「なぜこの英文になるのか」</strong>の理解を大切にします。</p>
+        </div>
+
+        <div class="learn-card">
+          <span class="learn-icon">📗</span>
+          <h3>英文読解</h3>
+          <p>短い英文から始め、英文を読んで意味を理解する練習を行います。「読めた！」という手応えを一つずつ積み重ねます。</p>
+        </div>
+
+        <div class="learn-card">
+          <span class="learn-icon">✏️</span>
+          <h3>英作文</h3>
+          <p>単語を書くだけでなく、学習した文法を使いながら、自分で簡単な英文を作る練習も行います。</p>
+        </div>
+
+        <div class="learn-card">
+          <span class="learn-icon">🎧</span>
+          <h3>リスニング</h3>
+          <p>読む・書くだけに偏らず、英語を聞いて理解する練習も取り入れます。</p>
+        </div>
+
+        <div class="learn-card">
+          <span class="learn-icon">🏅</span>
+          <h3>英検を意識した学習</h3>
+          <p>英検受験だけを目的とはしませんが、学習が進んだお子さまには英検の出題内容も意識しながら学習を進めます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 授業の進め方 ===== -->
+  <div class="section-alt">
+    <div class="inner">
+      <p class="section-title">授業の進め方<br><span class="accent-line"></span></p>
+      <p class="section-sub">「聞いて終わり」にしない、実際に手を動かす英語学習</p>
+
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>学ぶ</h3>
+            <p>まずは先生と一緒に、新しい単語や文法のルールを一つずつ確認。「なぜこの英文になるのか」を、丸暗記ではなく理解しながら進めます。</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>問題を解く</h3>
+            <p>学んだ内容を、実際に自分で問題を解いて確認。英語も算数や数学と同じく、手を動かすことで身についていきます。</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>間違いを確認する</h3>
+            <p>「なぜ間違えたのか」を先生と一緒に振り返り、次に同じ間違いをしないためのポイントを整理します。</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>もう一度解く</h3>
+            <p>間違えた問題は、その場でもう一度挑戦。「聞いて分かった」を「自分で解ける」に変えて授業を終えます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 授業のバランス ===== -->
+  <div class="section">
+    <div class="inner">
+      <p class="section-title">授業のバランス<br><span class="accent-line"></span></p>
+      <p class="section-sub">「読む・書く・理解する」に多くの時間を使います</p>
+
+      <div class="balance-card">
+        <p class="balance-title">読み書き重視で、中学の英語に直結</p>
+        <div class="bar-row">
+          <span class="bar-label">読む・書く</span>
+          <div class="bar-track"><div class="bar-fill" style="width:45%;">45%</div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">文法・単語</span>
+          <div class="bar-track"><div class="bar-fill" style="width:35%;">35%</div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">聞く</span>
+          <div class="bar-track"><div class="bar-fill" style="width:20%;">20%</div></div>
+        </div>
+        <p class="balance-note">英会話とは異なり、<strong>「勉強としての英語」</strong>を身につけるコースです。中学の授業や定期テストで、すぐに手応えを感じられる構成になっています。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 英会話コースとの違い ===== -->
+  <div class="section-alt">
+    <div class="inner">
+      <p class="section-title">英会話コースとの違い<br><span class="accent-line"></span></p>
+      <p class="section-sub">目指すのは「話せる」ことよりも、中学校の英語授業をきちんと理解できること</p>
+
+      <div class="compare-cards">
+        <div class="compare-card other">
+          <p class="compare-eyebrow">GENERAL / 一般的な英会話教室</p>
+          <p class="compare-name">英会話中心の教室</p>
+          <p class="compare-focus">英語に「親しむ」ことが中心</p>
+          <ul class="compare-list">
+            <li>ゲームや歌で楽しく英語に触れる</li>
+            <li>話す・聞くを中心に体験</li>
+            <li>「英語＝楽しい」を大切にする</li>
+          </ul>
+        </div>
+        <div class="compare-card this">
+          <p class="compare-eyebrow">ENGLISH / 小学生英語コース</p>
+          <p class="compare-name">小学生英語コース</p>
+          <p class="compare-focus">「読む・書く・理解する」を身につける</p>
+          <ul class="compare-list">
+            <li>単語を読み、書き、意味を理解する</li>
+            <li>英文法の仕組みを納得しながら学ぶ</li>
+            <li>中学の英語授業を理解できる状態を目指す</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="background:#fff; border:2px solid var(--black); border-radius:12px; padding:1.2rem 1rem; margin-top:1.4rem; text-align:center;">
+        <p style="font-size:14px; font-weight:700; margin-bottom:8px;">「話せる」だけがゴールではありません。</p>
+        <p style="font-size:12.5px; color:var(--muted); line-height:1.85;">
+          このコースが目指すのは、<strong style="color:var(--pink-dark);">中学生になったときに、英語の授業を理解できること</strong>。<br>
+          そして、定期テスト・受験・英検で結果を残せる力を、小学生のうちから育てることです。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== こんな生徒におすすめ ===== -->
+  <div class="section">
+    <div class="inner">
+      <p class="section-title">こんな生徒におすすめ<br><span class="accent-line"></span></p>
+      <p class="section-sub">当てはまるものがあれば、小学生英語コースが合っているかもしれません</p>
+
+      <div class="check-card">
+        <h3>「勉強としての英語」を身につけたい人へ</h3>
+        <ul class="check-list">
+          <li>英語を初めて勉強する</li>
+          <li>中学校に入ってから英語で困ってほしくない</li>
+          <li>小学生のうちから英単語を読めるようになってほしい</li>
+          <li>英単語を書けるようになってほしい</li>
+          <li>英文法の基礎を身につけておきたい</li>
+          <li>将来的に英検にも挑戦したい</li>
+          <li>英会話よりも「勉強としての英語」を習わせたい</li>
+          <li>中学校の英語を少し先取りしておきたい</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 料金 ===== -->
+  <div class="section-alt">
+    <div class="inner">
+      <p class="section-title">小学生英語コース 料金<br><span class="accent-line"></span></p>
+      <p class="section-sub">開講日：毎週月〜土　授業時間帯：17:00〜21:00（相談の上決定）</p>
+
+      <!-- 小学生 -->
+      <p class="grade-label">小学生クラス</p>
+      <div class="courses">
+        <div class="course-card">
+          <span class="course-label">週1コース</span>
+          <h3>60分 × 4回</h3>
+          <div class="price">¥7,500<span>/月（税込）</span></div>
+          <div class="course-divider"></div>
+          <p class="course-feature">講師1人：生徒1〜4人</p>
+          <p class="course-feature">まずは始めやすいプラン</p>
+          <p class="course-feature">英語学習の土台づくり</p>
+        </div>
+        <div class="course-card">
+          <span class="course-label">週1コース</span>
+          <h3>90分 × 4回</h3>
+          <div class="price">¥11,000<span>/月（税込）</span></div>
+          <div class="course-divider"></div>
+          <p class="course-feature">講師1人：生徒1〜4人</p>
+          <p class="course-feature">じっくり演習時間を確保</p>
+          <p class="course-feature">1回あたりの学習量アップ</p>
+        </div>
+        <div class="course-card featured">
+          <span class="course-label gold">選ばれNo.1</span>
+          <h3>60分 × 8回</h3>
+          <div class="price">¥13,000<span>/月（税込）</span></div>
+          <div class="course-divider"></div>
+          <p class="course-feature">講師1人：生徒1〜4人</p>
+          <p class="course-feature">週2回で学習リズム定着</p>
+          <p class="course-feature">「読める・書ける」を着実に</p>
+        </div>
+        <div class="course-card">
+          <span class="course-label">週2コース</span>
+          <h3>90分 × 8回</h3>
+          <div class="price">¥20,000<span>/月（税込）</span></div>
+          <div class="course-divider"></div>
+          <p class="course-feature">講師1人：生徒1〜4人</p>
+          <p class="course-feature">がっつり演習で英語力UP</p>
+          <p class="course-feature">英検対策にも対応</p>
+        </div>
+      </div>
+
+      <div class="fee-note">
+        ※授業料は月額です。教材費については、使用する教材に応じて<strong>別途実費</strong>となります。<br>
+        ※小学生のクエストコースと同じ料金体系を採用しています。
+      </div>
+
+      <!-- その他の費用 -->
+      <div class="fee-box">
+        <h4>その他の費用</h4>
+        <div class="fee-grid">
+          <div class="fee-item">
+            <p class="fee-item-label">【入会金】</p>
+            <p class="fee-item-value" style="font-size:15px; font-weight:700;">10,000円</p>
+          </div>
+          <div class="fee-item">
+            <p class="fee-item-label">【教材費】</p>
+            <p class="fee-item-value">使用する教材に応じて別途実費<br>（申込内容により異なります）</p>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:12px; color:#999; text-align:center; margin-top:1rem;">※料金はすべて税込です。</p>
+    </div>
+  </div>
+
+  <!-- ===== このコースが目指すこと ===== -->
+  <div class="section">
+    <div class="inner">
+      <p class="section-title">このコースが目指すこと<br><span class="accent-line"></span></p>
+      <p class="section-sub">小学生の今だからこそ、焦らず、少しずつ</p>
+
+      <div class="goal-card">
+        <span class="goal-label">GOAL / このコースの目標</span>
+        <p class="goal-body">
+          小学生の段階で、難しい英文を読んだり、高度な英会話をしたりすることを目標にはしていません。
+        </p>
+        <p class="goal-quote">
+          まずは、<br>
+          <span class="hl">「英語って、こういう仕組みなんだ」</span><br>
+          という感覚を身につけること。
+        </p>
+        <p class="goal-body">
+          そして中学校に入ったときに、<br>
+          「英語を初めて勉強する」状態ではなく、<br>
+          <strong style="color:var(--pink-dark);">「知っていることを少しずつ増やしていく」状態</strong>でスタートできること。
+        </p>
+        <span class="goal-divider"></span>
+        <p class="goal-body" style="font-size:13px; color:var(--muted);">
+          小学生の今だからこそ、焦らず、少しずつ。<br>
+          中学校から始まる本格的な英語学習のための<br>
+          土台を、一緒に作っていきましょう。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CTA ===== -->
+  <div class="cta-section">
+    <p class="cta-title">中学英語を、<br>「初めまして」ではなく「知ってるよ」で始めよう。</p>
+    <p class="cta-sub">まずは体験授業で、小学生英語コースの学び方を体感してください。</p>
+    <div class="cta-btns">
+      <a href="index.html#tab-flow" class="btn-gold">体験授業を申し込む</a>
+      <a href="tel:084-975-4851" class="btn-outline">📞 電話で相談する</a>
+    </div>
+  </div>
+
+  <!-- ===== 固定バナー ===== -->
+  <div class="fixed-banner">
+    <div class="banner-text">
+      <strong>🎓体験授業 受付中！</strong>
+      <span>まずはお気軽にお問い合わせください</span>
+    </div>
+    <a href="index.html#tab-flow" class="banner-btn">入塾の流れを見る</a>
+  </div>
+
+</body>
+</html>
