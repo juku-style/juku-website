@@ -191,30 +191,90 @@
 
     /* ---------- ヒーロー ---------- */
     .hero {
-      background: var(--paper);
-      padding: 2.5rem 1.25rem 2.8rem;
-      text-align: left;
       position: relative;
-      overflow: visible;
-      border-bottom: none;
+      background: var(--paper);
+      padding: 2.5rem 1.25rem 3rem;
+      text-align: left;
+      overflow: hidden;
+      border-bottom: 1px dashed var(--rule);
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .hero::before, .hero::after { display: none; }
+
+    /* 背景スライドショー */
+    .hero-slideshow {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      background: var(--paper-warm);
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+      will-change: opacity;
+    }
+    .hero-slide.is-active { opacity: 1; }
+    /* 画像の上に淡いパステルの上乗せ：どんな画像でも文字が読める */
+    .hero-slideshow::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(253, 252, 247, 0.28) 0%,
+        rgba(253, 252, 247, 0.45) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* 前面テキストカード：写真にノートを貼ったように */
     .hero-inner-card {
       position: relative;
-      z-index: 1;
-      max-width: 620px;
+      z-index: 2;
+      max-width: 520px;
+      width: 100%;
       margin: 0 auto;
-      background: transparent;
-      border: none;
-      border-radius: 0;
-      padding: 0;
-      box-shadow: none;
-    }
-    .hero-inner-card > img {
-      border-radius: 14px !important;
+      background: rgba(253, 252, 247, 0.94);
       border: 1px solid var(--rule);
-      margin: 0 auto 1.6rem !important;
-      display: block;
+      border-radius: 20px;
+      padding: 1.9rem 1.6rem 2.1rem;
+      box-shadow: 0 8px 32px rgba(42, 38, 34, 0.14);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+    }
+    /* 上部に小さなマスキングテープ風 */
+    .hero-inner-card::before {
+      content: '';
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      width: 88px;
+      height: 18px;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(244, 184, 193, 0.55),
+        rgba(244, 184, 193, 0.55) 4px,
+        rgba(244, 184, 193, 0.32) 4px,
+        rgba(244, 184, 193, 0.32) 8px
+      );
+      border-radius: 2px;
+      opacity: 0.85;
+      z-index: 3;
+    }
+
+    /* アクセシビリティ：モーション低減設定時はフェードを止める */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-slide { transition: none; }
     }
     .hero-eyebrow {
       display: inline-block;
@@ -1470,15 +1530,17 @@
        ================================================================ */
     @media (min-width: 480px) {
       body { font-size: 15.5px; }
-      .hero { padding: 3rem 1.5rem 3.2rem; }
+      .hero { padding: 3rem 1.5rem 3.2rem; min-height: 660px; }
       .hero h1 { font-size: 28px; }
+      .hero-inner-card { padding: 2.1rem 1.9rem 2.3rem; }
       .section, .section-alt { padding: 3.2rem 1.5rem; }
       .inner { padding: 0; }
     }
 
     @media (min-width: 720px) {
+      .hero { min-height: 700px; }
       .hero h1 { font-size: 32px; line-height: 1.6; }
-      .hero-inner-card { max-width: 680px; }
+      .hero-inner-card { max-width: 580px; padding: 2.4rem 2.2rem 2.6rem; }
       .section-title { font-size: 26px; }
       .reviews-title { font-size: 24px; }
       .reviews-title .star-emoji { font-size: 22px; }
@@ -1497,7 +1559,8 @@
     @media (max-width: 380px) {
       body { font-size: 14.5px; }
       .hero h1 { font-size: 22px; }
-      .hero { padding: 2rem 1rem 2.3rem; }
+      .hero { padding: 2rem 0.9rem 2.3rem; min-height: 560px; }
+      .hero-inner-card { padding: 1.7rem 1.4rem 1.9rem; }
       .section, .section-alt { padding: 2.4rem 1rem; }
       .tab-btn { padding: 12px 10px 14px; font-size: 12px; }
       .reviews-inner { padding: 0 1rem; }
@@ -1542,8 +1605,14 @@
 
 <div class="tab-content active" id="tab-home">
   <div class="hero">
+    <!-- 背景スライドショー：3枚の画像がゆっくり切り替わります -->
+    <div class="hero-slideshow" aria-hidden="true">
+      <div class="hero-slide is-active" style="background-image:url('images/lp/hero-slide-1.jpg');"></div>
+      <div class="hero-slide" style="background-image:url('images/lp/hero-slide-2.jpg');"></div>
+      <div class="hero-slide" style="background-image:url('images/lp/hero-slide-3.jpg');"></div>
+    </div>
+    <!-- 前面テキストカード -->
     <div class="hero-inner-card">
-      <img src="images/lp/index-hero.png" alt="塾長と生徒の個別指導イメージ" style="display:block; width:100%; max-width:520px; height:auto; margin:0 auto 1.2rem; border-radius:18px;">
       <p class="hero-eyebrow">JUKU STYLE / 学習塾スタイル</p>
       <h1>福山市多治米町の<span class="hl">学習塾</span><br>小学生・中学生・高校生対応の<br><span class="hl">学習塾スタイル</span></h1>
       <p class="hero-sub">どこで学ぶか。それはライフスタイルの選択。<br>個別指導と自立型学習で、あなただけの学びを。</p>
@@ -3074,5 +3143,18 @@
 </script>
 <!-- お知らせポップアップ（GAS連携版）ここまで -->
 
+<!-- ヒーロー背景スライドショー：3枚をゆっくりクロスフェード -->
+<script>
+  (function initHeroSlideshow(){
+    var slides = document.querySelectorAll('.hero-slide');
+    if (!slides || slides.length < 2) return;
+    var idx = 0;
+    setInterval(function(){
+      slides[idx].classList.remove('is-active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('is-active');
+    }, 7000);
+  })();
+</script>
 </body>
 </html>
