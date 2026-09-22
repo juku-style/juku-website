@@ -11,7 +11,7 @@
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Zen+Kurenaido&family=Kaisei+Decol:wght@400;700&family=Caveat:wght@400;600;700&family=Kalam:wght@300;400;700&family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Zen+Kurenaido&family=Kaisei+Decol:wght@400;700&family=Caveat:wght@400;600;700&family=Kalam:wght@300;400;700&family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
   <style>
 
     /* ================================================================
@@ -189,22 +189,22 @@
     .tab-content.active { display: block; animation: fadeIn 0.35s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 
-    /* ---------- ヒーロー ---------- */
+    /* ---------- ヒーロー：写真全体表示 + 上乗せテキスト ---------- */
     .hero {
       position: relative;
-      background: var(--paper);
-      padding: 2.5rem 1.25rem 3rem;
-      text-align: left;
       overflow: hidden;
-      border-bottom: 1px dashed var(--rule);
-      min-height: 620px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 0;
+      background: var(--paper-warm);
+      border-bottom: none;
+      width: 100%;
+      /* 画像の16:9をそのまま維持。写真の上下左右を切り取らずに全体表示 */
+      aspect-ratio: 16 / 9;
+      display: block;
+      min-height: 0;
     }
     .hero::before, .hero::after { display: none; }
 
-    /* 背景スライドショー */
+    /* 3枚のスライド背景（imgタグ方式で画像全体を確実に表示） */
     .hero-slideshow {
       position: absolute;
       inset: 0;
@@ -215,66 +215,73 @@
     .hero-slide {
       position: absolute;
       inset: 0;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
       opacity: 0;
       transition: opacity 2s ease-in-out;
       will-change: opacity;
     }
     .hero-slide.is-active { opacity: 1; }
-    /* 画像の上に淡いパステルの上乗せ：どんな画像でも文字が読める */
-    .hero-slideshow::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(253, 252, 247, 0.28) 0%,
-        rgba(253, 252, 247, 0.45) 100%
-      );
-      pointer-events: none;
-    }
-
-    /* 前面テキストカード：写真にノートを貼ったように */
-    .hero-inner-card {
-      position: relative;
-      z-index: 2;
-      max-width: 520px;
+    .hero-slide img {
       width: 100%;
-      margin: 0 auto;
-      background: rgba(253, 252, 247, 0.94);
-      border: 1px solid var(--rule);
-      border-radius: 20px;
-      padding: 1.9rem 1.6rem 2.1rem;
-      box-shadow: 0 8px 32px rgba(42, 38, 34, 0.14);
-      backdrop-filter: blur(3px);
-      -webkit-backdrop-filter: blur(3px);
-    }
-    /* 上部に小さなマスキングテープ風 */
-    .hero-inner-card::before {
-      content: '';
-      position: absolute;
-      top: -9px;
-      left: 50%;
-      transform: translateX(-50%) rotate(-2deg);
-      width: 88px;
-      height: 18px;
-      background: repeating-linear-gradient(
-        45deg,
-        rgba(244, 184, 193, 0.55),
-        rgba(244, 184, 193, 0.55) 4px,
-        rgba(244, 184, 193, 0.32) 4px,
-        rgba(244, 184, 193, 0.32) 8px
-      );
-      border-radius: 2px;
-      opacity: 0.85;
-      z-index: 3;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
     }
 
-    /* アクセシビリティ：モーション低減設定時はフェードを止める */
+    /* 写真の左上に置くタイトル：水色×桜色 */
+    .hero-title {
+      position: absolute;
+      top: 6%;
+      left: 4.5%;
+      right: auto;
+      z-index: 2;
+      margin: 0;
+      padding: 0;
+      /* 幅制限は緩めに。長いラインは自然に伸ばす */
+      max-width: 80%;
+      font-family: 'Zen Maru Gothic', 'Klee One', 'Noto Sans JP', sans-serif;
+      letter-spacing: 0.02em;
+      /* 読みやすさは、うっすら白い影に一本化（ぼやけを避けつつ縁取りを軽く） */
+      filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.85))
+              drop-shadow(0 0 4px rgba(255, 255, 255, 0.55));
+    }
+    .hero-title-line {
+      display: block;
+      color: #5aa9c5;                     /* 参考画像の水色（一段はっきり） */
+      line-height: 1.45;
+      font-size: clamp(15px, 3.1vw, 30px);
+      font-weight: 700;
+      margin-bottom: 0.15em;
+      letter-spacing: 0.04em;
+    }
+    .hero-title-main {
+      color: #5aa9c5;                     /* 水色本体（はっきり） */
+      font-size: clamp(30px, 7vw, 68px);  /* 少し小さめに調整して改行を防ぐ */
+      font-weight: 900;
+      line-height: 1.15;
+      margin-top: 0.35em;
+      margin-bottom: 0;
+      letter-spacing: 0.02em;
+      white-space: nowrap;                /* 学習塾スタイルは必ず1行 */
+      /* 桜色のずれ影だけ、くっきりと */
+      text-shadow: -3px 3px 0 #e89aa6;
+    }
+
+    /* アクセシビリティ：モーション低減設定時はフェード停止 */
     @media (prefers-reduced-motion: reduce) {
       .hero-slide { transition: none; }
+    }
+
+    /* ---------- ヒーロー下段：サブ文・CTA・バッジ ---------- */
+    .hero-below {
+      background: var(--paper);
+      padding: 2rem 1.25rem 2.4rem;
+      border-bottom: 1px dashed var(--rule);
+      text-align: center;
+    }
+    .hero-below-inner {
+      max-width: 620px;
+      margin: 0 auto;
     }
     .hero-eyebrow {
       display: inline-block;
@@ -285,37 +292,24 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       padding: 0;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.9rem;
       border-radius: 0;
     }
     .hero-eyebrow::before { content: '― '; color: var(--sakura); }
     .hero-eyebrow::after  { content: ' ―'; color: var(--sakura); }
-    .hero h1 {
-      font-family: 'Klee One', serif;
-      font-size: 25px;
-      font-weight: 600;
-      color: var(--ink);
-      line-height: 1.65;
-      margin-bottom: 1.2rem;
-      letter-spacing: 0.02em;
-    }
-    .hero h1 .hl {
-      background: linear-gradient(transparent 62%, var(--marker-blue) 62%, var(--marker-blue) 92%, transparent 92%);
-      padding: 0 3px;
-    }
     .hero-sub {
       font-size: 14.5px;
       color: var(--ink-soft);
       line-height: 1.95;
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.6rem;
       font-weight: 400;
     }
     .hero-btns {
       display: flex;
       gap: 12px;
-      justify-content: flex-start;
+      justify-content: center;
       flex-wrap: wrap;
-      margin-top: 0.4rem;
+      margin: 0.4rem auto 1.4rem;
     }
 
     /* ---------- ボタン ---------- */
@@ -351,8 +345,8 @@
     .hero-badges {
       display: flex;
       gap: 8px;
-      justify-content: flex-start;
-      margin-top: 1.6rem;
+      justify-content: center;
+      margin: 0 auto;
       flex-wrap: wrap;
     }
     .hero-badge {
@@ -1530,17 +1524,13 @@
        ================================================================ */
     @media (min-width: 480px) {
       body { font-size: 15.5px; }
-      .hero { padding: 3rem 1.5rem 3.2rem; min-height: 660px; }
-      .hero h1 { font-size: 28px; }
-      .hero-inner-card { padding: 2.1rem 1.9rem 2.3rem; }
+      .hero-below { padding: 2.4rem 1.5rem 2.8rem; }
       .section, .section-alt { padding: 3.2rem 1.5rem; }
       .inner { padding: 0; }
     }
 
     @media (min-width: 720px) {
-      .hero { min-height: 700px; }
-      .hero h1 { font-size: 32px; line-height: 1.6; }
-      .hero-inner-card { max-width: 580px; padding: 2.4rem 2.2rem 2.6rem; }
+      .hero-below { padding: 2.8rem 1.5rem 3rem; }
       .section-title { font-size: 26px; }
       .reviews-title { font-size: 24px; }
       .reviews-title .star-emoji { font-size: 22px; }
@@ -1558,9 +1548,7 @@
 
     @media (max-width: 380px) {
       body { font-size: 14.5px; }
-      .hero h1 { font-size: 22px; }
-      .hero { padding: 2rem 0.9rem 2.3rem; min-height: 560px; }
-      .hero-inner-card { padding: 1.7rem 1.4rem 1.9rem; }
+      .hero-below { padding: 1.6rem 1rem 2rem; }
       .section, .section-alt { padding: 2.4rem 1rem; }
       .tab-btn { padding: 12px 10px 14px; font-size: 12px; }
       .reviews-inner { padding: 0 1rem; }
@@ -1604,17 +1592,23 @@
 </nav>
 
 <div class="tab-content active" id="tab-home">
+  <!-- ▼ ヒーロー：3枚の写真がゆっくり切り替わり、上に大きな文字が乗る ▼ -->
   <div class="hero">
-    <!-- 背景スライドショー：3枚の画像がゆっくり切り替わります -->
     <div class="hero-slideshow" aria-hidden="true">
-      <div class="hero-slide is-active" style="background-image:url('images/lp/hero-slide-1.jpg');"></div>
-      <div class="hero-slide" style="background-image:url('images/lp/hero-slide-2.jpg');"></div>
-      <div class="hero-slide" style="background-image:url('images/lp/hero-slide-3.jpg');"></div>
+      <div class="hero-slide is-active"><img src="images/lp/hero-slide-1.jpg" alt="" loading="eager"></div>
+      <div class="hero-slide"><img src="images/lp/hero-slide-2.jpg" alt="" loading="lazy"></div>
+      <div class="hero-slide"><img src="images/lp/hero-slide-3.jpg" alt="" loading="lazy"></div>
     </div>
-    <!-- 前面テキストカード -->
-    <div class="hero-inner-card">
+    <h1 class="hero-title">
+      <span class="hero-title-line">福山市多治米町の学習塾</span>
+      <span class="hero-title-line">小学生・中学生・高校生対応の</span>
+      <span class="hero-title-line hero-title-main">学習塾スタイル</span>
+    </h1>
+  </div>
+  <!-- ▲ ヒーロー画像下：サブテキスト・CTA・バッジ ▲ -->
+  <section class="hero-below">
+    <div class="hero-below-inner">
       <p class="hero-eyebrow">JUKU STYLE / 学習塾スタイル</p>
-      <h1>福山市多治米町の<span class="hl">学習塾</span><br>小学生・中学生・高校生対応の<br><span class="hl">学習塾スタイル</span></h1>
       <p class="hero-sub">どこで学ぶか。それはライフスタイルの選択。<br>個別指導と自立型学習で、あなただけの学びを。</p>
       <div class="hero-btns">
         <button class="btn-gold" onclick="showTab('flow')">体験授業を申し込む</button>
@@ -1626,7 +1620,7 @@
         <span class="hero-badge">QUEST（演習重視）</span>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- ▼ 塾長's EYES（毎日のひとこと） ▼ -->
   <section class="jukucho-eyes-section" id="jukucho-eyes-section" aria-label="塾長's EYES 毎日のひとこと">
