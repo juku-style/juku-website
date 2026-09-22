@@ -81,7 +81,7 @@
       font-family: 'Klee One', 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
       color: var(--ink);
       background: var(--paper);
-      padding-bottom: 92px;
+      padding-bottom: 60px;
       font-weight: 400;
       font-size: 15px;
       line-height: 1.95;
@@ -1286,12 +1286,13 @@
       right: 0;
       background: var(--paper);
       border-top: 1px solid var(--sakura-mid);
-      box-shadow: 0 -4px 20px rgba(42, 38, 34, 0.06);
-      padding: 10px 14px;
+      box-shadow: 0 -2px 10px rgba(42, 38, 34, 0.05);
+      padding: 6px 10px 6px 12px;
+      padding-bottom: calc(6px + env(safe-area-inset-bottom, 0px));
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 8px;
       z-index: 300;
     }
     .banner-text {
@@ -1299,32 +1300,41 @@
       flex-direction: column;
       min-width: 0;
       flex: 1;
+      overflow: hidden;
     }
     .banner-text strong {
       font-family: 'Klee One', sans-serif;
-      font-size: 13.5px;
+      font-size: 12.5px;
       color: var(--ink);
       font-weight: 600;
-      line-height: 1.3;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .banner-text span {
-      font-size: 11px;
+      font-size: 10.5px;
       color: var(--pencil);
-      line-height: 1.3;
-      margin-top: 2px;
+      line-height: 1.25;
+      margin-top: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .banner-btn {
       background: var(--sakura);
       color: var(--ink);
       border: 1.5px solid var(--sakura-deep);
       border-radius: 999px;
-      padding: 9px 16px;
-      font-size: 12.5px;
+      padding: 6px 13px;
+      font-size: 11.5px;
       font-weight: 500;
       cursor: pointer;
       font-family: 'Klee One', sans-serif;
       white-space: nowrap;
       transition: background 0.2s;
+      flex-shrink: 0;
+      line-height: 1.3;
     }
     .banner-btn:hover { background: var(--sakura-deep); color: #fff; }
 
@@ -1494,6 +1504,9 @@
       .reviews-scroll-wrap { margin: 0 -1rem; }
       .reviews-scroll { padding: 12px 1rem 20px; }
       .price { font-size: 26px; }
+      /* 極小画面ではサブ文字を隠して1行に収める */
+      .banner-text span { display: none; }
+      .banner-btn { padding: 6px 11px; font-size: 11px; }
     }
 
     /* ================================================================
@@ -1665,21 +1678,18 @@
       <p class="section-sub">一人ひとりに寄り添い、自分から学べる力を育てます。</p>
       <div class="features">
         <div class="feature-card">
-          <img src="images/lp/index-feature-01-group.png" alt="個別指導ラボ" style="display:block; width:100%; max-width:160px; height:auto; margin:0 auto 0.8rem;">
           <p class="feature-num">FEATURE 01</p>
           <h3>個別指導ラボ<span style="display:block; font-size:12px; font-weight:500; color:var(--muted); margin-top:4px;">〜授業はまるで研究室〜</span></h3>
           <p>先生と一緒に「なぜ？」を考え、理解を深めていく個別指導。解説と演習をバランスよく組み合わせ、じっくり理解を積み上げます。</p>
           <a href="lab-course.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:#fff;color:var(--black);font-size:13px;font-weight:700;padding:8px 18px;border-radius:99px;text-decoration:none;border:2.5px solid var(--black);box-shadow:3px 3px 0 var(--black);">詳しくはこちら →</a>
         </div>
         <div class="feature-card">
-          <img src="images/lp/pillar-check.png" alt="個別指導クエスト" style="display:block; width:100%; max-width:140px; height:auto; margin:0 auto 0.8rem;">
           <p class="feature-num">FEATURE 02</p>
           <h3>個別指導クエスト<span style="display:block; font-size:12px; font-weight:500; color:var(--muted); margin-top:4px;">〜知の探索に出かけよう〜</span></h3>
           <p>演習中心の個別指導。「自分で解けた！」を積み重ねながら、実際に「使える力」を育てていきます。</p>
           <a href="quest-course.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:#fff;color:var(--black);font-size:13px;font-weight:700;padding:8px 18px;border-radius:99px;text-decoration:none;border:2.5px solid var(--black);box-shadow:3px 3px 0 var(--black);">詳しくはこちら →</a>
         </div>
         <div class="feature-card">
-          <img src="images/lp/index-feature-03-english.png" alt="小学生英語コース" style="display:block; width:100%; max-width:140px; height:auto; margin:0 auto 0.8rem;">
           <p class="feature-num">FEATURE 03</p>
           <h3>小学生英語コース<span style="display:block; font-size:12px; font-weight:500; color:var(--muted); margin-top:4px;">〜中学英語を得点源に〜</span></h3>
           <p>英会話ではなく「読む・書く・理解する」を重視。中高生を教える講師が直接指導し、中学入学と同時に英語を得点源にします。</p>
@@ -1689,19 +1699,16 @@
 
       <div style="margin-top:16px; display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
         <div class="feature-card">
-          <img src="images/lp/pillar-school.png" alt="スタイルってどんな塾？" style="display:block; width:100%; max-width:140px; height:auto; margin:0 auto 0.8rem;">
           <p class="feature-num">FEATURE 04</p>
           <h3>スタイルってどんな塾？</h3>
           <p>小学生・中学生・高校生を対象に指導する学習塾です。勉強することが得意ではない塾生から、難関校・難関大学を目指す塾生まで、それぞれの目標に向けて頑張っています。</p>
         </div>
         <div class="feature-card">
-          <img src="images/lp/pillar-teacher.png" alt="すべて塾長が担当します" style="display:block; width:100%; max-width:140px; height:auto; margin:0 auto 0.8rem;">
           <p class="feature-num">FEATURE 05</p>
           <h3>すべて塾長が担当します</h3>
           <p>指導から保護者対応まで、すべて塾長が一貫して行います。生徒数を限定しておりますが、価格以上の満足度を保証いたします。無料の振替制度・オリジナル教材など、塾生への特典もたくさんあります。</p>
         </div>
         <div class="feature-card">
-          <img src="images/lp/pillar-book.png" alt="学習空間" style="display:block; width:100%; max-width:140px; height:auto; margin:0 auto 0.8rem;">
           <p class="feature-num">FEATURE 06</p>
           <h3>学習空間</h3>
           <p>１人あたりのスペースを十分に確保しています。２人掛け用の机を１人で使用してもらい、問題集・参考書・タブレットを快適に使用できます。居心地のよい学習環境を提供できるよう工夫しています。</p>
@@ -1725,7 +1732,7 @@
       </div>
 
       <!-- 小学生 -->
-      <p style="font-size:15px; font-weight:700; color:var(--sky-dark); margin-bottom:1rem; padding-left:0.8rem; border-left:3px solid var(--sky); display:flex; align-items:center; gap:8px;"><img src="images/lp/index-icon-elementary.png.png" alt="" style="width:36px; height:36px; object-fit:contain;">① 小学生クラス</p>
+      <p style="font-size:15px; font-weight:700; color:var(--sky-dark); margin-bottom:1rem; padding-left:0.8rem; border-left:3px solid var(--sky);">① 小学生クラス</p>
       <div class="courses" style="margin-bottom:2rem;">
         <div class="course-card featured">
           <span class="course-label gold">選ばれNo.1</span>
