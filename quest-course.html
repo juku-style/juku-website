@@ -10,442 +10,897 @@
   <meta property="og:description" content="演習中心の個別指導。クエストを一つずつ攻略するように、「自分で解ける力」を育てます。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Zen+Kurenaido&family=Kaisei+Decol:wght@400;700&family=Caveat:wght@400;600;700&family=Kalam:wght@300;400;700&family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
   <style>
+
+    /* ================================================================
+       個別指導クエスト｜手書きノート風デザイン（index.htmlと同じスタイル）
+       ヒーローは桜色でLAB（水色）と対比
+       ================================================================ */
+
+    /* ---------- 色と余白の変数 ---------- */
     :root {
-      --sky: #4DC8E8;
-      --sky-dark: #1DA8CC;
-      --sky-light: #E0F7FC;
-      --sky-pale: #F0FBFD;
-      --yellow: #ffd83d;
-      --orange: #ffaa5c;
-      --orange-dark: #ff8c42;
-      --orange-light: #ffe4cc;
-      --orange-pale: #fff4e8;
-      --text: #1a1a2e;
-      --black: #1a1a2e;
-      --muted: #666;
-      --white: #ffffff;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Noto Sans JP', sans-serif;
-      color: var(--text);
-      background: var(--orange-pale);
-      padding-bottom: 88px;
-      font-weight: 500;
-      line-height: 1.7;
-      overflow-x: hidden;
+      /* 紙とインク */
+      --paper:        #fdfcf7;
+      --paper-warm:   #f8f4ec;
+      --paper-cool:   #f7fbfc;
+      --ink:          #2a2622;
+      --ink-soft:     #4a453f;
+      --pencil:       #8a8378;
+      --pencil-soft:  #b8b1a5;
+
+      /* 指し色：淡い水色 */
+      --sora:         #a8d5e5;
+      --sora-deep:    #6db5cf;
+      --sora-mid:     #8ac6d9;
+      --sora-light:   #dceff5;
+      --sora-mist:    #eff7fa;
+
+      /* 指し色：桜色 */
+      --sakura:       #f4b8c1;
+      --sakura-deep:  #e59aa6;
+      --sakura-mid:   #eec0c6;
+      --sakura-light: #fce0e5;
+      --sakura-mist:  #fdf1f3;
+
+      /* 罫線・マーカー */
+      --rule:         #e6dfd3;
+      --rule-soft:    #efe9dd;
+      --marker-blue:  rgba(168, 213, 229, 0.45);
+      --marker-pink:  rgba(244, 184, 193, 0.45);
+
+      /* --- 互換用（HTMLインラインスタイルから参照される変数） --- */
+      --sky:        var(--sora);
+      --sky-dark:   var(--sora-deep);
+      --sky-mid:    var(--sora-mid);
+      --sky-light:  var(--sora-light);
+      --sky-pale:   var(--sora-mist);
+      --accent:     var(--sakura);
+      --yellow:     var(--sakura);
+      --yellow-soft:var(--sakura-light);
+      --pink:       var(--sakura);
+      --pink-soft:  var(--sakura-light);
+      --orange:     #efaeb4;
+      --green:      #b8dfc3;
+      --text:       var(--ink);
+      --black:      var(--ink);
+      --muted:      var(--pencil);
+      --gray:       var(--pencil);
+      --border:     var(--rule);
+      --white:      var(--paper);
     }
 
-    /* ===== ヘッダー ===== */
+    /* ---------- リセット・ベース ---------- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+    body {
+      font-family: 'Klee One', 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      padding-bottom: 60px;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 1.95;
+      letter-spacing: 0.02em;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    img { max-width: 100%; height: auto; }
+    a { color: inherit; }
+    ::selection { background: var(--sakura-light); color: var(--ink); }
+
+    /* ---------- ヘッダー ---------- */
     header {
-      background: var(--sky);
-      padding: 0 1.5rem;
-      height: 68px;
+      background: var(--paper);
+      padding: 0 1.25rem;
+      height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 200;
-      border-bottom: 3px solid var(--black);
+      border-bottom: 1px dashed var(--rule);
     }
-    header a.logo-link { text-decoration: none; color: inherit; }
-    .logo-main { font-family: 'Noto Serif JP', serif; font-size: 19px; color: #fff; letter-spacing: 0.05em; font-weight: 700; }
-    .logo-sub { font-size: 10px; color: rgba(255,255,255,0.95); letter-spacing: 0.1em; margin-top: 3px; font-weight: 700; }
+    header a.logo-link { text-decoration: none; color: inherit; display: block; }
+    .logo-main {
+      font-family: 'Klee One', serif;
+      font-size: 18px;
+      color: var(--ink);
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      line-height: 1.1;
+    }
+    .logo-sub {
+      font-family: 'Caveat', cursive;
+      font-size: 13px;
+      color: var(--pencil);
+      letter-spacing: 0.18em;
+      margin-top: 2px;
+      font-weight: 500;
+    }
     .header-btn {
-      background: var(--yellow);
-      color: var(--black);
-      border: 2.5px solid var(--black);
-      border-radius: 50px;
-      padding: 8px 16px;
-      font-size: 12px;
-      font-weight: 700;
+      background: var(--paper);
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      padding: 7px 15px;
+      font-size: 11.5px;
+      font-weight: 500;
+      cursor: pointer;
       text-decoration: none;
       white-space: nowrap;
-      box-shadow: 2px 2px 0 var(--black);
-      transition: all 0.15s;
+      font-family: 'Klee One', sans-serif;
+      transition: background 0.2s;
     }
-    .header-btn:hover { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--black); }
+    .header-btn:hover { background: var(--sora-mist); }
 
-    /* ===== ヒーロー ===== */
+    /* ---------- ヒーロー：クエスト用（桜色のノートページ） ---------- */
     .hero {
-      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
-      padding: 3rem 1.5rem 3.5rem;
+      background: var(--sakura-mist);
+      padding: 2.8rem 1.25rem 3rem;
       text-align: center;
       position: relative;
       overflow: hidden;
-      border-bottom: 3px solid var(--black);
-    }
-    /* 冒険マップ風の背景（点線＋星） */
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(255,255,255,0.35) 2px, transparent 2.5px);
-      background-size: 24px 24px;
-      pointer-events: none;
-    }
-    .hero::after {
-      content: '⚔ 🗺 ⭐ 🏆 💎';
-      position: absolute;
-      top: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 20px;
-      letter-spacing: 1.2em;
-      opacity: 0.35;
-      pointer-events: none;
+      border-bottom: 1px dashed var(--rule);
     }
     .hero-inner-card {
-      position: relative;
-      z-index: 1;
-      max-width: 720px;
+      max-width: 620px;
       margin: 0 auto;
-      background: #fff;
-      border: 3px solid var(--black);
-      border-radius: 22px;
-      padding: 2rem 1.6rem;
-      box-shadow: 8px 8px 0 var(--black);
+      position: relative;
     }
     .hero-eyebrow {
       display: inline-block;
-      background: var(--black);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      padding: 5px 14px;
-      border-radius: 50px;
-      margin-bottom: 1rem;
+      color: var(--pencil);
+      font-family: 'Caveat', cursive;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.9rem;
     }
-    .hero-icon { font-size: 44px; margin-bottom: 0.4rem; display: block; }
+    /* QUEST は水色のダッシュ（LAB＝桜色ダッシュの反転） */
+    .hero-eyebrow::before { content: '― '; color: var(--sora-deep); }
+    .hero-eyebrow::after  { content: ' ―'; color: var(--sora-deep); }
+    .hero-icon {
+      display: block;
+      font-size: 46px;
+      line-height: 1;
+      margin: 0 auto 0.8rem;
+    }
     .hero h1 {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 30px;
-      font-weight: 700;
-      color: var(--black);
+      font-family: 'Klee One', serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--ink);
       line-height: 1.5;
-      margin-bottom: 1rem;
+      margin-bottom: 1.1rem;
+      letter-spacing: 0.02em;
     }
+    /* QUEST は水色のマーカー（LAB＝水色と同じ・ページ全体を統一） */
     .hero h1 .hl {
-      background: linear-gradient(transparent 65%, var(--orange-light) 65%);
-      padding: 0 4px;
+      background: linear-gradient(transparent 62%, var(--marker-blue) 62%, var(--marker-blue) 92%, transparent 92%);
+      padding: 0 5px;
     }
-    .hero-sub { font-size: 14px; color: var(--text); line-height: 1.85; margin-bottom: 1.4rem; }
-    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .hero-sub {
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      line-height: 1.95;
+      margin-bottom: 1.8rem;
+      font-weight: 400;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
+    /* ---------- ボタン ---------- */
     .btn-gold, .btn-outline {
-      display: inline-block;
-      padding: 13px 28px;
-      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 26px;
+      border-radius: 999px;
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 500;
       text-decoration: none;
       cursor: pointer;
-      border: 3px solid var(--black);
-      transition: all 0.15s;
-      box-shadow: 4px 4px 0 var(--black);
+      font-family: 'Klee One', sans-serif;
+      transition: transform 0.15s, background 0.15s;
+      letter-spacing: 0.04em;
+      box-shadow: none;
     }
-    .btn-gold { background: var(--yellow); color: var(--black); }
-    .btn-outline { background: #fff; color: var(--black); }
-    .btn-gold:hover, .btn-outline:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--black); }
+    .btn-gold {
+      background: var(--sakura);
+      color: var(--ink);
+      border: 1.5px solid var(--sakura-deep);
+    }
+    .btn-gold:hover { background: var(--sakura-deep); color: #fff; transform: translateY(-1px); }
+    .btn-outline {
+      background: var(--paper);
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+    }
+    .btn-outline:hover { background: var(--sora-mist); transform: translateY(-1px); }
 
-    /* ===== セクション ===== */
-    .section { padding: 3rem 1.5rem; background: #fff; }
-    .section-alt { padding: 3rem 1.5rem; background: var(--orange-pale); }
-    .inner { max-width: 920px; margin: 0 auto; }
+    /* ---------- 汎用セクション ---------- */
+    .section, .section-alt {
+      padding: 2.8rem 1.25rem;
+      background: var(--paper);
+    }
+    .section-alt {
+      background: var(--sora-mist);
+    }
+    .inner { max-width: 720px; margin: 0 auto; }
 
+    /* 手書き風セクションタイトル */
     .section-title {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--black);
-      text-align: center;
-      margin-bottom: 0.5rem;
-      line-height: 1.5;
+      font-family: 'Klee One', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+      position: relative;
+      padding: 0 4px;
+      letter-spacing: 0.03em;
+      line-height: 1.35;
     }
-    .section-title .accent-line {
+    .section-title::before {
+      content: '❁';
+      color: var(--sakura);
+      font-size: 14px;
+      margin-right: 8px;
       display: inline-block;
-      width: 60px;
-      height: 5px;
-      background: var(--orange);
-      border: 2px solid var(--black);
-      border-radius: 3px;
-      margin: 0.8rem auto 0;
+    }
+    .accent-line {
+      display: inline-block;
+      width: 90px;
+      height: 6px;
+      margin-top: 4px;
+      margin-left: 22px;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 6' preserveAspectRatio='none'><path d='M0,3 Q5,0.5 10,3 T20,3 T30,3 T40,3' fill='none' stroke='%23a8d5e5' stroke-width='2' stroke-linecap='round'/></svg>");
+      background-repeat: repeat-x;
+      background-size: 24px 6px;
       vertical-align: middle;
     }
-    .section-sub { font-size: 14px; color: var(--muted); text-align: center; margin-bottom: 2rem; }
+    .section-sub {
+      font-size: 13.5px;
+      color: var(--pencil);
+      margin-bottom: 2rem;
+      line-height: 1.85;
+      font-weight: 400;
+      margin-top: 0.9rem;
+      margin-left: 22px;
+    }
 
-    /* ===== コンセプトカード ===== */
+    /* ---------- クエストコースとは？：コンセプトカード ---------- */
     .concept-card {
-      background: var(--orange-pale);
-      border: 3px solid var(--black);
-      border-radius: 16px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 18px;
       padding: 1.8rem 1.5rem;
-      box-shadow: 5px 5px 0 var(--orange);
+      box-shadow: 0 2px 12px rgba(42, 38, 34, 0.04);
+      position: relative;
     }
-    .concept-card p { font-size: 14px; line-height: 1.95; color: var(--text); }
-    .concept-card p + p { margin-top: 1rem; }
-    .concept-card strong.pop {
-      background: linear-gradient(transparent 60%, var(--yellow) 60%);
-      font-weight: 700;
+    .concept-card p {
+      font-size: 14.5px;
+      color: var(--ink);
+      line-height: 2;
+      margin-bottom: 1.2rem;
+      font-weight: 400;
+    }
+    .concept-card p:last-child { margin-bottom: 0; }
+    .concept-card .pop {
+      background: linear-gradient(transparent 62%, var(--marker-pink) 62%);
+      padding: 0 3px;
+      color: var(--ink);
+      font-weight: 600;
     }
 
-    /* ===== クエストサイクル ===== */
+    /* ---------- クエスト攻略サイクル：4ステップカード ---------- */
     .quest-cycle {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 1.5rem;
+      grid-template-columns: 1fr;
+      gap: 16px;
     }
     .quest-step {
-      background: #fff;
-      border: 3px solid var(--black);
-      border-radius: 14px;
-      padding: 1.3rem 1.1rem;
-      box-shadow: 4px 4px 0 var(--orange-dark);
-      position: relative;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      padding: 1.5rem 1.3rem 1.4rem;
       text-align: center;
+      position: relative;
+      box-shadow: 0 2px 10px rgba(42, 38, 34, 0.04);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .quest-step:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(42, 38, 34, 0.08);
     }
     .quest-step-num {
       position: absolute;
-      top: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--orange-dark);
-      color: #fff;
-      width: 36px;
-      height: 36px;
+      top: 12px;
+      left: 12px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
-      border: 3px solid var(--black);
+      background: var(--paper);
+      color: var(--ink);
+      border: 2px solid var(--sakura);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Caveat', cursive;
+      font-size: 20px;
       font-weight: 700;
-      font-size: 15px;
+      line-height: 1;
     }
-    .quest-step-icon { font-size: 32px; display: block; margin: 0.6rem 0 0.5rem; }
-    .quest-step h3 { font-size: 15px; font-weight: 700; margin-bottom: 0.4rem; color: var(--black); }
-    .quest-step p { font-size: 12.5px; line-height: 1.75; color: #444; }
-
-    .cycle-arrow {
-      text-align: center;
-      margin-top: 1.4rem;
-      font-size: 14px;
-      color: var(--orange-dark);
-      font-weight: 700;
+    .quest-step-icon {
+      display: block;
+      font-size: 38px;
+      line-height: 1;
+      margin: 0.4rem 0 0.9rem;
     }
-    .cycle-arrow strong { font-family: 'Noto Serif JP', serif; }
-
-    /* ===== おすすめチェックリスト ===== */
-    .check-card {
-      background: #fff;
-      border: 3px solid var(--black);
-      border-radius: 16px;
-      padding: 1.8rem 1.5rem;
-      box-shadow: 6px 6px 0 var(--yellow);
+    .quest-step h3 {
+      font-family: 'Klee One', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+      line-height: 1.55;
     }
-    .check-card h3 {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 1.2rem;
-      color: var(--orange-dark);
-      text-align: center;
-      line-height: 1.5;
-    }
-    .check-list { list-style: none; display: grid; gap: 0.8rem; }
-    .check-list li {
-      font-size: 14px;
-      line-height: 1.7;
-      padding-left: 2.2rem;
-      position: relative;
-      color: var(--text);
-    }
-    .check-list li::before {
-      content: '⚔';
-      position: absolute;
-      left: 0;
-      top: -2px;
-      background: var(--orange-dark);
-      color: #fff;
-      width: 26px;
-      height: 26px;
-      border: 2px solid var(--black);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
+    .quest-step p {
       font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.9;
+      font-weight: 400;
     }
 
-    /* ===== 授業バランス図 ===== */
+    /* サイクル矢印（4ステップの下）：手書き風の点線カプセル */
+    .cycle-arrow {
+      margin-top: 1.6rem;
+      text-align: center;
+      font-family: 'Klee One', sans-serif;
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.85;
+      padding: 0.9rem 1.2rem;
+      background: var(--paper);
+      border: 1px dashed var(--sakura-mid);
+      border-radius: 20px;
+    }
+    .cycle-arrow strong {
+      color: var(--sakura-deep);
+      font-weight: 600;
+      background: linear-gradient(transparent 62%, var(--marker-pink) 62%);
+      padding: 0 3px;
+    }
+
+    /* ---------- 授業のバランス ---------- */
     .balance-card {
-      background: #fff;
-      border: 3px solid var(--black);
-      border-radius: 16px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 18px;
       padding: 1.8rem 1.5rem;
-      box-shadow: 5px 5px 0 var(--orange);
+      box-shadow: 0 2px 12px rgba(42, 38, 34, 0.04);
     }
     .balance-title {
+      font-family: 'Klee One', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 1.4rem;
       text-align: center;
-      font-family: 'Noto Serif JP', serif;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--orange-dark);
-      margin-bottom: 1.2rem;
     }
-    .bar-row { display: grid; grid-template-columns: 90px 1fr; gap: 0.8rem; align-items: center; margin-bottom: 0.8rem; }
-    .bar-label { font-size: 13px; font-weight: 700; color: var(--text); }
-    .bar-track { background: var(--orange-pale); border: 2px solid var(--black); border-radius: 8px; height: 26px; overflow: hidden; }
-    .bar-fill { height: 100%; background: var(--orange-dark); border-right: 2px solid var(--black); display: flex; align-items: center; justify-content: flex-end; padding-right: 0.6rem; font-size: 11px; font-weight: 700; color: #fff; }
-    .balance-note {
-      margin-top: 1rem;
-      text-align: center;
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+    .bar-label {
       font-size: 13px;
-      color: var(--muted);
-      line-height: 1.7;
+      color: var(--ink);
+      width: 84px;
+      flex-shrink: 0;
+      font-family: 'Klee One', sans-serif;
+      font-weight: 600;
+    }
+    .bar-track {
+      flex: 1;
+      height: 22px;
+      background: var(--paper-warm);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+    }
+    /* QUEST は演習重視の桜色バー（LABは水色） */
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--sakura-light) 0%, var(--sakura) 100%);
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 10px;
+      border-radius: 999px;
+      font-family: 'Klee One', sans-serif;
+      white-space: nowrap;
+    }
+    .balance-note {
+      margin-top: 1.4rem;
+      padding-top: 1.2rem;
+      border-top: 1px dashed var(--rule);
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      line-height: 1.9;
+    }
+    .balance-note strong {
+      color: var(--ink);
+      background: linear-gradient(transparent 62%, var(--marker-pink) 62%);
+      padding: 0 2px;
+      font-weight: 600;
     }
 
-    /* ===== 料金 ===== */
-    .grade-label {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--orange-dark);
-      margin-bottom: 1rem;
-      padding-left: 0.8rem;
-      border-left: 3px solid var(--orange);
+    /* ---------- こんな生徒におすすめ：チェックカード ---------- */
+    .check-card {
+      background: var(--sakura-mist);
+      border: 1px solid var(--sakura-mid);
+      border-radius: 18px;
+      padding: 1.8rem 1.5rem 1.7rem;
+      box-shadow: 0 3px 14px rgba(228, 154, 166, 0.14);
+      position: relative;
     }
+    /* 上部にマスキングテープ */
+    .check-card::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      width: 90px;
+      height: 22px;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(168, 213, 229, 0.55),
+        rgba(168, 213, 229, 0.55) 4px,
+        rgba(168, 213, 229, 0.35) 4px,
+        rgba(168, 213, 229, 0.35) 8px
+      );
+      border-radius: 2px;
+      opacity: 0.85;
+    }
+    .check-card h3 {
+      font-family: 'Klee One', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .check-list li {
+      position: relative;
+      padding-left: 28px;
+      margin-bottom: 0.7rem;
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.85;
+    }
+    .check-list li:last-child { margin-bottom: 0; }
+    .check-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 4px;
+      top: 3px;
+      color: var(--sakura-deep);
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    /* ---------- 学年ラベル ---------- */
+    .grade-label {
+      font-family: 'Klee One', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 2rem 0 1rem;
+      padding-left: 12px;
+      border-left: 3px solid var(--sakura);
+      line-height: 1.5;
+    }
+    .grade-label:first-child { margin-top: 0; }
+
+    /* ---------- コースカード ---------- */
     .courses {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
+      grid-template-columns: 1fr;
+      gap: 16px;
     }
     .course-card {
-      background: #fff;
-      border: 3px solid var(--black);
-      border-radius: 14px;
-      padding: 1.3rem 1.2rem;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      padding: 1.5rem 1.3rem;
+      box-shadow: 0 2px 10px rgba(42, 38, 34, 0.04);
+      transition: transform 0.15s, box-shadow 0.15s;
       position: relative;
-      box-shadow: 4px 4px 0 var(--black);
     }
-    .course-card.featured { background: linear-gradient(180deg, #fffce6 0%, #fff 100%); }
+    .course-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(42, 38, 34, 0.08);
+    }
+    .course-card.featured {
+      background: var(--sora-mist);
+      border-color: var(--sora);
+    }
     .course-label {
-      position: absolute;
-      top: -12px;
-      left: 12px;
-      background: #fff;
-      color: var(--black);
-      border: 2.5px solid var(--black);
-      border-radius: 50px;
-      padding: 3px 12px;
+      font-family: 'Klee One', sans-serif;
       font-size: 11px;
+      background: var(--paper);
+      color: var(--ink);
+      padding: 3px 12px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 0.9rem;
+      font-weight: 500;
+      border: 1px solid var(--sora);
+      letter-spacing: 0.04em;
+    }
+    .course-label.gold {
+      background: var(--sakura);
+      color: var(--ink);
+      border-color: var(--sakura-deep);
+    }
+    .course-card h3 {
+      font-family: 'Klee One', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+      line-height: 1.5;
+    }
+    .price {
+      font-family: 'Caveat', cursive;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.8rem;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+    }
+    .price span {
+      font-family: 'Klee One', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--pencil);
+      margin-left: 4px;
+    }
+    .course-divider {
+      height: 1px;
+      background: none;
+      border-top: 1px dashed var(--rule);
+      margin: 0.6rem 0 0.8rem;
+    }
+    .course-feature {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.85;
+      font-weight: 400;
+      padding-left: 18px;
+      position: relative;
+      margin-bottom: 2px;
+    }
+    .course-feature::before {
+      content: '・';
+      color: var(--sakura);
+      position: absolute;
+      left: 4px;
       font-weight: 700;
     }
-    .course-label.gold { background: var(--yellow); }
-    .course-card h3 { font-family: 'Noto Serif JP', serif; font-size: 18px; margin: 0.5rem 0 0.5rem; color: var(--black); }
-    .price { font-size: 22px; font-weight: 700; color: var(--orange-dark); margin-bottom: 0.6rem; }
-    .price span { font-size: 12px; color: var(--muted); font-weight: 500; margin-left: 4px; }
-    .course-divider { height: 2px; background: var(--black); opacity: 0.15; margin: 0.6rem 0; }
-    .course-feature { font-size: 12.5px; color: #444; padding: 0.25rem 0; line-height: 1.5; }
-    .course-feature::before { content: '● '; color: var(--orange); font-weight: 900; }
 
-    /* ===== LAB vs QUEST 比較 ===== */
+    /* ---------- LAB vs QUEST 比較 ---------- */
     .compare-wrap {
-      background: linear-gradient(135deg, var(--orange-pale) 0%, var(--orange-light) 100%);
-      border: 3px solid var(--black);
+      background: var(--paper);
+      border: 1px solid var(--rule);
       border-radius: 20px;
       padding: 2rem 1.4rem;
-      box-shadow: 6px 6px 0 var(--black);
+      box-shadow: 0 3px 14px rgba(42, 38, 34, 0.05);
     }
     .compare-title {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Klee One', serif;
       font-size: 22px;
-      font-weight: 700;
+      font-weight: 600;
+      color: var(--ink);
       text-align: center;
       line-height: 1.5;
       margin-bottom: 0.5rem;
+      letter-spacing: 0.02em;
     }
-    .compare-sub { font-size: 13px; text-align: center; color: var(--muted); margin-bottom: 1.6rem; }
-    .compare-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 1.4rem; }
-    .compare-card { background: #fff; border: 3px solid var(--black); border-radius: 14px; padding: 1.3rem 1.2rem; }
-    .compare-card.lab { box-shadow: 4px 4px 0 var(--sky-dark); }
-    .compare-card.quest { box-shadow: 4px 4px 0 var(--orange); }
-    .compare-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; margin-bottom: 6px; }
-    .compare-card.lab .compare-eyebrow { color: var(--sky-dark); }
-    .compare-card.quest .compare-eyebrow { color: var(--orange); }
-    .compare-name { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; }
-    .compare-focus { font-size: 13px; font-weight: 700; margin-bottom: 12px; }
-    .compare-card.lab .compare-focus { color: var(--sky-dark); }
-    .compare-card.quest .compare-focus { color: var(--orange); }
-    .compare-bar { font-size: 12px; line-height: 2; margin-bottom: 12px; color: var(--text); }
-    .compare-card.lab .compare-bar .fill { color: var(--sky-dark); }
-    .compare-card.quest .compare-bar .fill { color: var(--orange); }
-    .compare-desc { font-size: 12.5px; color: var(--muted); line-height: 1.75; }
+    .compare-sub {
+      font-size: 13px;
+      color: var(--pencil);
+      text-align: center;
+      margin-bottom: 1.8rem;
+      line-height: 1.85;
+    }
+    .compare-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .compare-card {
+      border-radius: 14px;
+      padding: 1.3rem 1.2rem 1.4rem;
+    }
+    .compare-card.lab {
+      background: var(--sora-mist);
+      border: 1px solid var(--sora);
+    }
+    .compare-card.quest {
+      background: var(--sakura-mist);
+      border: 1px solid var(--sakura-mid);
+    }
+    .compare-eyebrow {
+      font-family: 'Caveat', cursive;
+      font-size: 13px;
+      color: var(--pencil);
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .compare-name {
+      font-family: 'Klee One', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .compare-focus {
+      font-size: 13px;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      font-family: 'Klee One', sans-serif;
+      font-weight: 600;
+    }
+    .compare-bar {
+      font-size: 12.5px;
+      line-height: 1.95;
+      color: var(--ink-soft);
+      font-family: 'Klee One', sans-serif;
+      margin-bottom: 0.8rem;
+    }
+    .compare-card.lab .fill {
+      color: var(--sora-deep);
+      letter-spacing: -1px;
+      font-weight: 700;
+    }
+    .compare-card.quest .fill {
+      color: var(--sakura-deep);
+      letter-spacing: -1px;
+      font-weight: 700;
+    }
+    .compare-desc {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.85;
+    }
     .compare-goal {
-      background: #fff;
-      border: 2px solid var(--black);
-      border-radius: 12px;
-      padding: 1.2rem 1rem;
+      margin-top: 1.6rem;
+      padding-top: 1.4rem;
+      border-top: 1px dashed var(--rule);
       text-align: center;
     }
-    .compare-goal p:first-child { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
-    .compare-goal p:last-child { font-size: 12.5px; color: var(--muted); line-height: 1.85; }
+    .compare-goal p {
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      line-height: 1.9;
+      margin-bottom: 0.5rem;
+    }
+    .compare-goal p:last-child { margin-bottom: 0; }
 
-    /* ===== CTA ===== */
+    /* インラインで色指定されている強調文字を上書き */
+    .compare-goal strong[style*="color:var(--sky-dark)"] {
+      color: var(--sora-deep) !important;
+      background: linear-gradient(transparent 62%, var(--marker-blue) 62%);
+      padding: 0 3px;
+    }
+    .compare-goal strong[style*="color:var(--orange)"] {
+      color: var(--sakura-deep) !important;
+      background: linear-gradient(transparent 62%, var(--marker-pink) 62%);
+      padding: 0 3px;
+    }
+
+    /* ラボコースへの案内リンク：インラインを穏やかに上書き */
+    a[href="lab-course.html"][style*="box-shadow:3px 3px 0 var(--sky-dark)"] {
+      background: var(--paper) !important;
+      color: var(--ink) !important;
+      border: 1.5px solid var(--ink) !important;
+      box-shadow: none !important;
+      font-family: 'Klee One', sans-serif !important;
+      font-size: 13px !important;
+      font-weight: 500 !important;
+      border-radius: 999px !important;
+      padding: 10px 22px !important;
+      transition: background 0.2s !important;
+    }
+    a[href="lab-course.html"][style*="box-shadow:3px 3px 0 var(--sky-dark)"]:hover {
+      background: var(--sora-mist) !important;
+    }
+
+    /* 料金末尾の但し書き（インラインスタイル） */
+    p[style*="color:#999"][style*="font-size:12px"] {
+      color: var(--pencil) !important;
+      font-family: 'Klee One', sans-serif !important;
+      font-size: 12px !important;
+      margin-top: 1rem !important;
+      font-style: normal !important;
+    }
+
+    /* ---------- CTA セクション ---------- */
     .cta-section {
-      background: var(--orange);
-      padding: 3rem 1.5rem;
+      background: var(--sakura-mist);
+      padding: 3rem 1.25rem;
       text-align: center;
-      border-top: 3px solid var(--black);
-      border-bottom: 3px solid var(--black);
+      border-top: 1px dashed var(--rule);
+      border-bottom: 1px dashed var(--rule);
+      position: relative;
     }
-    .cta-title { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 700; color: #fff; line-height: 1.5; margin-bottom: 0.8rem; }
-    .cta-sub { font-size: 13px; color: rgba(255,255,255,0.95); margin-bottom: 1.5rem; }
-    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    /* 上部にマスキングテープ */
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      width: 100px;
+      height: 22px;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(168, 213, 229, 0.55),
+        rgba(168, 213, 229, 0.55) 4px,
+        rgba(168, 213, 229, 0.35) 4px,
+        rgba(168, 213, 229, 0.35) 8px
+      );
+      border-radius: 2px;
+      opacity: 0.75;
+    }
+    .cta-title {
+      font-family: 'Klee One', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.55;
+      margin-bottom: 0.7rem;
+      letter-spacing: 0.02em;
+    }
+    .cta-sub {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+    .cta-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
-    /* ===== 固定バナー ===== */
+    /* ---------- 固定バナー（index と同じ・スリム版） ---------- */
     .fixed-banner {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: var(--black);
-      color: #fff;
-      padding: 0.7rem 1rem;
+      background: var(--paper);
+      border-top: 1px solid var(--sakura-mid);
+      box-shadow: 0 -2px 10px rgba(42, 38, 34, 0.05);
+      padding: 6px 10px 6px 12px;
+      padding-bottom: calc(6px + env(safe-area-inset-bottom, 0px));
       display: flex;
       align-items: center;
       justify-content: space-between;
-      z-index: 150;
-      border-top: 3px solid var(--yellow);
-      gap: 0.8rem;
+      gap: 8px;
+      z-index: 300;
     }
-    .banner-text { font-size: 12px; line-height: 1.4; }
-    .banner-text strong { display: block; font-size: 13px; }
-    .banner-btn {
-      background: var(--yellow);
-      color: var(--black);
-      border: 2px solid #fff;
-      border-radius: 50px;
-      padding: 7px 14px;
-      font-size: 12px;
-      font-weight: 700;
-      text-decoration: none;
+    .banner-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      flex: 1;
+      overflow: hidden;
+    }
+    .banner-text strong {
+      font-family: 'Klee One', sans-serif;
+      font-size: 12.5px;
+      color: var(--ink);
+      font-weight: 600;
+      line-height: 1.25;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .banner-text span {
+      font-size: 10.5px;
+      color: var(--pencil);
+      line-height: 1.25;
+      margin-top: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .banner-btn {
+      background: var(--sakura);
+      color: var(--ink);
+      border: 1.5px solid var(--sakura-deep);
+      border-radius: 999px;
+      padding: 6px 13px;
+      font-size: 11.5px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: 'Klee One', sans-serif;
+      white-space: nowrap;
+      transition: background 0.2s;
+      text-decoration: none;
       flex-shrink: 0;
+      line-height: 1.3;
+    }
+    .banner-btn:hover { background: var(--sakura-deep); color: #fff; }
+
+    /* ================================================================
+       ▼ タブレット・PC 表示
+       ================================================================ */
+    @media (min-width: 480px) {
+      body { font-size: 15.5px; }
+      .hero { padding: 3rem 1.5rem 3.2rem; }
+      .hero h1 { font-size: 30px; }
+      .section, .section-alt { padding: 3.2rem 1.5rem; }
+      .courses { grid-template-columns: repeat(2, 1fr); }
+      .compare-cards { grid-template-columns: 1fr 1fr; }
+      .quest-cycle { grid-template-columns: repeat(2, 1fr); }
     }
 
-    @media (max-width: 480px) {
+    @media (min-width: 720px) {
+      .hero h1 { font-size: 34px; line-height: 1.5; }
+      .section-title { font-size: 26px; }
+      .compare-title { font-size: 24px; }
+      .cta-title { font-size: 26px; }
+    }
+
+    @media (min-width: 960px) {
+      .courses { grid-template-columns: repeat(4, 1fr); }
+      .quest-cycle { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    @media (max-width: 380px) {
+      body { font-size: 14.5px; }
+      .hero { padding: 2.3rem 1rem 2.5rem; }
       .hero h1 { font-size: 24px; }
-      .section-title { font-size: 22px; }
-      .bar-row { grid-template-columns: 70px 1fr; }
-      .hero::after { display: none; }
+      .hero-icon { font-size: 40px; }
+      .section, .section-alt { padding: 2.4rem 1rem; }
+      .price { font-size: 26px; }
+      /* 極小画面ではサブ文字を隠して1行に収める */
+      .banner-text span { display: none; }
+      .banner-btn { padding: 6px 11px; font-size: 11px; }
+    }
+
+    /* 印刷 */
+    @media print {
+      .header-btn, .fixed-banner { display: none; }
+      body { background: #fff; color: #000; }
     }
   </style>
 </head>
