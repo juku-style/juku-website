@@ -11,58 +11,65 @@
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Zen+Kurenaido&family=Kaisei+Decol:wght@400;700&family=Caveat:wght@400;600;700&family=Kalam:wght@300;400;700&family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
 
     /* ================================================================
-       学習塾スタイル｜手書きノート風リデザイン
-       ─ 白い紙、黒いインク、指し色は淡い水色と桜色 ─
+       学習塾スタイル｜クリーン・コーポレート（白×ブルー）リデザイン
+       ─ 白い背景、黒い見出し、指し色は一色のブルー ─
        ================================================================ */
 
     /* ---------- 色と余白の変数 ---------- */
     :root {
-      /* 紙とインク */
-      --paper:        #fdfcf7;   /* ほぼ白、ほんのりクリーム */
-      --paper-warm:   #f8f4ec;
-      --paper-cool:   #f7fbfc;
-      --ink:          #2a2622;   /* 濃い黒インク */
-      --ink-soft:     #4a453f;
-      --pencil:       #8a8378;   /* 鉛筆グレー */
-      --pencil-soft:  #b8b1a5;
+      /* 背景・インク */
+      --paper:        #ffffff;   /* 純白 */
+      --paper-warm:   #f7f8fa;
+      --paper-cool:   #f5f8fd;
+      --ink:          #1a1a1e;   /* ほぼ黒の見出し */
+      --ink-soft:     #3c3f45;
+      --pencil:       #70747c;   /* サブテキストのグレー */
+      --pencil-soft:  #a3a7af;
 
-      /* 指し色：淡い水色 */
-      --sora:         #a8d5e5;
-      --sora-deep:    #6db5cf;
-      --sora-mid:     #8ac6d9;
-      --sora-light:   #dceff5;
-      --sora-mist:    #eff7fa;
+      /* 指し色：コーポレートブルー（1色） */
+      --blue:         #2f6bed;
+      --blue-deep:    #2457c9;
+      --blue-mid:     #4f85f2;
+      --blue-light:   #d9e4fb;
+      --blue-mist:    #eef3fe;
 
-      /* 指し色：桜色 */
-      --sakura:       #f4b8c1;
-      --sakura-deep:  #e59aa6;
-      --sakura-mid:   #eec0c6;
-      --sakura-light: #fce0e5;
-      --sakura-mist:  #fdf1f3;
+      /* 互換マッピング（旧：水色系 → ブルー） */
+      --sora:         var(--blue);
+      --sora-deep:    var(--blue-deep);
+      --sora-mid:     var(--blue-mid);
+      --sora-light:   var(--blue-light);
+      --sora-mist:    var(--blue-mist);
+
+      /* 互換マッピング（旧：桜色系 → ブルー寄りに統一） */
+      --sakura:       var(--blue);
+      --sakura-deep:  var(--blue-deep);
+      --sakura-mid:   var(--blue-light);
+      --sakura-light: var(--blue-light);
+      --sakura-mist:  var(--blue-mist);
 
       /* 罫線・マーカー */
-      --rule:         #e6dfd3;
-      --rule-soft:    #efe9dd;
-      --marker-blue:  rgba(168, 213, 229, 0.45);
-      --marker-pink:  rgba(244, 184, 193, 0.45);
+      --rule:         #e6e8ec;
+      --rule-soft:    #eef0f3;
+      --marker-blue:  rgba(47, 107, 237, 0.14);
+      --marker-pink:  rgba(47, 107, 237, 0.14);
 
       /* --- 互換用（HTMLインラインスタイルから参照される変数） --- */
-      --sky:        var(--sora);
-      --sky-dark:   var(--sora-deep);
-      --sky-mid:    var(--sora-mid);
-      --sky-light:  var(--sora-light);
-      --sky-pale:   var(--sora-mist);
-      --accent:     var(--sakura);
-      --yellow:     var(--sakura);
-      --yellow-soft:var(--sakura-light);
-      --pink:       var(--sakura);
-      --pink-soft:  var(--sakura-light);
-      --orange:     #efaeb4;
-      --green:      #b8dfc3;
+      --sky:        var(--blue);
+      --sky-dark:   var(--blue-deep);
+      --sky-mid:    var(--blue-mid);
+      --sky-light:  var(--blue-mist);
+      --sky-pale:   var(--blue-mist);
+      --accent:     var(--blue);
+      --yellow:     var(--blue);
+      --yellow-soft:var(--blue-light);
+      --pink:       var(--blue);
+      --pink-soft:  var(--blue-light);
+      --orange:     var(--blue);
+      --green:      #2f9e6b;
       --text:       var(--ink);
       --black:      var(--ink);
       --muted:      var(--pencil);
@@ -78,21 +85,21 @@
       -webkit-text-size-adjust: 100%;
     }
     body {
-      font-family: 'Klee One', 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+      font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif;
       color: var(--ink);
       background: var(--paper);
       padding-bottom: 60px;
       font-weight: 400;
       font-size: 15px;
-      line-height: 1.95;
-      letter-spacing: 0.02em;
+      line-height: 1.9;
+      letter-spacing: 0.01em;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
     img { max-width: 100%; height: auto; }
     a { color: inherit; }
-    ::selection { background: var(--sakura-light); color: var(--ink); }
+    ::selection { background: var(--blue-light); color: var(--ink); }
 
     /* ---------- ヘッダー ---------- */
     header {
@@ -105,44 +112,44 @@
       position: sticky;
       top: 0;
       z-index: 200;
-      border-bottom: 1px dashed var(--rule);
+      border-bottom: 1px solid var(--rule);
     }
     .logo-main {
-      font-family: 'Klee One', serif;
+      font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
       font-size: 18px;
       color: var(--ink);
-      letter-spacing: 0.08em;
-      font-weight: 600;
+      letter-spacing: 0.04em;
+      font-weight: 900;
       line-height: 1.1;
     }
     .logo-sub {
-      font-family: 'Caveat', cursive;
-      font-size: 13px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
       color: var(--pencil);
-      letter-spacing: 0.18em;
-      margin-top: 2px;
+      letter-spacing: 0.22em;
+      margin-top: 3px;
       font-weight: 500;
     }
     .header-btn {
       background: var(--paper);
       color: var(--ink);
       border: 1.5px solid var(--ink);
-      border-radius: 999px;
-      padding: 7px 15px;
+      border-radius: 6px;
+      padding: 8px 15px;
       font-size: 11.5px;
-      font-weight: 500;
+      font-weight: 700;
       cursor: pointer;
       text-decoration: none;
       white-space: nowrap;
-      font-family: 'Klee One', sans-serif;
-      transition: background 0.2s;
+      font-family: 'Noto Sans JP', sans-serif;
+      transition: background 0.2s, color 0.2s;
     }
-    .header-btn:hover { background: var(--sora-mist); }
+    .header-btn:hover { background: var(--ink); color: #fff; }
 
     /* ---------- タブナビゲーション ---------- */
     .tab-nav {
       background: var(--paper);
-      border-bottom: 1px dashed var(--rule);
+      border-bottom: 1px solid var(--rule);
       position: sticky;
       top: 64px;
       z-index: 100;
@@ -154,39 +161,38 @@
     .tab-nav::-webkit-scrollbar { display: none; }
     .tab-btn {
       flex-shrink: 0;
-      padding: 14px 13px 16px;
+      padding: 15px 13px 16px;
       font-size: 13px;
-      font-weight: 400;
+      font-weight: 500;
       color: var(--pencil);
       background: none;
       border: none;
       cursor: pointer;
       white-space: nowrap;
-      font-family: 'Klee One', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
       position: relative;
       transition: color 0.2s;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
     }
     .tab-btn:hover { color: var(--ink); }
     .tab-btn.active {
-      color: var(--ink);
-      font-weight: 600;
+      color: var(--blue);
+      font-weight: 700;
     }
     .tab-btn.active::after {
       content: '';
       position: absolute;
-      left: 6px;
-      right: 6px;
-      bottom: 5px;
-      height: 6px;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 6' preserveAspectRatio='none'><path d='M0,3 Q5,0.5 10,3 T20,3 T30,3 T40,3' fill='none' stroke='%23f4b8c1' stroke-width='2' stroke-linecap='round'/></svg>");
-      background-repeat: repeat-x;
-      background-size: 24px 6px;
+      left: 8px;
+      right: 8px;
+      bottom: 0;
+      height: 3px;
+      background: var(--blue);
+      border-radius: 3px 3px 0 0;
       pointer-events: none;
     }
 
     .tab-content { display: none; }
-    .tab-content.active { display: block; animation: fadeIn 0.35s ease; }
+    .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 
     /* ---------- ヒーロー：写真全体表示 + 上乗せテキスト ---------- */
@@ -197,14 +203,12 @@
       background: var(--paper-warm);
       border-bottom: none;
       width: 100%;
-      /* 画像の16:9をそのまま維持。写真の上下左右を切り取らずに全体表示 */
       aspect-ratio: 16 / 9;
       display: block;
       min-height: 0;
     }
     .hero::before, .hero::after { display: none; }
 
-    /* 3枚のスライド背景（imgタグ方式で画像全体を確実に表示） */
     .hero-slideshow {
       position: absolute;
       inset: 0;
@@ -228,46 +232,56 @@
       display: block;
     }
 
-    /* 写真の左上に置くタイトル：水色×桜色 */
+    /* 写真の左上に置くタイトル：黒の見出し＋ブルーのライン */
     .hero-title {
       position: absolute;
-      top: 6%;
-      left: 4.5%;
+      top: 7%;
+      left: 5%;
       right: auto;
       z-index: 2;
       margin: 0;
       padding: 0;
-      /* 幅制限は緩めに。長いラインは自然に伸ばす */
-      max-width: 80%;
-      font-family: 'Zen Maru Gothic', 'Klee One', 'Noto Sans JP', sans-serif;
-      letter-spacing: 0.02em;
-      /* 読みやすさは、うっすら白い影に一本化（ぼやけを避けつつ縁取りを軽く） */
-      filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.85))
-              drop-shadow(0 0 4px rgba(255, 255, 255, 0.55));
+      max-width: 82%;
+      font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+      letter-spacing: 0.01em;
+      filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.9))
+              drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
     }
     .hero-title-line {
       display: block;
-      color: #5aa9c5;                     /* 参考画像の水色（一段はっきり） */
-      line-height: 1.45;
-      font-size: clamp(15px, 3.1vw, 30px);
+      color: var(--ink);
+      line-height: 1.4;
+      font-size: clamp(14px, 3vw, 28px);
       font-weight: 700;
-      margin-bottom: 0.15em;
-      letter-spacing: 0.04em;
+      margin-bottom: 0.1em;
+      letter-spacing: 0.02em;
+      padding-left: 14px;
+      position: relative;
+    }
+    .hero-title-line::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.28em;
+      bottom: 0.28em;
+      width: 5px;
+      background: var(--blue);
+      border-radius: 2px;
     }
     .hero-title-main {
-      color: #5aa9c5;                     /* 水色本体（はっきり） */
-      font-size: clamp(30px, 7vw, 68px);  /* 少し小さめに調整して改行を防ぐ */
+      color: var(--ink);
+      font-size: clamp(30px, 7vw, 66px);
       font-weight: 900;
-      line-height: 1.15;
-      margin-top: 0.35em;
+      line-height: 1.1;
+      margin-top: 0.3em;
       margin-bottom: 0;
-      letter-spacing: 0.02em;
-      white-space: nowrap;                /* 学習塾スタイルは必ず1行 */
-      /* 桜色のずれ影だけ、くっきりと */
-      text-shadow: -3px 3px 0 #e89aa6;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      text-shadow: none;
+      padding-left: 0;
     }
+    .hero-title-main::before { display: none; }
 
-    /* アクセシビリティ：モーション低減設定時はフェード停止 */
     @media (prefers-reduced-motion: reduce) {
       .hero-slide { transition: none; }
     }
@@ -275,8 +289,8 @@
     /* ---------- ヒーロー下段：サブ文・CTA・バッジ ---------- */
     .hero-below {
       background: var(--paper);
-      padding: 2rem 1.25rem 2.4rem;
-      border-bottom: 1px dashed var(--rule);
+      padding: 2.2rem 1.25rem 2.4rem;
+      border-bottom: 1px solid var(--rule);
       text-align: center;
     }
     .hero-below-inner {
@@ -286,17 +300,17 @@
     .hero-eyebrow {
       display: inline-block;
       background: transparent;
-      color: var(--pencil);
-      font-family: 'Caveat', cursive;
-      font-size: 17px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
+      color: var(--blue);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
       padding: 0;
-      margin-bottom: 0.9rem;
+      margin-bottom: 1rem;
       border-radius: 0;
     }
-    .hero-eyebrow::before { content: '― '; color: var(--sakura); }
-    .hero-eyebrow::after  { content: ' ―'; color: var(--sakura); }
+    .hero-eyebrow::before { content: ''; }
+    .hero-eyebrow::after  { content: ''; }
     .hero-sub {
       font-size: 14.5px;
       color: var(--ink-soft);
@@ -318,28 +332,28 @@
       align-items: center;
       justify-content: center;
       padding: 12px 26px;
-      border-radius: 999px;
+      border-radius: 6px;
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 700;
       text-decoration: none;
       cursor: pointer;
-      font-family: 'Klee One', sans-serif;
-      transition: transform 0.15s, background 0.15s;
-      letter-spacing: 0.04em;
+      font-family: 'Noto Sans JP', sans-serif;
+      transition: transform 0.15s, background 0.15s, color 0.15s;
+      letter-spacing: 0.02em;
       box-shadow: none;
     }
     .btn-gold {
-      background: var(--sakura);
-      color: var(--ink);
-      border: 1.5px solid var(--sakura-deep);
+      background: var(--blue);
+      color: #fff;
+      border: 1.5px solid var(--blue);
     }
-    .btn-gold:hover { background: var(--sakura-deep); color: #fff; transform: translateY(-1px); }
+    .btn-gold:hover { background: var(--blue-deep); border-color: var(--blue-deep); color: #fff; transform: translateY(-1px); }
     .btn-outline {
       background: var(--paper);
       color: var(--ink);
       border: 1.5px solid var(--ink);
     }
-    .btn-outline:hover { background: var(--sora-mist); transform: translateY(-1px); }
+    .btn-outline:hover { background: var(--ink); color: #fff; transform: translateY(-1px); }
 
     /* ---------- バッジ（ヒーロー下） ---------- */
     .hero-badges {
@@ -351,18 +365,18 @@
     }
     .hero-badge {
       font-size: 11.5px;
-      color: var(--ink);
-      font-weight: 400;
-      background: var(--sora-mist);
-      border: 1px solid var(--sora);
-      border-radius: 999px;
-      padding: 4px 12px;
-      font-family: 'Klee One', sans-serif;
+      color: var(--blue-deep);
+      font-weight: 500;
+      background: var(--blue-mist);
+      border: 1px solid var(--blue-light);
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-family: 'Noto Sans JP', sans-serif;
     }
     .hero-badge::before {
       content: '✓ ';
-      color: var(--sora-deep);
-      font-weight: 600;
+      color: var(--blue);
+      font-weight: 700;
     }
 
     /* ---------- 汎用セクション ---------- */
@@ -371,106 +385,98 @@
       background: var(--paper);
     }
     .section-alt {
-      background: var(--sora-mist);
+      background: var(--paper-cool);
     }
-    .inner { max-width: 720px; margin: 0 auto; }
+    .inner { max-width: 760px; margin: 0 auto; }
 
-    /* 手書き風セクションタイトル */
+    /* 見出し：ブルーの縦ライン＋黒文字（＋下の細い罫線） */
     .section-title {
-      font-family: 'Klee One', serif;
-      font-size: 22px;
-      font-weight: 600;
+      font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
       color: var(--ink);
       margin-bottom: 0.4rem;
       position: relative;
-      display: inline-block;
-      padding: 0 4px 6px;
-      letter-spacing: 0.03em;
+      display: block;
+      padding: 0 0 0 16px;
+      letter-spacing: 0.02em;
     }
     .section-title::before {
-      /* 桜色の小さな飾り */
-      content: '❁';
-      position: absolute;
-      left: -22px;
-      top: 4px;
-      color: var(--sakura);
-      font-size: 14px;
-      background: none;
-      clip-path: none;
-      width: auto;
-      height: auto;
-      z-index: auto;
-    }
-    .section-title::after {
-      /* 手書き波線アンダーライン */
       content: '';
       position: absolute;
       left: 0;
-      right: 0;
-      bottom: -2px;
-      height: 6px;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 6' preserveAspectRatio='none'><path d='M0,3 Q5,0.5 10,3 T20,3 T30,3 T40,3' fill='none' stroke='%23a8d5e5' stroke-width='2' stroke-linecap='round'/></svg>");
-      background-repeat: repeat-x;
-      background-size: 24px 6px;
+      top: 0.15em;
+      bottom: 0.15em;
+      width: 5px;
+      background: var(--blue);
+      border-radius: 2px;
+      color: inherit;
+      clip-path: none;
+      height: auto;
+      z-index: auto;
+      font-size: inherit;
     }
+    .section-title::after { display: none; }
     .section-sub {
       font-size: 13.5px;
       color: var(--pencil);
       margin-bottom: 2rem;
       line-height: 1.85;
       font-weight: 400;
-      margin-top: 0.9rem;
+      margin-top: 0.7rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--rule);
     }
 
     /* ---------- 特徴カード ---------- */
     .features {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 20px;
+      gap: 18px;
     }
     .feature-card {
       background: var(--paper);
       border: 1px solid var(--rule);
-      border-radius: 18px;
+      border-radius: 10px;
       padding: 1.6rem 1.4rem 1.5rem;
-      box-shadow: 0 2px 12px rgba(42, 38, 34, 0.04);
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
       position: relative;
     }
     .feature-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(42, 38, 34, 0.07);
+      border-color: var(--blue-light);
+      box-shadow: 0 4px 16px rgba(47, 107, 237, 0.06);
     }
     .feature-card > img {
       display: block;
       margin: 0 auto 0.9rem !important;
-      border-radius: 12px;
+      border-radius: 8px;
     }
     .feature-num {
       display: inline-block;
-      font-family: 'Caveat', cursive;
-      font-size: 15px;
-      color: var(--sakura-deep);
-      font-weight: 600;
-      letter-spacing: 0.12em;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      color: var(--blue);
+      font-weight: 700;
+      letter-spacing: 0.14em;
       background: transparent;
       border: none;
       padding: 0;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
       border-radius: 0;
     }
-    .feature-num::before { content: '№ '; color: var(--pencil-soft); }
+    .feature-num::before { content: ''; }
     .feature-card h3 {
-      font-family: 'Klee One', serif;
+      font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
       font-size: 17px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--ink);
       margin-bottom: 0.7rem;
       line-height: 1.6;
     }
     .feature-card h3 span {
       color: var(--pencil) !important;
-      font-family: 'Klee One', sans-serif !important;
+      font-family: 'Noto Sans JP', sans-serif !important;
     }
     .feature-card p {
       font-size: 13.5px;
@@ -479,16 +485,16 @@
       font-weight: 400;
     }
     .feature-card a[href] {
-      background: var(--paper) !important;
-      color: var(--ink) !important;
-      border: 1.5px solid var(--ink) !important;
+      background: var(--blue) !important;
+      color: #fff !important;
+      border: 1.5px solid var(--blue) !important;
       box-shadow: none !important;
-      border-radius: 999px !important;
-      font-family: 'Klee One', sans-serif !important;
-      font-weight: 500 !important;
+      border-radius: 6px !important;
+      font-family: 'Noto Sans JP', sans-serif !important;
+      font-weight: 700 !important;
       transition: background 0.2s;
     }
-    .feature-card a[href]:hover { background: var(--sora-mist) !important; }
+    .feature-card a[href]:hover { background: var(--blue-deep) !important; border-color: var(--blue-deep) !important; }
 
     /* ---------- 塾長's EYES ---------- */
     .jukucho-eyes-section {
@@ -496,33 +502,27 @@
       background: var(--paper);
     }
     .eyes-card {
-      max-width: 620px;
+      max-width: 640px;
       margin: 0 auto;
-      background: var(--sakura-mist);
-      border: 1px solid var(--sakura-mid);
-      border-radius: 14px;
+      background: var(--blue-mist);
+      border: 1px solid var(--blue-light);
+      border-radius: 10px;
       padding: 1.6rem 1.4rem 1.4rem;
       position: relative;
-      box-shadow: 0 3px 14px rgba(228, 154, 166, 0.14);
+      box-shadow: none;
     }
-    /* 上部にマスキングテープ風の飾り */
     .eyes-card::before {
       content: '';
       position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%) rotate(-2deg);
-      width: 90px;
-      height: 22px;
-      background: repeating-linear-gradient(
-        45deg,
-        rgba(168, 213, 229, 0.55),
-        rgba(168, 213, 229, 0.55) 4px,
-        rgba(168, 213, 229, 0.35) 4px,
-        rgba(168, 213, 229, 0.35) 8px
-      );
-      border-radius: 2px;
-      opacity: 0.8;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--blue);
+      border-radius: 10px 0 0 10px;
+      transform: none;
+      height: auto;
+      opacity: 1;
     }
     .eyes-header {
       display: flex;
@@ -533,25 +533,25 @@
       flex-wrap: wrap;
     }
     .eyes-badge {
-      font-family: 'Klee One', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
       font-size: 12px;
-      font-weight: 600;
-      color: var(--ink);
-      background: var(--paper);
-      border: 1px solid var(--sakura-deep);
-      padding: 3px 10px;
-      border-radius: 999px;
-      letter-spacing: 0.04em;
+      font-weight: 700;
+      color: #fff;
+      background: var(--blue);
+      border: 1px solid var(--blue);
+      padding: 3px 11px;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
     }
     .eyes-date {
-      font-family: 'Caveat', cursive;
-      font-size: 15px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
       color: var(--pencil);
       font-weight: 500;
     }
     .eyes-body { margin-bottom: 1rem; }
     .eyes-message {
-      font-family: 'Klee One', serif;
+      font-family: 'Noto Sans JP', sans-serif;
       font-size: 14.5px;
       color: var(--ink);
       line-height: 2.05;
@@ -562,27 +562,27 @@
       align-items: center;
       gap: 8px;
       padding-top: 0.7rem;
-      border-top: 1px dashed var(--sakura-mid);
+      border-top: 1px solid var(--blue-light);
     }
     .eyes-avatar { font-size: 20px; }
     .eyes-author {
-      font-family: 'Caveat', cursive;
-      font-size: 15px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
       color: var(--pencil);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     /* ---------- 満点レビュー ---------- */
     .reviews-section {
       padding: 2.6rem 0 2.8rem;
-      background: var(--paper);
+      background: var(--paper-cool);
       background-image: none;
       overflow: hidden;
       position: relative;
       border-bottom: none;
     }
     .reviews-inner {
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto;
       padding: 0 1.25rem;
     }
@@ -593,15 +593,15 @@
       gap: 6px;
       background: var(--paper);
       border: 1px solid var(--rule);
-      border-radius: 999px;
+      border-radius: 6px;
       padding: 4px 12px 4px 6px;
       font-size: 11px;
       font-weight: 500;
       color: var(--pencil);
       box-shadow: none;
       margin-bottom: 14px;
-      letter-spacing: 0.04em;
-      font-family: 'Klee One', sans-serif;
+      letter-spacing: 0.02em;
+      font-family: 'Noto Sans JP', sans-serif;
     }
     .reviews-badge .g-icon {
       display: inline-flex;
@@ -619,47 +619,39 @@
       color: transparent;
     }
     .reviews-title {
-      font-family: 'Klee One', serif;
-      font-size: 21px;
-      font-weight: 600;
+      font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+      font-size: 23px;
+      font-weight: 900;
       color: var(--ink);
-      line-height: 1.55;
+      line-height: 1.5;
       display: inline-block;
-      padding: 4px 10px 8px;
+      padding: 4px 0 8px;
       position: relative;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
     }
     .reviews-title::before { display: none; }
-    .reviews-title::after {
-      content: '';
-      position: absolute;
-      left: 8px; right: 8px; bottom: 0;
-      height: 6px;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 6' preserveAspectRatio='none'><path d='M0,3 Q5,0.5 10,3 T20,3 T30,3 T40,3' fill='none' stroke='%23f4b8c1' stroke-width='2' stroke-linecap='round'/></svg>");
-      background-repeat: repeat-x;
-      background-size: 24px 6px;
-    }
+    .reviews-title::after { display: none; }
     .reviews-title .star-emoji { font-size: 19px; margin-left: 4px; }
     .reviews-summary {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      margin-top: 12px;
+      margin-top: 10px;
       font-size: 12px;
       color: var(--pencil);
       font-weight: 400;
       flex-wrap: wrap;
     }
     .reviews-summary .big-rate {
-      font-family: 'Caveat', cursive;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
       font-size: 26px;
-      font-weight: 700;
+      font-weight: 900;
       color: var(--ink);
       line-height: 1;
     }
     .reviews-summary .big-stars {
-      color: #f0b23a;
+      color: #f5a623;
       font-size: 15px;
       letter-spacing: 2px;
     }
@@ -686,19 +678,19 @@
       scroll-snap-align: center;
       background: var(--paper);
       border: 1px solid var(--rule);
-      border-radius: 14px;
+      border-radius: 10px;
       padding: 16px 16px 18px;
-      box-shadow: 0 2px 10px rgba(42, 38, 34, 0.04);
+      box-shadow: none;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      transition: transform 0.15s, box-shadow 0.15s;
+      transition: border-color 0.15s, box-shadow 0.15s;
       text-decoration: none;
       color: var(--ink);
     }
     .review-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(42, 38, 34, 0.08);
+      border-color: var(--blue-light);
+      box-shadow: 0 4px 14px rgba(47, 107, 237, 0.07);
     }
     .review-head { display: flex; align-items: flex-start; gap: 10px; }
     .review-avatar {
@@ -715,11 +707,11 @@
       overflow: hidden;
       box-shadow: none;
     }
-    .review-avatar.a1 { background: linear-gradient(160deg, #cfeadd 0%, var(--sora) 100%); }
-    .review-avatar.a2 { background: var(--sakura-light); color: var(--sakura-deep); font-size: 12px; font-family: 'Klee One', serif; font-weight: 600; }
-    .review-avatar.a3 { background: linear-gradient(160deg, #efe6d6 0%, #c9bfa9 100%); }
-    .review-avatar.a4 { background: linear-gradient(160deg, var(--sakura-light) 0%, var(--sakura) 100%); }
-    .review-avatar.a5 { background: linear-gradient(160deg, #ffe1c4 0%, #f7bd8a 100%); }
+    .review-avatar.a1 { background: var(--blue-mid); }
+    .review-avatar.a2 { background: var(--blue-mist); color: var(--blue-deep); font-size: 12px; font-family: 'Noto Sans JP', sans-serif; font-weight: 700; }
+    .review-avatar.a3 { background: #8891a0; }
+    .review-avatar.a4 { background: var(--blue); }
+    .review-avatar.a5 { background: var(--blue-deep); }
 
     .review-meta { flex: 1; min-width: 0; }
     .review-name {
@@ -727,12 +719,12 @@
       align-items: center;
       gap: 4px;
       font-size: 13.5px;
-      font-weight: 600;
-      color: var(--sora-deep);
+      font-weight: 700;
+      color: var(--blue-deep);
       line-height: 1.3;
-      font-family: 'Klee One', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
     }
-    .review-name .ext-ic { font-size: 10px; color: var(--sora-deep); }
+    .review-name .ext-ic { font-size: 10px; color: var(--blue); }
     .review-counts {
       font-size: 11px;
       color: var(--pencil-soft);
@@ -740,7 +732,7 @@
       font-weight: 400;
     }
     .review-rate { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--pencil); font-weight: 400; }
-    .review-stars { color: #f0b23a; font-size: 15px; letter-spacing: 1.5px; line-height: 1; }
+    .review-stars { color: #f5a623; font-size: 15px; letter-spacing: 1.5px; line-height: 1; }
     .review-body {
       font-size: 13.5px;
       color: var(--ink);
@@ -762,16 +754,16 @@
     .reviews-dots .dot.active {
       opacity: 1;
       transform: scale(1.4);
-      background: var(--sakura);
+      background: var(--blue);
     }
     .reviews-hint {
       text-align: center;
-      font-family: 'Caveat', cursive;
-      font-size: 13px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
       color: var(--pencil);
       margin-top: 12px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
+      font-weight: 400;
+      letter-spacing: 0.04em;
     }
 
     /* ---------- コースカード ---------- */
@@ -783,57 +775,57 @@
     .course-card {
       background: var(--paper);
       border: 1px solid var(--rule);
-      border-radius: 16px;
+      border-radius: 10px;
       padding: 1.5rem 1.3rem;
-      box-shadow: 0 2px 10px rgba(42, 38, 34, 0.04);
-      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
       position: relative;
     }
     .course-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(42, 38, 34, 0.08);
+      border-color: var(--blue-light);
+      box-shadow: 0 4px 14px rgba(47, 107, 237, 0.07);
     }
     .course-card.featured {
-      background: var(--sora-mist);
-      border-color: var(--sora);
+      background: var(--blue-mist);
+      border-color: var(--blue-light);
     }
     .course-label {
-      font-family: 'Klee One', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
       font-size: 11px;
       background: var(--paper);
-      color: var(--ink);
+      color: var(--blue-deep);
       padding: 3px 12px;
-      border-radius: 999px;
+      border-radius: 6px;
       display: inline-block;
       margin-bottom: 0.9rem;
-      font-weight: 500;
-      border: 1px solid var(--sora);
-      letter-spacing: 0.04em;
+      font-weight: 700;
+      border: 1px solid var(--blue-light);
+      letter-spacing: 0.02em;
     }
     .course-label.gold {
-      background: var(--sakura);
-      color: var(--ink);
-      border-color: var(--sakura-deep);
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
     }
     .course-card h3 {
-      font-family: 'Klee One', serif;
+      font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--ink);
       margin-bottom: 0.6rem;
       line-height: 1.5;
     }
     .price {
-      font-family: 'Caveat', cursive;
-      font-size: 30px;
-      font-weight: 700;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 28px;
+      font-weight: 900;
       color: var(--ink);
       margin-bottom: 0.8rem;
       line-height: 1.1;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
     }
     .price span {
-      font-family: 'Klee One', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
       font-size: 13px;
       font-weight: 400;
       color: var(--pencil);
@@ -841,8 +833,8 @@
     }
     .course-divider {
       height: 1px;
-      background: none;
-      border-top: 1px dashed var(--rule);
+      background: var(--rule);
+      border-top: none;
       margin: 0.6rem 0 0.8rem;
     }
     .course-feature {
@@ -855,20 +847,19 @@
       margin-bottom: 2px;
     }
     .course-feature::before {
-      content: '・';
-      color: var(--sakura);
+      content: '';
       position: absolute;
       left: 4px;
-      font-weight: 700;
+      top: 0.72em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
     }
 
     /* ---------- スタイルの考え方（哲学） ---------- */
-    /* 縦長カードは、ノートに書きつけたエピソードのように */
-    #tab-philosophy .inner > div > div {
-      /* 各カード。既存インラインスタイルを部分的に上書き */
-    }
     #tab-philosophy .inner img[style*="float:right"] {
-      border-radius: 10px !important;
+      border-radius: 8px !important;
       max-width: 130px !important;
     }
 
@@ -877,26 +868,26 @@
       background: var(--paper);
       color: var(--pencil);
       border: 1px solid var(--rule);
-      border-radius: 999px;
+      border-radius: 6px;
       padding: 6px 14px;
       font-size: 12.5px;
-      font-weight: 400;
+      font-weight: 500;
       cursor: pointer;
-      font-family: 'Klee One', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
       transition: all 0.2s;
     }
-    .tweet-filter-btn:hover { border-color: var(--sora); color: var(--ink); }
+    .tweet-filter-btn:hover { border-color: var(--blue); color: var(--ink); }
     .tweet-filter-btn.active {
-      background: var(--sora-mist);
-      color: var(--ink);
-      border-color: var(--sora);
-      font-weight: 600;
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+      font-weight: 700;
     }
     .tweet-loading, .tweet-empty {
       text-align: center;
       padding: 3rem 1rem;
       color: var(--pencil);
-      font-family: 'Klee One', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
       font-size: 14px;
     }
     #tweets-container {
@@ -907,9 +898,9 @@
     .tweet-card {
       background: var(--paper);
       border: 1px solid var(--rule);
-      border-radius: 14px;
+      border-radius: 10px;
       padding: 1.2rem 1.2rem 1rem;
-      box-shadow: 0 2px 8px rgba(42, 38, 34, 0.03);
+      box-shadow: none;
     }
     .tweet-card-header {
       display: flex;
@@ -922,7 +913,7 @@
       width: 38px;
       height: 38px;
       border-radius: 50%;
-      background: var(--sora-mist);
+      background: var(--blue-mist);
       border: 1px solid var(--rule);
       display: flex;
       align-items: center;
@@ -931,27 +922,27 @@
       flex-shrink: 0;
     }
     .tweet-author {
-      font-family: 'Klee One', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--ink);
       line-height: 1.2;
     }
     .tweet-handle {
-      font-family: 'Caveat', cursive;
-      font-size: 13px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
       color: var(--pencil);
-      margin-top: 1px;
+      margin-top: 2px;
     }
     .tweet-cat-badge {
       margin-left: auto;
-      background: var(--sakura-mist);
-      color: var(--sakura-deep);
-      border: 1px solid var(--sakura-mid);
+      background: var(--blue-mist);
+      color: var(--blue-deep);
+      border: 1px solid var(--blue-light);
       font-size: 11px;
       padding: 2px 10px;
-      border-radius: 999px;
-      font-family: 'Klee One', sans-serif;
+      border-radius: 6px;
+      font-family: 'Noto Sans JP', sans-serif;
       font-weight: 500;
     }
     .tweet-body {
@@ -965,11 +956,11 @@
     }
     .tweet-footer {
       padding-top: 0.6rem;
-      border-top: 1px dashed var(--rule);
+      border-top: 1px solid var(--rule);
     }
     .tweet-time {
-      font-family: 'Caveat', cursive;
-      font-size: 13px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
       color: var(--pencil);
     }
 
@@ -982,21 +973,21 @@
     .blog-card {
       background: var(--paper);
       border: 1px solid var(--rule);
-      border-radius: 16px;
+      border-radius: 10px;
       overflow: hidden;
       text-decoration: none;
       color: var(--ink);
       display: flex;
       flex-direction: column;
-      box-shadow: 0 2px 10px rgba(42, 38, 34, 0.04);
-      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
     }
     .blog-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(42, 38, 34, 0.08);
+      border-color: var(--blue-light);
+      box-shadow: 0 4px 14px rgba(47, 107, 237, 0.07);
     }
     .blog-img {
-      background: linear-gradient(135deg, var(--sora-mist) 0%, var(--sakura-mist) 100%);
+      background: var(--blue-mist);
       height: 110px;
       display: flex;
       align-items: center;
@@ -1014,24 +1005,24 @@
       flex-wrap: wrap;
     }
     .blog-tag {
-      background: var(--sora-mist);
-      color: var(--sora-deep);
-      border: 1px solid var(--sora);
+      background: var(--blue-mist);
+      color: var(--blue-deep);
+      border: 1px solid var(--blue-light);
       font-size: 11px;
       padding: 2px 10px;
-      border-radius: 999px;
-      font-family: 'Klee One', sans-serif;
+      border-radius: 6px;
+      font-family: 'Noto Sans JP', sans-serif;
       font-weight: 500;
     }
     .blog-date {
-      font-family: 'Caveat', cursive;
-      font-size: 13px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
       color: var(--pencil);
     }
     .blog-card h2 {
-      font-family: 'Klee One', serif;
+      font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
       font-size: 15.5px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--ink);
       line-height: 1.55;
       margin-bottom: 0.5rem;
@@ -1049,7 +1040,7 @@
       align-items: flex-start;
       gap: 16px;
       padding: 1.4rem 0 1.6rem;
-      border-bottom: 1px dashed var(--rule);
+      border-bottom: 1px solid var(--rule);
       margin-bottom: 1.8rem;
     }
     .insta-profile-avatar {
@@ -1058,7 +1049,7 @@
       height: 78px;
       border-radius: 50%;
       padding: 2px;
-      background: linear-gradient(135deg, var(--sora) 0%, var(--sakura) 100%);
+      background: var(--blue);
     }
     .insta-profile-avatar-inner {
       width: 100%;
@@ -1086,15 +1077,15 @@
       flex-wrap: wrap;
     }
     .insta-username {
-      font-family: 'Klee One', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--ink);
     }
     .insta-verified {
-      color: var(--sora-deep);
-      font-size: 13px;
-      background: var(--sora-mist);
+      color: #fff;
+      font-size: 11px;
+      background: var(--blue);
       width: 18px;
       height: 18px;
       border-radius: 50%;
@@ -1104,18 +1095,18 @@
     }
     .insta-follow-btn {
       margin-left: auto;
-      background: var(--sakura);
-      color: var(--ink);
-      border: 1px solid var(--sakura-deep);
-      border-radius: 999px;
+      background: var(--blue);
+      color: #fff;
+      border: 1px solid var(--blue);
+      border-radius: 6px;
       padding: 5px 14px;
       font-size: 11.5px;
-      font-weight: 500;
+      font-weight: 700;
       cursor: pointer;
-      font-family: 'Klee One', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
       transition: background 0.2s;
     }
-    .insta-follow-btn:hover { background: var(--sakura-deep); color: #fff; }
+    .insta-follow-btn:hover { background: var(--blue-deep); }
     .insta-stats {
       display: flex;
       gap: 18px;
@@ -1128,15 +1119,15 @@
       color: var(--pencil);
     }
     .insta-stat strong {
-      font-family: 'Caveat', cursive;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
       font-size: 17px;
       color: var(--ink);
-      font-weight: 700;
+      font-weight: 900;
     }
     .insta-fullname {
-      font-family: 'Klee One', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--ink);
       margin-bottom: 4px;
     }
@@ -1148,24 +1139,24 @@
     .insta-post {
       background: var(--paper);
       border: 1px solid var(--rule);
-      border-radius: 16px;
+      border-radius: 10px;
       overflow: hidden;
       margin-bottom: 20px;
-      box-shadow: 0 2px 10px rgba(42, 38, 34, 0.04);
+      box-shadow: none;
     }
     .insta-post-header {
       display: flex;
       align-items: center;
       gap: 10px;
       padding: 12px 14px;
-      border-bottom: 1px dashed var(--rule);
+      border-bottom: 1px solid var(--rule);
     }
     .insta-post-avatar {
       width: 36px;
       height: 36px;
       border-radius: 50%;
       padding: 1.5px;
-      background: linear-gradient(135deg, var(--sora) 0%, var(--sakura) 100%);
+      background: var(--blue);
       flex-shrink: 0;
     }
     .insta-post-avatar-inner {
@@ -1179,9 +1170,9 @@
       font-size: 16px;
     }
     .insta-post-username {
-      font-family: 'Klee One', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
       font-size: 13.5px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--ink);
     }
     .insta-post-location {
@@ -1229,18 +1220,18 @@
       line-height: 1;
       color: var(--ink);
     }
-    .insta-like-btn .heart-filled { display: none; color: var(--sakura-deep); }
+    .insta-like-btn .heart-filled { display: none; color: #e0245e; }
     .insta-like-btn.liked .heart-empty { display: none; }
     .insta-like-btn.liked .heart-filled { display: inline; }
     .insta-post-save { color: var(--ink); font-size: 20px; }
     .insta-post-likes {
       padding: 4px 14px 2px;
-      font-family: 'Klee One', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
       font-size: 13px;
       color: var(--ink);
       font-weight: 500;
     }
-    .insta-post-likes strong { font-weight: 600; }
+    .insta-post-likes strong { font-weight: 700; }
     .insta-post-caption {
       padding: 2px 14px 14px;
       font-size: 13px;
@@ -1248,21 +1239,20 @@
       line-height: 1.75;
     }
     .insta-post-caption strong {
-      font-weight: 600;
+      font-weight: 700;
       margin-right: 6px;
     }
     .insta-hashtag {
-      color: var(--sora-deep);
+      color: var(--blue);
       font-size: 12.5px;
     }
 
     /* ---------- お問合せ ---------- */
-    /* 電話・住所カード（インライン中心なので最低限のリセット） */
     #tab-contact .inner > div > div {
       background: var(--paper) !important;
       border: 1px solid var(--rule) !important;
-      border-radius: 16px !important;
-      box-shadow: 0 2px 10px rgba(42, 38, 34, 0.04);
+      border-radius: 10px !important;
+      box-shadow: none;
     }
 
     /* ---------- 入塾の流れ ---------- */
@@ -1275,41 +1265,41 @@
     .flow-step {
       background: var(--paper);
       border: 1px solid var(--rule);
-      border-radius: 16px;
+      border-radius: 10px;
       padding: 1.4rem 1.4rem 1.5rem;
       display: flex;
       gap: 16px;
       position: relative;
-      box-shadow: 0 2px 10px rgba(42, 38, 34, 0.04);
+      box-shadow: none;
     }
     .flow-num {
       flex-shrink: 0;
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: var(--paper);
-      color: var(--ink);
-      border: 2px solid var(--sakura);
+      background: var(--blue);
+      color: #fff;
+      border: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Caveat', cursive;
-      font-size: 24px;
-      font-weight: 700;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 22px;
+      font-weight: 900;
       line-height: 1;
     }
     .flow-body { flex: 1; min-width: 0; }
     .flow-time {
-      font-family: 'Caveat', cursive;
-      font-size: 15px;
-      color: var(--sakura-deep);
-      font-weight: 600;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12.5px;
+      color: var(--blue);
+      font-weight: 700;
       margin-bottom: 4px;
     }
     .flow-body h3 {
-      font-family: 'Klee One', serif;
+      font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
       font-size: 17px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--ink);
       margin-bottom: 0.7rem;
       line-height: 1.5;
@@ -1321,15 +1311,16 @@
       font-weight: 400;
     }
     .flow-body p strong {
-      color: var(--ink);
-      background: linear-gradient(transparent 60%, var(--marker-pink) 60%);
+      color: var(--blue-deep);
+      background: var(--marker-blue);
       padding: 0 2px;
+      font-weight: 700;
     }
     .flow-cta {
       text-align: center;
       margin-top: 2rem;
       padding-top: 1.6rem;
-      border-top: 1px dashed var(--rule);
+      border-top: 1px solid var(--rule);
     }
 
     /* ---------- 固定バナー ---------- */
@@ -1339,8 +1330,8 @@
       left: 0;
       right: 0;
       background: var(--paper);
-      border-top: 1px solid var(--sakura-mid);
-      box-shadow: 0 -2px 10px rgba(42, 38, 34, 0.05);
+      border-top: 1px solid var(--rule);
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.04);
       padding: 6px 10px 6px 12px;
       padding-bottom: calc(6px + env(safe-area-inset-bottom, 0px));
       display: flex;
@@ -1357,10 +1348,10 @@
       overflow: hidden;
     }
     .banner-text strong {
-      font-family: 'Klee One', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
       font-size: 12.5px;
       color: var(--ink);
-      font-weight: 600;
+      font-weight: 700;
       line-height: 1.25;
       white-space: nowrap;
       overflow: hidden;
@@ -1376,151 +1367,159 @@
       text-overflow: ellipsis;
     }
     .banner-btn {
-      background: var(--sakura);
-      color: var(--ink);
-      border: 1.5px solid var(--sakura-deep);
-      border-radius: 999px;
-      padding: 6px 13px;
+      background: var(--blue);
+      color: #fff;
+      border: 1.5px solid var(--blue);
+      border-radius: 6px;
+      padding: 7px 13px;
       font-size: 11.5px;
-      font-weight: 500;
+      font-weight: 700;
       cursor: pointer;
-      font-family: 'Klee One', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
       white-space: nowrap;
       transition: background 0.2s;
       flex-shrink: 0;
       line-height: 1.3;
     }
-    .banner-btn:hover { background: var(--sakura-deep); color: #fff; }
+    .banner-btn:hover { background: var(--blue-deep); }
 
     /* ================================================================
-       ▼ HTMLのインラインスタイル上書き（黄色のハードコード対策）
+       ▼ HTMLのインラインスタイル上書き（旧テーマのハードコード対策）
        ================================================================ */
-    /* QUEST コース見出しのオレンジグラデーションを桜色に変更 */
-    div[style*="linear-gradient(135deg, var(--orange)"] {
-      background: linear-gradient(135deg, var(--sakura) 0%, var(--sakura-deep) 100%) !important;
-      border: 1px solid var(--sakura-deep) !important;
-      box-shadow: 0 3px 12px rgba(228, 154, 166, 0.2) !important;
-      color: var(--ink) !important;
-    }
-    /* LAB コース見出しの水色グラデーションを穏やかに */
+    /* QUEST／LAB コース見出しブロックを白×ブルーに統一 */
+    div[style*="linear-gradient(135deg, var(--orange)"],
     div[style*="linear-gradient(135deg, var(--sky)"] {
-      background: linear-gradient(135deg, var(--sora) 0%, var(--sora-deep) 100%) !important;
-      border: 1px solid var(--sora-deep) !important;
-      box-shadow: 0 3px 12px rgba(109, 181, 207, 0.2) !important;
-      color: var(--ink) !important;
+      background: var(--blue) !important;
+      border: 1px solid var(--blue-deep) !important;
+      box-shadow: none !important;
+      color: #fff !important;
     }
-    /* 上記2つのブロック内のテキストを、指定色に上書き */
     div[style*="linear-gradient(135deg, var(--orange)"] p,
     div[style*="linear-gradient(135deg, var(--sky)"] p {
-      color: var(--ink) !important;
+      color: #fff !important;
       opacity: 1 !important;
     }
 
-    /* 哲学カードの黄色いボーダーを桜色に */
-    div[style*="border-left:4px solid #FFD740"] {
-      border-left: 4px solid var(--sakura) !important;
+    /* 哲学カードの色付きボーダーをブルーに */
+    div[style*="border-left:4px solid #FFD740"],
+    #tab-philosophy div[style*="border-left:4px solid var(--sky)"] {
+      border-left: 4px solid var(--blue) !important;
     }
-    /* 哲学カードの背景グラデを穏やかに */
+    /* 哲学カードの背景グラデをフラットなブルーミストに */
     div[style*="linear-gradient(135deg, var(--sky-light) 0%, #c5ddf8 100%)"] {
-      background: linear-gradient(135deg, var(--sora-mist) 0%, var(--sora-light) 100%) !important;
+      background: var(--blue-mist) !important;
     }
 
-    /* 哲学カード見出しを手書き調に */
+    /* 哲学カード見出しを統一 */
     #tab-philosophy h3 {
-      font-family: 'Klee One', serif !important;
+      font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif !important;
       color: var(--ink) !important;
+      font-weight: 700 !important;
     }
 
-    /* コース／哲学／お問合せ／流れ の中の水色系見出し（インライン）を手書き感に */
     #tab-courses p[style*="border-left:3px solid"],
     #tab-philosophy p[style*="color:var(--sky-dark)"] {
-      font-family: 'Klee One', serif !important;
+      font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif !important;
       color: var(--ink) !important;
-      border-left-color: var(--sakura) !important;
+      border-left-color: var(--blue) !important;
+      font-weight: 700 !important;
     }
 
     /* お問合せの電話番号 */
     #tab-contact a[href^="tel:"] {
-      font-family: 'Klee One', serif !important;
-      color: var(--ink) !important;
+      font-family: 'Zen Kaku Gothic New', sans-serif !important;
+      color: var(--blue-deep) !important;
+      font-weight: 900 !important;
     }
-    /* お問合せの「今すぐ電話する」ボタン */
+    /* 「今すぐ電話する」ボタン */
     #tab-contact a[href^="tel:"][style*="background:var(--sky)"] {
-      background: var(--sakura) !important;
-      color: var(--ink) !important;
-      border: 1.5px solid var(--sakura-deep);
-      font-family: 'Klee One', sans-serif !important;
-      border-radius: 999px !important;
+      background: var(--blue) !important;
+      color: #fff !important;
+      border: 1.5px solid var(--blue);
+      font-family: 'Noto Sans JP', sans-serif !important;
+      border-radius: 6px !important;
+      font-weight: 700 !important;
     }
     #tab-contact a[href^="tel:"][style*="background:var(--sky)"]:hover {
-      background: var(--sakura-deep) !important;
+      background: var(--blue-deep) !important;
       color: #fff !important;
     }
 
     /* お問合せ カテゴリラベル */
     #tab-contact p[style*="color:var(--sky)"] {
-      color: var(--sakura-deep) !important;
-      font-family: 'Klee One', sans-serif !important;
+      color: var(--blue) !important;
+      font-family: 'Noto Sans JP', sans-serif !important;
+      font-weight: 700 !important;
     }
     #tab-contact p[style*="color:var(--sky-dark)"] {
       color: var(--ink) !important;
-      font-family: 'Klee One', serif !important;
+      font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif !important;
+      font-weight: 700 !important;
     }
 
-    /* コース料金の但し書き（水色ボックス） */
+    /* コース料金の但し書き（ブルーのボックス） */
     div[style*="background:var(--sky-light)"][style*="padding:1rem"] {
-      background: var(--sora-mist) !important;
+      background: var(--blue-mist) !important;
       color: var(--ink-soft) !important;
-      border: 1px dashed var(--sora) !important;
-      border-radius: 12px !important;
+      border: 1px solid var(--blue-light) !important;
+      border-radius: 8px !important;
     }
     div[style*="background:var(--sky-light)"][style*="padding:1rem"] strong {
-      color: var(--sakura-deep) !important;
+      color: var(--blue-deep) !important;
     }
 
     /* 曜日ボックス（お問合せ） */
     #tab-contact div[style*="background:var(--sky-pale)"] {
-      background: var(--sora-mist) !important;
-      border: 1px solid var(--sora) !important;
-      border-radius: 999px !important;
+      background: var(--blue-mist) !important;
+      border: 1px solid var(--blue-light) !important;
+      border-radius: 6px !important;
     }
     #tab-contact div[style*="background:#f5f5f5"] {
       background: var(--paper-warm) !important;
       border: 1px solid var(--rule) !important;
-      border-radius: 999px !important;
+      border-radius: 6px !important;
     }
 
-    /* コース料金：入塾費用カードをリデザイン */
+    /* コース料金：入塾費用カード */
     #tab-courses div[style*="background:#fff"][style*="border:1px solid var(--border)"] {
       background: var(--paper) !important;
       border: 1px solid var(--rule) !important;
-      border-radius: 16px !important;
-      box-shadow: 0 2px 10px rgba(42, 38, 34, 0.04);
+      border-radius: 10px !important;
+      box-shadow: none;
     }
     #tab-courses div[style*="background:#fff"] p[style*="color:var(--sky-dark)"] {
-      font-family: 'Klee One', serif !important;
+      font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif !important;
+      font-weight: 700 !important;
     }
     #tab-courses div[style*="background:#fff"] p[style*="color:var(--sky)"] {
-      color: var(--sakura-deep) !important;
-      font-family: 'Klee One', sans-serif !important;
+      color: var(--blue) !important;
+      font-family: 'Noto Sans JP', sans-serif !important;
+      font-weight: 700 !important;
     }
 
     /* 入塾の流れ：地図/リンク */
-    #tab-contact a[href*="maps"] { color: var(--sora-deep) !important; }
+    #tab-contact a[href*="maps"] { color: var(--blue) !important; }
     #tab-flow div[style*="background:var(--sky-light)"] {
-      background: var(--sora-mist) !important;
-      border: 1px dashed var(--sora) !important;
-      border-radius: 12px !important;
+      background: var(--blue-mist) !important;
+      border: 1px solid var(--blue-light) !important;
+      border-radius: 8px !important;
       color: var(--ink-soft) !important;
     }
     #tab-flow p[style*="color:var(--sky-dark)"] {
-      color: var(--sakura-deep) !important;
-      font-family: 'Klee One', sans-serif !important;
+      color: var(--blue-deep) !important;
+      font-family: 'Noto Sans JP', sans-serif !important;
+      font-weight: 700 !important;
     }
     #tab-flow p[style*="color:#444"] { color: var(--ink-soft) !important; }
 
+    /* QUEST見出しのオレンジ系ラベルをブルーに */
+    #tab-courses p[style*="color:var(--orange)"] {
+      color: var(--blue) !important;
+      border-left-color: var(--blue) !important;
+    }
+
     /* ================================================================
-       ▼ タブレット・PC 表示（min-width 480px 以上）
+       ▼ タブレット・PC 表示
        ================================================================ */
     @media (min-width: 480px) {
       body { font-size: 15.5px; }
@@ -1531,8 +1530,8 @@
 
     @media (min-width: 720px) {
       .hero-below { padding: 2.8rem 1.5rem 3rem; }
-      .section-title { font-size: 26px; }
-      .reviews-title { font-size: 24px; }
+      .section-title { font-size: 28px; }
+      .reviews-title { font-size: 26px; }
       .reviews-title .star-emoji { font-size: 22px; }
       .features { grid-template-columns: repeat(2, 1fr); }
       .courses { grid-template-columns: repeat(2, 1fr); }
@@ -1550,18 +1549,17 @@
       body { font-size: 14.5px; }
       .hero-below { padding: 1.6rem 1rem 2rem; }
       .section, .section-alt { padding: 2.4rem 1rem; }
-      .tab-btn { padding: 12px 10px 14px; font-size: 12px; }
+      .tab-btn { padding: 13px 10px 14px; font-size: 12px; }
       .reviews-inner { padding: 0 1rem; }
       .reviews-scroll-wrap { margin: 0 -1rem; }
       .reviews-scroll { padding: 12px 1rem 20px; }
       .price { font-size: 26px; }
-      /* 極小画面ではサブ文字を隠して1行に収める */
       .banner-text span { display: none; }
       .banner-btn { padding: 6px 11px; font-size: 11px; }
     }
 
     /* ================================================================
-       ▼ 印刷対応（付随的に）
+       ▼ 印刷対応
        ================================================================ */
     @media print {
       .header-btn, .fixed-banner, .tab-nav { display: none; }
@@ -1744,19 +1742,19 @@
           <p class="feature-num">FEATURE 01</p>
           <h3>個別指導ラボ<span style="display:block; font-size:12px; font-weight:500; color:var(--muted); margin-top:4px;">〜授業はまるで研究室〜</span></h3>
           <p>先生と一緒に「なぜ？」を考え、理解を深めていく個別指導。解説と演習をバランスよく組み合わせ、じっくり理解を積み上げます。</p>
-          <a href="lab-course.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:#fff;color:var(--black);font-size:13px;font-weight:700;padding:8px 18px;border-radius:99px;text-decoration:none;border:2.5px solid var(--black);box-shadow:3px 3px 0 var(--black);">詳しくはこちら →</a>
+          <a href="lab-course.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;padding:9px 18px;text-decoration:none;">詳しくはこちら →</a>
         </div>
         <div class="feature-card">
           <p class="feature-num">FEATURE 02</p>
           <h3>個別指導クエスト<span style="display:block; font-size:12px; font-weight:500; color:var(--muted); margin-top:4px;">〜知の探索に出かけよう〜</span></h3>
           <p>演習中心の個別指導。「自分で解けた！」を積み重ねながら、実際に「使える力」を育てていきます。</p>
-          <a href="quest-course.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:#fff;color:var(--black);font-size:13px;font-weight:700;padding:8px 18px;border-radius:99px;text-decoration:none;border:2.5px solid var(--black);box-shadow:3px 3px 0 var(--black);">詳しくはこちら →</a>
+          <a href="quest-course.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;padding:9px 18px;text-decoration:none;">詳しくはこちら →</a>
         </div>
         <div class="feature-card">
           <p class="feature-num">FEATURE 03</p>
           <h3>小学生英語コース<span style="display:block; font-size:12px; font-weight:500; color:var(--muted); margin-top:4px;">〜中学英語を得点源に〜</span></h3>
           <p>英会話ではなく「読む・書く・理解する」を重視。中高生を教える講師が直接指導し、中学入学と同時に英語を得点源にします。</p>
-          <a href="elementary-english-course.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:#fff;color:var(--black);font-size:13px;font-weight:700;padding:8px 18px;border-radius:99px;text-decoration:none;border:2.5px solid var(--black);box-shadow:3px 3px 0 var(--black);">詳しくはこちら →</a>
+          <a href="elementary-english-course.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;padding:9px 18px;text-decoration:none;">詳しくはこちら →</a>
         </div>
       </div>
 
@@ -1790,7 +1788,7 @@
       <!-- 個別指導ラボ 区分見出し -->
       <div style="background:linear-gradient(135deg, var(--sky) 0%, var(--sky-dark) 100%); border:3px solid var(--black); border-radius:16px; padding:1.2rem 1.4rem; margin-bottom:1.8rem; box-shadow:4px 4px 0 var(--black); color:#fff;">
         <p style="font-size:12px; font-weight:700; letter-spacing:0.15em; opacity:0.9; margin-bottom:4px;">LAB / 授業はまるで研究室</p>
-        <p style="font-family:'Noto Serif JP',serif; font-size:22px; font-weight:700; margin-bottom:6px;">個別指導ラボ</p>
+        <p style="font-family:'Zen Kaku Gothic New',sans-serif; font-size:22px; font-weight:900; margin-bottom:6px;">個別指導ラボ</p>
         <p style="font-size:13px; line-height:1.7; opacity:0.95;">先生と一緒に「なぜ？」を研究する。解説と演習をバランスよく、じっくり理解を深めるコースです。</p>
       </div>
 
@@ -1947,7 +1945,7 @@
       <!-- 個別指導クエスト 区分見出し -->
       <div style="background:linear-gradient(135deg, var(--orange) 0%, #ff8c42 100%); border:3px solid var(--black); border-radius:16px; padding:1.2rem 1.4rem; margin-bottom:1.8rem; box-shadow:4px 4px 0 var(--black); color:#fff;">
         <p style="font-size:12px; font-weight:700; letter-spacing:0.15em; opacity:0.95; margin-bottom:4px;">QUEST / 知の探索に出かけよう</p>
-        <p style="font-family:'Noto Serif JP',serif; font-size:22px; font-weight:700; margin-bottom:6px;">個別指導クエスト</p>
+        <p style="font-family:'Zen Kaku Gothic New',sans-serif; font-size:22px; font-weight:900; margin-bottom:6px;">個別指導クエスト</p>
         <p style="font-size:13px; line-height:1.7; opacity:0.95;">自分でどんどん問題を攻略する。演習量をたっぷり確保し、「自分で解ける力」を伸ばすコースです。</p>
       </div>
       <!-- ⑤ 小学生・中学1・2年生（クエスト） -->
@@ -2055,7 +2053,7 @@
 
         <div style="background:#fff; border:1px solid var(--border); border-left:4px solid var(--sky); border-radius:12px; padding:1.8rem;">
           <img src="images/lp/index-philosophy-1-joy.png" alt="" style="display:block; width:100%; max-width:180px; height:auto; float:right; margin-left:1rem; margin-bottom:0.5rem;">
-          <h3 style="font-family:'Noto Serif JP',serif; font-size:18px; color:var(--sky-dark); margin-bottom:1rem;">スタイルへ携わる人の人生を豊かにする</h3>
+          <h3 style="font-family:'Zen Kaku Gothic New',sans-serif; font-size:18px; color:var(--sky-dark); margin-bottom:1rem;">スタイルへ携わる人の人生を豊かにする</h3>
           <p style="font-size:14px; color:#444; line-height:1.9;">スタイルでは、「スタイルへ携わる人の生活を豊かにする」ということをメインミッションに掲げています。例え、表現の仕方が多少変わることが今後あるとしても、このスタイルが掲げるミッションの本質は揺るぎないものです。</p>
           <p style="font-size:14px; color:#444; line-height:1.9; margin-top:1rem;">では「生活を豊かにする」とは具体的にどういうことでしょうか？例えば、スタイルでの体験を通して勉強そのものが好きになってくれれば、それ以上の喜びはありません。スタイルでは、新たな知識を得ることの楽しさ・ゲーム的な面白さを指導の中に取り込み、勉強が元々得意な人にはもちろんのこと、苦手意識を持っている人にも、その楽しさを体験できるよう工夫をしています。</p>
           <p style="font-size:14px; color:#444; line-height:1.9; margin-top:1rem;">ただし、これはスタイルが提唱する、「生活を豊かにする」という表現の1つでしかないと考えています。場合によっては、どうしても勉強には抵抗が…という人もいると思います。自分１人では、なかなか上手く勉強に取り組めないという人には、その手助けはもちろんのこと、苦手なことへの負担をできるだけ軽減できるような指導法をとっています。苦手なことそのものを避けるという意味ではなく、苦手なことと上手く付き合い、自分で対処できるようになることを目指し、そのアシストをします。皆が皆一様に、100点を目指す、難関校・難関大学を目指す、と言った学習目標をたてるのはナンセンスだと思いませんか？</p>
@@ -2063,20 +2061,20 @@
 
         <div style="background:#fff; border:1px solid var(--border); border-left:4px solid #FFD740; border-radius:12px; padding:1.8rem;">
           <img src="images/lp/index-philosophy-2-passion.png" alt="" style="display:block; width:100%; max-width:180px; height:auto; float:right; margin-left:1rem; margin-bottom:0.5rem;">
-          <h3 style="font-family:'Noto Serif JP',serif; font-size:18px; color:var(--sky-dark); margin-bottom:1rem;">人生で打ち込める何かを見つけて欲しい</h3>
+          <h3 style="font-family:'Zen Kaku Gothic New',sans-serif; font-size:18px; color:var(--sky-dark); margin-bottom:1rem;">人生で打ち込める何かを見つけて欲しい</h3>
           <p style="font-size:14px; color:#444; line-height:1.9;">特に、勉強に対して苦手意識を持っている生徒には、勉強を強いるような環境は、勉強に対して嫌なイメージを増大させてしまうリスクもあります。苦手なことへ向き合う姿勢は、勉強だけに限らず何事においても大切ですが、得意不得意は人それぞれ。勉強であれば、不得意なところはスタイルに任せてください。苦手なことへのストレスや労力が軽減した分、例えそれが勉強以外のことであっても、自分が打ち込める"何か"を精一杯頑張って欲しいと考えています。なぜならそれが結果として、間接的なものであったとしても、勉強と相乗効果をもたらすとスタイルは確信しているからです。</p>
         </div>
 
         <div style="background:#fff; border:1px solid var(--border); border-left:4px solid var(--sky); border-radius:12px; padding:1.8rem;">
           <img src="images/lp/index-philosophy-3-form.png" alt="" style="display:block; width:100%; max-width:200px; height:auto; float:right; margin-left:1rem; margin-bottom:0.5rem;">
-          <h3 style="font-family:'Noto Serif JP',serif; font-size:18px; color:var(--sky-dark); margin-bottom:1rem;">より効率的な"勉強のフォーム"を学ぶ</h3>
+          <h3 style="font-family:'Zen Kaku Gothic New',sans-serif; font-size:18px; color:var(--sky-dark); margin-bottom:1rem;">より効率的な"勉強のフォーム"を学ぶ</h3>
           <p style="font-size:14px; color:#444; line-height:1.9;">「やる気はあるけど、何をどうしたら良いのか分からない」「勉強時間はたくさんとっているのに、結果が思うように出ない」という人にも、スタイルが最適。押さえるべきポイントと家庭学習でのコツを丁寧に指導します。言わば勉強のフォームを教えます。</p>
           <p style="font-size:14px; color:#444; line-height:1.9; margin-top:1rem;">身近な例を用いますと、あらゆるスポーツや武道において、そのフォームや型はとても大切です。サッカーであればキックフォーム、柔道であれば技の型と言った具合です。どちらの場合も、ちょっとした置き足の位置であったり、フォロースルーの動作を意識するだけで、力の伝わりが効率的になり、無駄なモーションが改善されます。スタイルではこのように、塾生へ勉強のフォームを指導するトレーナーの役割も兼ねています。正しい方法を学んだ生徒は自発的に勉強へ取り組むようになり、成績も加速度的に上昇します。</p>
         </div>
 
         <div style="background:linear-gradient(135deg, var(--sky-light) 0%, #c5ddf8 100%); border:1px solid var(--border); border-radius:12px; padding:1.8rem;">
           <img src="images/lp/index-philosophy-4-lifestyle.png" alt="" style="display:block; width:100%; max-width:180px; height:auto; float:right; margin-left:1rem; margin-bottom:0.5rem;">
-          <h3 style="font-family:'Noto Serif JP',serif; font-size:18px; color:var(--sky-dark); margin-bottom:1rem;">ライフスタイルの選択として塾を選ぶ</h3>
+          <h3 style="font-family:'Zen Kaku Gothic New',sans-serif; font-size:18px; color:var(--sky-dark); margin-bottom:1rem;">ライフスタイルの選択として塾を選ぶ</h3>
           <p style="font-size:14px; color:#444; line-height:1.9;">学生時代にしなくてはならないことはとにかく膨大です。また学生時代はその人生の方向性に大きく関わる大切な期間です。そして「どこの塾へ行くか？」ということも、豊かな学生時代を送るための柱となってきています。その経験が豊かであれば、その後の人生を豊かにすることは言うまでもありません。</p>
           <p style="font-size:14px; color:#444; line-height:1.9; margin-top:1rem;">スタイルは勉強をライフスタイルの1つとして提案する学習塾です。人生の多様性が求められ、時代の過渡期にある今、勉強とは人生により多くの選択肢を与えてくれる素敵なものです。今後もその傾向が増していく状況にあるでしょう。</p>
           <p style="font-size:14px; color:var(--sky-dark); font-weight:700; line-height:1.9; margin-top:1rem;">ライフスタイルの選択としてスタイルをお選び頂ければ幸いです。</p>
@@ -2352,7 +2350,6 @@
       <div class="insta-profile">
         <div class="insta-profile-avatar">
           <div class="insta-profile-avatar-inner">
-            <!-- 塾長の似顔絵。差し替える場合は下のimgタグに画像パスを入れてください -->
             <img src="images/lp/index-character-teacher-phone.png" alt="学習塾スタイル 塾長" onerror="this.style.display='none';this.parentNode.innerHTML='👨‍🏫';">
           </div>
         </div>
@@ -2376,10 +2373,6 @@
           </div>
         </div>
       </div>
-
-      <!-- ▼ 投稿（フル投稿カード）▼
-           投稿を追加する場合は、下記の <div class="insta-post"> ～ </div> のブロックを丸ごとコピーして、
-           img の src とファイル名、<span class="like-count"> の数字を書き換えてください。 -->
 
       <div class="insta-post">
         <div class="insta-post-header">
@@ -2658,7 +2651,7 @@
         <div style="background:#fff; border:1px solid var(--border); border-radius:14px; padding:1.8rem; position:relative; overflow:hidden;">
           <img src="images/lp/index-character-teacher-phone.png" alt="" style="position:absolute; top:1rem; right:1rem; width:120px; height:auto; pointer-events:none;">
           <p style="font-size:13px; font-weight:700; color:var(--sky); letter-spacing:0.08em; margin-bottom:0.8rem;">📞 お電話でのお問合せ</p>
-          <a href="tel:084-975-4851" style="font-family:'Noto Serif JP',serif; font-size:32px; font-weight:700; color:var(--sky-dark); text-decoration:none; display:block; margin-bottom:1.2rem; letter-spacing:0.05em;">084-975-4851</a>
+          <a href="tel:084-975-4851" style="font-family:'Zen Kaku Gothic New',sans-serif; font-size:32px; font-weight:900; color:var(--sky-dark); text-decoration:none; display:block; margin-bottom:1.2rem; letter-spacing:0.05em;">084-975-4851</a>
           <p style="font-size:13px; font-weight:700; color:var(--sky-dark); margin-bottom:0.8rem;">電話受付時間</p>
           <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:8px;">
             <div style="display:flex; align-items:center; justify-content:space-between; background:var(--sky-pale); border:1px solid var(--border); border-radius:8px; padding:8px 14px;">
@@ -3085,19 +3078,19 @@
   function injectStyles(config) {
     var c = config.colors || {};
     var bg = c.bg || '#ffffff';
-    var border = c.border || '#1a1a2e';
-    var titleColor = c.titleColor || '#1DA8CC';
-    var textColor = c.textColor || '#1a1a2e';
-    var btnBg = c.btnBg || '#ffd83d';
-    var btnColor = c.btnColor || '#1a1a2e';
+    var border = c.border || '#2457c9';
+    var titleColor = c.titleColor || '#2f6bed';
+    var textColor = c.textColor || '#1a1a1e';
+    var btnBg = c.btnBg || '#2f6bed';
+    var btnColor = c.btnColor || '#ffffff';
 
     var css = ''
       + '.notice-popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;animation:noticeFadeIn .3s ease}'
-      + '.notice-popup{background:' + bg + ';color:' + textColor + ';border:3px solid ' + border + ';border-radius:20px;padding:2rem 1.8rem;max-width:420px;width:100%;box-shadow:8px 8px 0 ' + border + ';position:relative;text-align:center;animation:noticePopIn .4s cubic-bezier(.2,.9,.3,1.2);font-family:"Noto Sans JP",sans-serif}'
-      + '.notice-popup-title{font-size:22px;font-weight:700;color:' + titleColor + ';margin-bottom:1rem;line-height:1.5}'
+      + '.notice-popup{background:' + bg + ';color:' + textColor + ';border:1px solid ' + border + ';border-radius:14px;padding:2rem 1.8rem;max-width:420px;width:100%;box-shadow:0 12px 40px rgba(0,0,0,.18);position:relative;text-align:center;animation:noticePopIn .4s cubic-bezier(.2,.9,.3,1.2);font-family:"Noto Sans JP",sans-serif}'
+      + '.notice-popup-title{font-size:22px;font-weight:900;color:' + titleColor + ';margin-bottom:1rem;line-height:1.5}'
       + '.notice-popup-body{font-size:15px;line-height:1.85;color:' + textColor + ';margin-bottom:1.5rem;white-space:pre-line}'
-      + '.notice-popup-btn{background:' + btnBg + ';color:' + btnColor + ';border:2.5px solid ' + border + ';border-radius:50px;padding:10px 32px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:2px 2px 0 ' + border + ';font-family:inherit;transition:all .15s}'
-      + '.notice-popup-btn:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 ' + border + '}'
+      + '.notice-popup-btn{background:' + btnBg + ';color:' + btnColor + ';border:1.5px solid ' + border + ';border-radius:6px;padding:10px 32px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:none;font-family:inherit;transition:all .15s}'
+      + '.notice-popup-btn:hover{filter:brightness(.95)}'
       + '.notice-popup-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:' + textColor + ';line-height:1;width:30px;height:30px;border-radius:50%;padding:0}'
       + '.notice-popup-close:hover{background:rgba(0,0,0,.06)}'
       + '@keyframes noticeFadeIn{from{opacity:0}to{opacity:1}}'
