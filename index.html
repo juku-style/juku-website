@@ -286,6 +286,262 @@
       .hero-slide { transition: none; }
     }
 
+    /* ---------- 年内最後のスポット募集（アコーディオン） ---------- */
+    .spot-recruit {
+      background: var(--paper);
+      padding: 1.6rem 1.25rem 0.4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .spot-recruit-inner {
+      max-width: 540px;
+      margin: 0 auto;
+    }
+    .spot-recruit-title {
+      text-align: center;
+      font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+      font-size: clamp(19px, 5vw, 24px);
+      font-weight: 900;
+      color: var(--ink);
+      line-height: 1.5;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.01em;
+    }
+    .spot-recruit-sub {
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--pencil);
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.04em;
+    }
+    /* 正方形画像（タップで展開） */
+    .spot-recruit-toggle {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 6px 22px rgba(47, 107, 237, 0.14);
+      transition: transform 0.15s, box-shadow 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .spot-recruit-toggle:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(47, 107, 237, 0.2); }
+    .spot-recruit-toggle:active { transform: translateY(0); }
+    .spot-recruit-square {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: linear-gradient(140deg, var(--blue) 0%, var(--blue-deep) 100%);
+      border: 2px solid var(--blue-deep);
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      text-align: center;
+      padding: 0;
+      overflow: hidden;
+    }
+    .spot-recruit-square img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      z-index: 0;
+    }
+    /* 画像がある時だけ、下1/3を暗くして文字を読みやすく（人物の表情にはかけない） */
+    .spot-recruit-square.has-photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(to top,
+        rgba(11, 27, 61, 0.92) 0%,
+        rgba(11, 27, 61, 0.86) 28%,
+        rgba(11, 27, 61, 0.55) 40%,
+        rgba(11, 27, 61, 0) 52%);
+      pointer-events: none;
+    }
+    /* 文字はすべて下1/3のゾーンに収める */
+    .spot-recruit-overlay-bottom {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      width: 100%;
+      padding: 1rem 1.2rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .spot-recruit-badge {
+      display: inline-block;
+      background: #fff;
+      color: var(--blue-deep);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 3px 13px;
+      border-radius: 20px;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+    .spot-recruit-headline {
+      font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+      font-size: clamp(20px, 5.2vw, 28px);
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 0.7rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+    .spot-recruit-limit {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 4px;
+      background: var(--blue);
+      border: 1.5px solid rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      padding: 5px 17px;
+      font-size: 13.5px;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    .spot-recruit-limit strong {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .spot-recruit-period {
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 0.4rem;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+    }
+    .spot-recruit-tap {
+      margin-top: 0.75rem;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+    }
+    .spot-recruit-tap .tap-arrow {
+      display: inline-block;
+      transition: transform 0.3s ease;
+      font-size: 14px;
+    }
+    .spot-recruit-toggle[aria-expanded="true"] .tap-arrow { transform: rotate(180deg); }
+    .spot-recruit-tap-pulse { animation: spotTapPulse 1.8s ease-in-out infinite; }
+    @keyframes spotTapPulse {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 1; }
+    }
+
+    /* 展開パネル */
+    .spot-recruit-panel {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.45s ease, opacity 0.35s ease, margin 0.35s ease;
+      margin-top: 0;
+    }
+    .spot-recruit-panel.open {
+      max-height: 720px;
+      opacity: 1;
+      margin-top: 14px;
+    }
+    .spot-recruit-panel-inner {
+      background: var(--blue-mist);
+      border: 1px solid var(--blue-light);
+      border-radius: 12px;
+      padding: 1.4rem 1.4rem 1.5rem;
+    }
+    .spot-recruit-panel-inner h3 {
+      font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--blue-deep);
+      margin-bottom: 0.9rem;
+      line-height: 1.5;
+    }
+    .spot-recruit-panel-inner p {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.95;
+      margin-bottom: 1rem;
+    }
+    .spot-recruit-facts {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 1.2rem;
+    }
+    .spot-recruit-fact {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--paper);
+      border: 1px solid var(--blue-light);
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-size: 13.5px;
+      color: var(--ink);
+    }
+    .spot-recruit-fact .fact-label {
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--blue);
+      border-radius: 5px;
+      padding: 3px 9px;
+      letter-spacing: 0.02em;
+    }
+    .spot-recruit-fact strong { font-weight: 700; color: var(--blue-deep); }
+    .spot-recruit-cta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .spot-recruit-cta a {
+      flex: 1;
+      min-width: 140px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      font-family: 'Noto Sans JP', sans-serif;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .spot-recruit-cta .src-call {
+      background: var(--blue);
+      color: #fff;
+      border: 1.5px solid var(--blue);
+    }
+    .spot-recruit-cta .src-call:hover { background: var(--blue-deep); border-color: var(--blue-deep); transform: translateY(-1px); }
+    .spot-recruit-cta .src-flow {
+      background: var(--paper);
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+    }
+    .spot-recruit-cta .src-flow:hover { background: var(--ink); color: #fff; transform: translateY(-1px); }
+
     /* ---------- ヒーロー下段：サブ文・CTA・バッジ ---------- */
     .hero-below {
       background: var(--paper);
@@ -1603,6 +1859,61 @@
       <span class="hero-title-line hero-title-main">学習塾スタイル</span>
     </h1>
   </div>
+
+  <!-- ▼ 年内最後のスポット募集（タップで展開） ▼ -->
+  <section class="spot-recruit" aria-label="年内最後のスポット募集">
+    <div class="spot-recruit-inner">
+      <h2 class="spot-recruit-title">年内最後のスポット募集</h2>
+      <p class="spot-recruit-sub">画像をタップすると詳細が表示されます</p>
+
+      <button type="button" class="spot-recruit-toggle" id="spotRecruitToggle"
+              aria-expanded="false" aria-controls="spotRecruitPanel" onclick="toggleSpotRecruit()">
+        <div class="spot-recruit-square has-photo">
+          <!-- ▼ 正方形画像を差し替える場合は下の img の src を変更してください ▼ -->
+          <img src="images/lp/spot-recruit.jpg" alt="年内最後のスポット募集"
+               onerror="this.closest('.spot-recruit-square').classList.remove('has-photo');">
+          <!-- 文字はすべて画像下1/3のゾーンに集約（人物の表情にかぶらない） -->
+          <div class="spot-recruit-overlay-bottom">
+            <span class="spot-recruit-badge">年内最後</span>
+            <div class="spot-recruit-headline">スポット募集 開始！</div>
+            <span class="spot-recruit-limit"><strong>3</strong>名限定</span>
+            <div class="spot-recruit-period">募集期間：年末まで</div>
+            <div class="spot-recruit-tap">
+              <span class="spot-recruit-tap-pulse">タップして詳細を見る</span>
+              <span class="tap-arrow" aria-hidden="true">▼</span>
+            </div>
+          </div>
+        </div>
+      </button>
+
+      <div class="spot-recruit-panel" id="spotRecruitPanel" role="region" aria-labelledby="spotRecruitToggle">
+        <div class="spot-recruit-panel-inner">
+          <h3>年内最後のスポット募集開始！</h3>
+          <div class="spot-recruit-facts">
+            <div class="spot-recruit-fact">
+              <span class="fact-label">限定</span>
+              <span><strong>3名</strong>のみの受け入れ</span>
+            </div>
+            <div class="spot-recruit-fact">
+              <span class="fact-label">期間</span>
+              <span>募集期間は<strong>年末まで</strong></span>
+            </div>
+            <div class="spot-recruit-fact">
+              <span class="fact-label">時間</span>
+              <span>人気の<strong>17時〜19時台</strong>の枠あり</span>
+            </div>
+          </div>
+          <p>推薦組の合格により若干名の受け入れが可能になりました。人気の17時〜19時台の枠もございます。通常、新規募集は新年度切り替えのタイミングのみ実施しておりますが、今年は推薦組が多かったため、このようにスポットでの募集をいたします。</p>
+          <div class="spot-recruit-cta">
+            <a href="tel:084-975-4851" class="src-call">📞 今すぐ電話する</a>
+            <a href="#" class="src-flow" onclick="showTab('flow');return false;">入塾の流れを見る →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ▲ 年内最後のスポット募集 ▲ -->
+
   <!-- ▲ ヒーロー画像下：サブテキスト・CTA・バッジ ▲ -->
   <section class="hero-below">
     <div class="hero-below-inner">
@@ -2795,6 +3106,20 @@
     if (idx >= 0) document.querySelectorAll('.tab-btn')[idx].classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (name === 'tweets' && !tweetsLoaded) loadTweets();
+  }
+
+  // ===== 年内最後のスポット募集：タップで展開 =====
+  function toggleSpotRecruit() {
+    const btn = document.getElementById('spotRecruitToggle');
+    const panel = document.getElementById('spotRecruitPanel');
+    if (!btn || !panel) return;
+    const isOpen = panel.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    if (isOpen) {
+      setTimeout(function () {
+        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 260);
+    }
   }
 
   // ===== 満点レビュー カルーセルのドット表示 =====
